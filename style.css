@@ -6646,14 +6646,13 @@ body.payment-confirmation-page .narrow {
   unicode-bidi: embed;
 }
 
-.simple-flow-page .site-header .header-inner,
-.payment-confirmation-page .site-header .header-inner {
-  justify-content: center;
-}
-
-.simple-flow-page .site-header .brand,
-.payment-confirmation-page .site-header .brand {
-  margin-inline: auto;
+/* Main site navigation and language switcher — homepage only */
+body:not(.home-page) .site-nav,
+body:not(.home-page) .nav-toggle,
+body:not(.home-page) .nav-overlay,
+body:not(.home-page) .language-switcher,
+body:not(.home-page) .language-bar {
+  display: none !important;
 }
 
 /* Apply page — premium application flow stepper */
@@ -6943,25 +6942,12 @@ body.payment-confirmation-page .narrow {
   background: transparent;
 }
 
-.flow-language {
-  margin-inline-start: auto;
-}
-
-.flow-language .language-select {
-  min-height: 40px;
-  padding: 8px 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: #fff;
-  color: var(--text);
-  font: 600 0.85rem/1.2 var(--font-body, system-ui, sans-serif);
-  max-width: 9rem;
-}
-
+.apply-page .site-header .header-inner,
+.application-received-page .site-header .header-inner,
 .simple-flow-page .site-header .header-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 12px;
 }
 

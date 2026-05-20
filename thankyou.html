@@ -9,24 +9,12 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="simple-flow-page">
-  <header class="site-header">
+  <header class="site-header back-nav">
     <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Paul Goodling home">
-        <img class="brand-mark" src="image/logo.png" alt="" aria-hidden="true" decoding="async">
-        <span class="brand-copy">
-          <strong>Paul Goodling</strong>
-          <span>Private Property Manager</span>
-        </span>
+      <a href="index.html" class="back-button" id="thankyouBackButton" aria-label="Back to home">
+        <span class="back-button-icon" aria-hidden="true">←</span>
+        <span>Back</span>
       </a>
-      <div class="language-switcher flow-language" aria-label="Language selector">
-        <select class="language-select" aria-label="Select language">
-          <option value="en">English</option>
-          <option value="es">Español</option>
-          <option value="zh">中文</option>
-          <option value="fr">Français</option>
-          <option value="ar">العربية</option>
-        </select>
-      </div>
     </div>
   </header>
 
@@ -80,8 +68,13 @@
       window.localStorage.setItem('latestApplicationLanguage', supportedLanguage);
       window.localStorage.setItem('site-language', supportedLanguage);
 
+      const homeHref = homeTargets[supportedLanguage] || homeTargets.en;
       if (returnHomeLink) {
-        returnHomeLink.href = homeTargets[supportedLanguage] || homeTargets.en;
+        returnHomeLink.href = homeHref;
+      }
+      const thankyouBackButton = document.getElementById('thankyouBackButton');
+      if (thankyouBackButton) {
+        thankyouBackButton.href = homeHref;
       }
 
       function loadEmailJsSdk() {

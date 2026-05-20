@@ -49,8 +49,8 @@
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const urlLanguage = new URLSearchParams(window.location.search).get("lang");
   const savedLanguage = window.localStorage.getItem("site-language");
-  const pageLanguage = document.documentElement.lang && document.documentElement.lang.indexOf("es") === 0 ? "es" : "en";
-  const defaultLanguage = urlLanguage || (pageLanguage === "es" ? pageLanguage : savedLanguage) || pageLanguage || "en";
+  const pageLanguage = document.documentElement.lang ? document.documentElement.lang.split("-")[0] : "en";
+  const defaultLanguage = urlLanguage || savedLanguage || pageLanguage || "en";
 
   const translations = {
     es: {
@@ -2066,6 +2066,23 @@
     });
   }
 
+  function logI18n(event, details) {
+    console.log(`[i18n] ${event}`, details || "");
+  }
+
+  function persistLanguageChoice(language) {
+    const lang = normalizeLanguage(language);
+    window.localStorage.setItem("site-language", lang);
+    window.sessionStorage.setItem("latestApplicationLanguage", lang);
+    window.localStorage.setItem("latestApplicationLanguage", lang);
+    logI18n("persist", {
+      lang,
+      siteLanguage: window.localStorage.getItem("site-language"),
+      latestApplicationLanguage: window.localStorage.getItem("latestApplicationLanguage")
+    });
+    return lang;
+  }
+
   function redirectForHomeLanguage(language) {
     if (!isHomePage()) {
       return false;
@@ -2080,11 +2097,42 @@
       currentUrl.pathname.split("/").pop() !== targetUrl.pathname.split("/").pop() ||
       currentUrl.search !== targetUrl.search
     ) {
+      persistLanguageChoice(lang);
+      logI18n("routing", {
+        switchTarget: lang,
+        currentUrl: currentUrl.href,
+        destination: targetUrl.href,
+        result: "redirect"
+      });
       window.location.href = targetUrl.href;
       return true;
     }
 
     return false;
+  }
+
+  function switchLanguage(language) {
+    const target = normalizeLanguage(language);
+    logI18n("switch", {
+      switchTarget: target,
+      currentLanguage: document.documentElement.lang || defaultLanguage,
+      url: window.location.href,
+      storedLanguage: window.localStorage.getItem("site-language"),
+      sessionLanguage: window.sessionStorage.getItem("latestApplicationLanguage")
+    });
+    persistLanguageChoice(target);
+
+    if (redirectForHomeLanguage(target)) {
+      return;
+    }
+
+    applyLanguage(target);
+    logI18n("applied", {
+      switchTarget: target,
+      currentLanguage: document.documentElement.lang,
+      dir: document.documentElement.dir,
+      result: "in-page"
+    });
   }
 
   function syncFloatingApplyHref(language) {
@@ -2125,6 +2173,46 @@
     }
 
     return aliases[text] || text;
+  }
+
+  function resolveTranslationKey(trimmed, parent) {
+    if (parent?.dataset?.translationKey) {
+      return parent.dataset.translationKey;
+    }
+
+    const aliased = aliases[trimmed];
+    if (aliased) {
+      return aliased;
+    }
+
+    if (translations.es[trimmed] || translations.zh[trimmed] || translations.fr[trimmed] || translations.ar[trimmed]) {
+      return trimmed;
+    }
+
+    for (const lang of ["es", "zh", "fr", "ar"]) {
+      const table = translations[lang];
+      if (!table) {
+        continue;
+      }
+
+      for (const enKey in table) {
+        if (table[enKey] === trimmed) {
+          return enKey;
+        }
+      }
+    }
+
+    return trimmed;
+  }
+
+  function hasTranslatableKey(key, trimmed) {
+    return (
+      key !== trimmed ||
+      translations.es[key] ||
+      translations.zh[key] ||
+      translations.fr[key] ||
+      translations.ar[key]
+    );
   }
 
   function translateText(text, language) {
@@ -2172,14 +2260,14 @@
     nodes.forEach((node) => {
       const original = node.nodeValue;
       const trimmed = original.trim();
-      const key = node.parentElement.dataset.translationKey || canonicalize(trimmed);
-      const hasTranslation = key !== trimmed || translations.es[key] || translations.zh[key] || translations.fr[key] || translations.ar[key];
+      const parent = node.parentElement;
+      const key = resolveTranslationKey(trimmed, parent);
 
-      if (!hasTranslation) {
+      if (!hasTranslatableKey(key, trimmed)) {
         return;
       }
 
-      node.parentElement.dataset.translationKey = key;
+      parent.dataset.translationKey = key;
       node.nodeValue = original.replace(trimmed, translateText(key, language));
     });
   }
@@ -2193,10 +2281,10 @@
 
         const current = element.getAttribute(attribute);
         const keyName = attribute === "placeholder" ? "placeholderKey" : "ariaLabelKey";
-        const key = element.dataset[keyName] || canonicalize(current);
-        const hasTranslation = key !== current || /^Go to image \d{1,2}$/.test(key) || translations.es[key] || translations.zh[key] || translations.fr[key] || translations.ar[key];
+        const key = element.dataset[keyName] || resolveTranslationKey(current, element);
+        const canTranslate = /^Go to image \d{1,2}$/.test(key) || hasTranslatableKey(key, current);
 
-        if (!hasTranslation) {
+        if (!canTranslate) {
           return;
         }
 
@@ -2278,10 +2366,7 @@
         button.setAttribute("aria-label", language.label);
         button.innerHTML = `<span class="language-flag" aria-hidden="true">${language.flag}</span><span class="language-code">${language.shortLabel}</span>`;
         button.addEventListener("click", function () {
-          if (redirectForHomeLanguage(language.value)) {
-            return;
-          }
-          applyLanguage(language.value);
+          switchLanguage(language.value);
         });
         bar.appendChild(button);
       });
@@ -2291,7 +2376,12 @@
   }
 
   function applyLanguage(language) {
-    const supportedLanguage = translations[language] || language === "en" ? language : "en";
+    const supportedLanguage = normalizeLanguage(language);
+    logI18n("applyLanguage", {
+      requested: language,
+      supportedLanguage,
+      translationLoad: supportedLanguage === "en" ? "restore-english" : "translate"
+    });
     document.documentElement.lang = supportedLanguage;
     document.documentElement.dir = supportedLanguage === "ar" ? "rtl" : "ltr";
     translateTextNodes(supportedLanguage);
@@ -2303,12 +2393,10 @@
     syncFloatingApplyHref(supportedLanguage);
     syncPageLanguageUrl(supportedLanguage);
     document.querySelectorAll("input, select, textarea").forEach((field) => field.setCustomValidity(""));
-    window.localStorage.setItem("site-language", supportedLanguage);
-    window.sessionStorage.setItem("latestApplicationLanguage", supportedLanguage);
-    window.localStorage.setItem("latestApplicationLanguage", supportedLanguage);
+    persistLanguageChoice(supportedLanguage);
   }
 
-  if (hamburger && nav) {
+  if (hamburger && nav && isHomePage()) {
     const overlay = document.createElement("div");
     overlay.className = "nav-overlay";
     overlay.setAttribute("aria-hidden", "true");
@@ -2572,10 +2660,7 @@
 
   languageSelects.forEach((select) => {
     select.addEventListener("change", function (event) {
-      if (redirectForHomeLanguage(event.target.value)) {
-        return;
-      }
-      applyLanguage(event.target.value);
+      switchLanguage(event.target.value);
     });
   });
 
@@ -2602,12 +2687,21 @@
   enhanceLanguageSwitchers();
   setupLocalizedValidation();
   const initialLanguage = normalizeLanguage(defaultLanguage);
+  logI18n("init", {
+    urlLanguage,
+    savedLanguage,
+    pageLanguage,
+    defaultLanguage,
+    initialLanguage,
+    href: window.location.href
+  });
   if (!redirectLegacyHomePages() && !redirectForHomeLanguage(initialLanguage)) {
     applyLanguage(initialLanguage);
   }
 
   window.PPM_I18N = {
     applyLanguage,
+    switchLanguage,
     translateText,
     normalizeLanguage,
     storedLanguage,

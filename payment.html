@@ -1617,24 +1617,6 @@
       border-bottom: 1px solid var(--pp-border) !important;
     }
 
-    .pp-header-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-    }
-
-    .pp-flow-language .language-select {
-      min-height: 36px;
-      padding: 6px 10px;
-      border-radius: 10px;
-      border: 1px solid var(--pp-border);
-      background: #fff;
-      color: var(--pp-text);
-      font: 600 0.8rem/1.2 Inter, system-ui, sans-serif;
-      max-width: 7.5rem;
-    }
-
     html[dir="rtl"] .pp-header__inner {
       flex-direction: row-reverse;
     }
@@ -1651,25 +1633,6 @@
         <span class="pp-header-back__icon" aria-hidden="true">←</span>
         <span class="pp-header-back__label">Back</span>
       </a>
-      <div class="pp-header-actions">
-        <div class="language-switcher flow-language pp-flow-language" aria-label="Language selector">
-          <select class="language-select" aria-label="Select language">
-            <option value="en">English</option>
-            <option value="es">Español</option>
-            <option value="zh">中文</option>
-            <option value="fr">Français</option>
-            <option value="ar">العربية</option>
-          </select>
-        </div>
-        <div class="pp-secure-badge" role="status">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 3l8 4v5c0 5-3.5 8.7-8 9-4.5-.3-8-4-8-9V7l8-4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-            <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span class="pp-secure-label pp-secure-label--full">Secure &amp; Encrypted</span>
-          <span class="pp-secure-label pp-secure-label--short">Secure</span>
-        </div>
-      </div>
     </div>
   </header>
 
