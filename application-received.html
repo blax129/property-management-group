@@ -15,6 +15,15 @@
         <span class="back-button-icon" aria-hidden="true">←</span>
         <span>Back</span>
       </a>
+      <div class="language-switcher flow-language" aria-label="Language selector">
+        <select class="language-select" aria-label="Select language">
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="zh">中文</option>
+          <option value="fr">Français</option>
+          <option value="ar">العربية</option>
+        </select>
+      </div>
     </div>
   </header>
 
@@ -123,6 +132,9 @@
     </div>
   </footer>
 
+  <script src="i18n-extensions.js"></script>
+  <script src="i18n-apply-form.js"></script>
+  <script src="script.js"></script>
   <script>
     (function () {
       const idTarget = document.getElementById('application-id-value');
@@ -229,8 +241,10 @@
         console.warn('Could not read application email status:', error);
       }
 
+      if (window.PPM_I18N && typeof window.PPM_I18N.applyLanguage === 'function') {
+        window.PPM_I18N.applyLanguage(selectedLanguage);
+      }
     })();
   </script>
-  <script src="script.js"></script>
 </body>
 </html>

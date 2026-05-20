@@ -15,6 +15,15 @@
         <span class="back-button-icon" aria-hidden="true">←</span>
         <span>Back</span>
       </button>
+      <div class="language-switcher flow-language" aria-label="Language selector">
+        <select class="language-select" aria-label="Select language">
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="zh">中文</option>
+          <option value="fr">Français</option>
+          <option value="ar">العربية</option>
+        </select>
+      </div>
     </div>
   </header>
 
@@ -76,6 +85,7 @@
           data-recipient-email="support@property-management.group"
         >
           <input type="hidden" name="application-id" value="">
+          <input type="hidden" name="application_id" value="">
           <input type="hidden" name="selected-language" value="">
           <input type="hidden" name="support_email" value="support@property-management.group">
           <input type="hidden" name="_subject" value="New Rental Application - Paul Goodling">
@@ -271,6 +281,8 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="i18n-extensions.js"></script>
+  <script src="i18n-apply-form.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

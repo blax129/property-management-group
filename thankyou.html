@@ -18,6 +18,15 @@
           <span>Private Property Manager</span>
         </span>
       </a>
+      <div class="language-switcher flow-language" aria-label="Language selector">
+        <select class="language-select" aria-label="Select language">
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="zh">中文</option>
+          <option value="fr">Français</option>
+          <option value="ar">العربية</option>
+        </select>
+      </div>
     </div>
   </header>
 
@@ -61,7 +70,7 @@
       const returnHomeLink = document.getElementById('returnHomeLink');
       const homeTargets = {
         en: 'index.html',
-        es: 'es.html',
+        es: 'index.html?lang=es',
         zh: 'index.html?lang=zh',
         fr: 'index.html?lang=fr',
         ar: 'index.html?lang=ar'
@@ -148,6 +157,8 @@
       sendPendingPaymentUploadNotification();
     })();
   </script>
+  <script src="i18n-extensions.js"></script>
+  <script src="i18n-apply-form.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

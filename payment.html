@@ -964,23 +964,110 @@
     }
 
     .pp-upload-status {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       margin: 12px 0 0;
+      padding: 10px 12px;
+      border-radius: var(--pp-radius-sm);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--pp-border-soft);
       font-size: 13px;
       line-height: 1.45;
       color: var(--pp-muted);
-      min-height: 1.25em;
+      min-height: 42px;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.28s ease, transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+      pointer-events: none;
+    }
+
+    .pp-upload-status.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .pp-upload-status.is-fading {
+      opacity: 0;
+      transform: translateY(-2px);
     }
 
     .pp-upload-status.is-loading {
       color: var(--pp-gold-light);
+      border-color: rgba(37, 99, 235, 0.28);
+      background: rgba(37, 99, 235, 0.06);
     }
 
     .pp-upload-status.is-success {
-      color: #80c6a0;
+      color: #9ed4b6;
+      border-color: rgba(128, 198, 160, 0.35);
+      background: rgba(128, 198, 160, 0.08);
     }
 
     .pp-upload-status.is-error {
-      color: #f87171;
+      color: #f0a8a8;
+      border-color: rgba(248, 113, 113, 0.28);
+      background: rgba(248, 113, 113, 0.06);
+    }
+
+    .pp-upload-status__message {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .pp-upload-status__spinner {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      border: 2px solid rgba(37, 99, 235, 0.22);
+      border-top-color: var(--pp-gold-light);
+      border-radius: 50%;
+      animation: pp-upload-spin 0.75s linear infinite;
+      display: none;
+    }
+
+    .pp-upload-status.is-loading .pp-upload-status__spinner {
+      display: block;
+    }
+
+    .pp-upload-status__dots {
+      display: none;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .pp-upload-status.is-loading .pp-upload-status__dots {
+      display: inline-flex;
+    }
+
+    .pp-upload-status__dots span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--pp-gold-light);
+      animation: pp-upload-dot 1.1s ease-in-out infinite;
+    }
+
+    .pp-upload-status__dots span:nth-child(2) { animation-delay: 0.15s; }
+    .pp-upload-status__dots span:nth-child(3) { animation-delay: 0.3s; }
+
+    @keyframes pp-upload-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes pp-upload-dot {
+      0%, 80%, 100% { opacity: 0.35; transform: translateY(0); }
+      40% { opacity: 1; transform: translateY(-3px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .pp-upload-status,
+      .pp-upload-status__spinner,
+      .pp-upload-status__dots span {
+        animation: none;
+        transition: none;
+      }
     }
 
     .pp-preview {
@@ -1529,6 +1616,32 @@
       background: linear-gradient(180deg, #ffffff 0%, var(--pp-bg-warm) 100%) !important;
       border-bottom: 1px solid var(--pp-border) !important;
     }
+
+    .pp-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .pp-flow-language .language-select {
+      min-height: 36px;
+      padding: 6px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--pp-border);
+      background: #fff;
+      color: var(--pp-text);
+      font: 600 0.8rem/1.2 Inter, system-ui, sans-serif;
+      max-width: 7.5rem;
+    }
+
+    html[dir="rtl"] .pp-header__inner {
+      flex-direction: row-reverse;
+    }
+
+    html[dir="rtl"] .pp-header-back__icon {
+      transform: scaleX(-1);
+    }
   </style>
 </head>
 <body class="payment-premium">
@@ -1538,13 +1651,24 @@
         <span class="pp-header-back__icon" aria-hidden="true">←</span>
         <span class="pp-header-back__label">Back</span>
       </a>
-      <div class="pp-secure-badge" role="status">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M12 3l8 4v5c0 5-3.5 8.7-8 9-4.5-.3-8-4-8-9V7l8-4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-          <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="pp-secure-label pp-secure-label--full">Secure &amp; Encrypted</span>
-        <span class="pp-secure-label pp-secure-label--short">Secure</span>
+      <div class="pp-header-actions">
+        <div class="language-switcher flow-language pp-flow-language" aria-label="Language selector">
+          <select class="language-select" aria-label="Select language">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="zh">中文</option>
+            <option value="fr">Français</option>
+            <option value="ar">العربية</option>
+          </select>
+        </div>
+        <div class="pp-secure-badge" role="status">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3l8 4v5c0 5-3.5 8.7-8 9-4.5-.3-8-4-8-9V7l8-4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="pp-secure-label pp-secure-label--full">Secure &amp; Encrypted</span>
+          <span class="pp-secure-label pp-secure-label--short">Secure</span>
+        </div>
       </div>
     </div>
   </header>
@@ -1754,7 +1878,11 @@
           <input type="file" id="fileInput" accept=".png,.jpg,.jpeg,image/png,image/jpeg" aria-describedby="upload-title uploadStatus">
         </label>
 
-        <p class="pp-upload-status" id="uploadStatus" role="status" aria-live="polite"></p>
+        <div class="pp-upload-status" id="uploadStatus" role="status" aria-live="polite" aria-atomic="true" hidden>
+          <span class="pp-upload-status__spinner" aria-hidden="true"></span>
+          <span class="pp-upload-status__dots" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="pp-upload-status__message" id="uploadStatusMessage"></span>
+        </div>
 
         <div class="pp-preview" id="filePreview" hidden>
           <div class="pp-preview__row">
@@ -1778,6 +1906,9 @@
 
   <div class="pp-toast" id="toast" role="status" aria-live="polite"></div>
 
+  <script src="i18n-extensions.js"></script>
+  <script src="i18n-apply-form.js"></script>
+  <script src="script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
     (function () {
@@ -1850,6 +1981,12 @@
       const toast = document.getElementById('toast');
       let toastTimer = null;
 
+      const t = (text) => (
+        window.PPM_I18N && typeof window.PPM_I18N.translateText === 'function'
+          ? window.PPM_I18N.translateText(text, selectedLanguage)
+          : text
+      );
+
       function showToast(message) {
         if (!toast) return;
         toast.textContent = message;
@@ -1867,6 +2004,8 @@
       const removeFile = document.getElementById('removeFile');
       const submitBtn = document.getElementById('submitBtn');
       const uploadStatus = document.getElementById('uploadStatus');
+      const uploadStatusMessage = document.getElementById('uploadStatusMessage');
+      let uploadStatusFadeTimer = null;
 
       const applicantName =
         window.sessionStorage.getItem('latestApplicantName') ||
@@ -1896,11 +2035,34 @@
         });
       }
 
-      function setUploadStatus(message, state) {
-        if (!uploadStatus) return;
-        uploadStatus.textContent = message || '';
-        uploadStatus.classList.remove('is-loading', 'is-success', 'is-error');
+      function setUploadStatus(message, state, options) {
+        if (!uploadStatus || !uploadStatusMessage) return;
+
+        const opts = options || {};
+        window.clearTimeout(uploadStatusFadeTimer);
+
+        if (!message) {
+          uploadStatus.classList.remove('is-visible', 'is-loading', 'is-success', 'is-error', 'is-fading');
+          uploadStatus.hidden = true;
+          uploadStatusMessage.textContent = '';
+          return;
+        }
+
+        uploadStatus.hidden = false;
+        uploadStatusMessage.textContent = message;
+        uploadStatus.classList.remove('is-loading', 'is-success', 'is-error', 'is-fading');
         if (state) uploadStatus.classList.add(`is-${state}`);
+
+        window.requestAnimationFrame(() => {
+          uploadStatus.classList.add('is-visible');
+        });
+
+        if (state === 'success' && opts.autoFade !== false) {
+          uploadStatusFadeTimer = window.setTimeout(() => {
+            uploadStatus.classList.add('is-fading');
+            window.setTimeout(() => setUploadStatus('', null), 320);
+          }, opts.fadeDelayMs || 2800);
+        }
       }
 
       function formatSize(bytes) {
@@ -1941,8 +2103,7 @@
 
       function setFile(file) {
         if (!isValidImageFile(file)) {
-          showToast('Please upload a PNG or JPG image');
-          setUploadStatus('Only PNG or JPG images are allowed.', 'error');
+          setUploadStatus(t('Please upload a PNG or JPG image only.'), 'error');
           return;
         }
         selectedFile = file;
@@ -1952,11 +2113,11 @@
         filePreview.classList.add('is-visible');
         dropzone.classList.add('is-success');
         if (file.size > MAX_UPLOAD_BYTES) {
-          setUploadStatus('Large image selected — it will be optimized before upload.', 'success');
+          setUploadStatus(t('Large image selected — it will be optimized before upload.'), 'success', { autoFade: true, fadeDelayMs: 3200 });
         } else if (file.size > COMPRESS_IF_LARGER_THAN) {
-          setUploadStatus('Screenshot ready — will be optimized for faster upload.', 'success');
+          setUploadStatus(t('Screenshot ready — will be optimized for faster upload.'), 'success', { autoFade: true, fadeDelayMs: 3200 });
         } else {
-          setUploadStatus('Screenshot ready to upload.', 'success');
+          setUploadStatus(t('Screenshot ready to upload.'), 'success', { autoFade: true, fadeDelayMs: 3200 });
         }
 
         if (previewObjectUrl) URL.revokeObjectURL(previewObjectUrl);
@@ -2001,14 +2162,14 @@
           const target = document.getElementById(btn.dataset.copyTarget);
           const value = target?.dataset.copy || target?.textContent?.trim() || '';
           const label = btn.dataset.copyLabel || 'Value';
-          const toastMessage = btn.dataset.copyToast || (label + ' copied to clipboard');
+          const toastMessage = t(btn.dataset.copyToast || (label + ' copied to clipboard'));
           try {
             await navigator.clipboard.writeText(value);
             showToast(toastMessage);
             btn.style.borderColor = 'var(--pp-gold)';
             setTimeout(() => { btn.style.borderColor = ''; }, 600);
           } catch {
-            showToast('Copy failed — please copy manually');
+            showToast(t('Copy failed — please copy manually'));
           }
         });
       });
@@ -2171,7 +2332,7 @@
           return file;
         }
 
-        setUploadStatus('Optimizing image for upload…', 'loading');
+        setUploadStatus(t('Processing upload...'), 'loading');
         const compressed = await compressImageForUpload(file);
 
         if (compressed.size > MAX_UPLOAD_BYTES) {
@@ -2221,12 +2382,12 @@
                 total: event.total,
                 percent
               });
-              setUploadStatus(`Uploading screenshot… ${percent}%`, 'loading');
+              setUploadStatus(`${t('Uploading payment screenshot...')} ${percent}%`, 'loading');
               return;
             }
 
             console.log('[Payment] upload progress', { loaded: event.loaded, total: 'unknown' });
-            setUploadStatus('Uploading screenshot…', 'loading');
+            setUploadStatus(t('Uploading payment screenshot...'), 'loading');
           });
 
           xhr.addEventListener('load', () => {
@@ -2343,14 +2504,12 @@
         const file = selectedFile || fileInput?.files?.[0] || null;
 
         if (!file) {
-          showToast('Please select a payment screenshot first');
-          setUploadStatus('Please select a PNG or JPG screenshot before submitting.', 'error');
+          setUploadStatus(t('Please select a payment screenshot before submitting.'), 'error');
           return;
         }
 
         if (!isValidImageFile(file)) {
-          showToast('Please upload a PNG or JPG image');
-          setUploadStatus('Only PNG or JPG images are allowed.', 'error');
+          setUploadStatus(t('Please upload a PNG or JPG image only.'), 'error');
           return;
         }
 
@@ -2360,29 +2519,30 @@
         const originalButtonText = submitBtn.textContent;
 
         try {
-          submitBtn.textContent = 'Uploading screenshot…';
-          setUploadStatus('Uploading screenshot to Cloudinary…', 'loading');
+          submitBtn.textContent = t('Uploading…');
+          setUploadStatus(t('Processing upload...'), 'loading');
           const imageUrl = await uploadScreenshotToCloudinary(file);
-          setUploadStatus('Screenshot uploaded successfully.', 'success');
+          setUploadStatus(t('Upload complete. Sending confirmation...'), 'loading');
 
-          submitBtn.textContent = 'Sending confirmation…';
-          setUploadStatus('Sending payment notification to support…', 'loading');
+          submitBtn.textContent = t('Sending confirmation…');
+          setUploadStatus(t('Sending confirmation...'), 'loading');
           await sendPaymentSupportNotification(imageUrl);
 
-          setUploadStatus('Payment confirmation sent successfully.', 'success');
-          showToast('Payment confirmation received');
-          submitBtn.textContent = 'Confirmation sent';
+          setUploadStatus(t('Payment confirmation received successfully.'), 'success', { autoFade: true, fadeDelayMs: 2200 });
+          submitBtn.textContent = t('Confirmation sent');
 
           window.sessionStorage.removeItem('pendingPaymentUploadNotification');
 
-          setTimeout(() => {
+          window.setTimeout(() => {
             window.location.href = buildThankYouUrl();
-          }, 1200);
+          }, 2800);
         } catch (err) {
           logPaymentError('Payment submission failed', err);
-          const message = err?.text || err?.message || 'Something went wrong. Please try again.';
+          const rawMessage = err?.text || err?.message || '';
+          const message = /network/i.test(rawMessage)
+            ? t('Network issue while uploading. Please check your connection and try again.')
+            : t(rawMessage || 'Something went wrong. Please try again.');
           setUploadStatus(message, 'error');
-          showToast(message.length > 80 ? 'Submission failed — please try again' : message);
           isSubmitting = false;
           submitBtn.disabled = false;
           submitBtn.classList.remove('is-loading');

@@ -7,6 +7,17 @@
   <title>Paul Goodling | Private Property Manager</title>
   <link rel="icon" href="image/logo.png">
   <link rel="stylesheet" href="style.css">
+  <script>
+    (function () {
+      var file = location.pathname.split("/").pop() || "index.html";
+      if (file !== "index.html" && file !== "es.html") return;
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+      if (location.hash) {
+        history.replaceState(null, document.title, location.pathname + location.search);
+      }
+      scrollTo(0, 0);
+    })();
+  </script>
 </head>
 <body class="home-page">
   <header class="site-header" id="home">
@@ -283,6 +294,8 @@
     </div>
   </footer>
 
+  <script src="i18n-extensions.js"></script>
+  <script src="i18n-apply-form.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

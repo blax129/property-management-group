@@ -1,4 +1,43 @@
 (function () {
+  function currentHomeFileEarly() {
+    const file = window.location.pathname.split("/").pop() || "index.html";
+    return file === "" ? "index.html" : file;
+  }
+
+  function isHomePageEarly() {
+    const file = currentHomeFileEarly();
+    return file === "index.html" || file === "es.html";
+  }
+
+  if (isHomePageEarly()) {
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+
+    if (window.location.hash) {
+      console.log("[Homepage] clearing hash on load to prevent anchor jump", {
+        hash: window.location.hash
+      });
+      history.replaceState(null, document.title, window.location.pathname + window.location.search);
+    }
+
+    window.scrollTo(0, 0);
+    console.log("[Homepage] early scroll reset", { source: "script-start", scrollY: window.scrollY });
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (window.scrollY > 80) {
+          console.log("[Homepage] unexpected scroll detected", {
+            scrollY: window.scrollY,
+            hash: window.location.hash || "(none)"
+          });
+        }
+      },
+      { passive: true }
+    );
+  }
+
   const hamburger = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".site-nav");
   const applicationForm = document.querySelector("#application-form");
@@ -1691,11 +1730,6 @@
       "Request consultation": "Demander une consultation",
       "Contact Paul Goodling": "Contacter Paul Goodling"
     },
-    pt: {
-      "Start Application": "Iniciar solicitação",
-      "Request consultation": "Solicitar consulta",
-      "Contact Paul Goodling": "Contatar Paul Goodling"
-    },
     ar: {
       "Start Application": "بدء الطلب",
       "Request consultation": "طلب استشارة",
@@ -1874,6 +1908,63 @@
     Object.assign(translations[language], paymentUploadTranslations[language]);
   });
 
+  function mergeI18nExtensions() {
+    const extensions = window.__PPM_I18N_EXTENSIONS__;
+    if (!extensions) {
+      return;
+    }
+
+    ["es", "zh", "fr", "ar"].forEach((language) => {
+      if (translations[language] && extensions[language]) {
+        Object.assign(translations[language], extensions[language]);
+      }
+    });
+  }
+
+  mergeI18nExtensions();
+
+  function pageFileName() {
+    const file = window.location.pathname.split("/").pop() || "index.html";
+    return file === "" ? "index.html" : file;
+  }
+
+  function translatePageTitle(language) {
+    const titles = window.__PPM_PAGE_TITLES__;
+    if (!titles) {
+      return;
+    }
+
+    const file = pageFileName();
+    const map = titles[file];
+    if (!map) {
+      return;
+    }
+
+    const nextTitle = map[language] || map.en;
+    if (nextTitle) {
+      document.title = nextTitle;
+    }
+  }
+
+  function syncPageLanguageUrl(language) {
+    if (isHomePage()) {
+      return;
+    }
+
+    const url = new URL(window.location.href);
+
+    if (language === "en") {
+      url.searchParams.delete("lang");
+    } else {
+      url.searchParams.set("lang", language);
+    }
+
+    const next = `${url.pathname}${url.search}${url.hash}`;
+    if (`${window.location.pathname}${window.location.search}${window.location.hash}` !== next) {
+      window.history.replaceState({}, "", next);
+    }
+  }
+
   const languageOptions = [
     { value: "en", label: "English", shortLabel: "EN", flag: "🇺🇸" },
     { value: "es", label: "Español", shortLabel: "ES", flag: "🇪🇸" },
@@ -1884,7 +1975,7 @@
 
   const languageHomeFallbacks = {
     en: "index.html",
-    es: "es.html",
+    es: "index.html?lang=es",
     zh: "index.html?lang=zh",
     fr: "index.html?lang=fr",
     ar: "index.html?lang=ar"
@@ -1919,6 +2010,60 @@
   function isHomePage() {
     const file = currentHomeFile();
     return file === "index.html" || file === "es.html";
+  }
+
+  function redirectLegacyHomePages() {
+    const file = currentHomeFile();
+    if (file === "es.html") {
+      const target = new URL("index.html?lang=es", window.location.href);
+      if (window.location.hash) {
+        target.hash = window.location.hash;
+      }
+      window.location.replace(target.href);
+      return true;
+    }
+    return false;
+  }
+
+  function initHomepageScrollPosition() {
+    if (!isHomePage()) {
+      return;
+    }
+
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+
+    const scrollHomeToTop = (source) => {
+      const scrollBefore = window.scrollY;
+
+      if (scrollBefore > 0) {
+        console.log("[Homepage] unwanted scroll detected before reset", {
+          source,
+          scrollY: scrollBefore,
+          hash: window.location.hash || "(none)"
+        });
+      }
+
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      console.log("[Homepage] scroll reset", { source, scrollY: window.scrollY });
+    };
+
+    scrollHomeToTop("init");
+    window.addEventListener(
+      "pageshow",
+      (event) => {
+        scrollHomeToTop(event.persisted ? "pageshow-bfcache" : "pageshow");
+      },
+      { passive: true }
+    );
+    window.addEventListener("load", () => scrollHomeToTop("load"), { once: true });
+    window.requestAnimationFrame(() => {
+      scrollHomeToTop("raf-1");
+      window.requestAnimationFrame(() => scrollHomeToTop("raf-2"));
+    });
   }
 
   function redirectForHomeLanguage(language) {
@@ -1992,7 +2137,6 @@
         es: `Ir a la imagen ${number}`,
         zh: `转到第 ${number} 张图片`,
         fr: `Aller à l'image ${number}`,
-        pt: `Ir para a imagem ${number}`,
         ar: `انتقل إلى الصورة ${number}`
       };
       return labels[language] || key;
@@ -2029,7 +2173,7 @@
       const original = node.nodeValue;
       const trimmed = original.trim();
       const key = node.parentElement.dataset.translationKey || canonicalize(trimmed);
-      const hasTranslation = key !== trimmed || translations.es[key] || translations.zh[key] || translations.fr[key] || translations.pt[key] || translations.ar[key];
+      const hasTranslation = key !== trimmed || translations.es[key] || translations.zh[key] || translations.fr[key] || translations.ar[key];
 
       if (!hasTranslation) {
         return;
@@ -2050,7 +2194,7 @@
         const current = element.getAttribute(attribute);
         const keyName = attribute === "placeholder" ? "placeholderKey" : "ariaLabelKey";
         const key = element.dataset[keyName] || canonicalize(current);
-        const hasTranslation = key !== current || /^Go to image \d{1,2}$/.test(key) || translations.es[key] || translations.zh[key] || translations.fr[key] || translations.pt[key] || translations.ar[key];
+        const hasTranslation = key !== current || /^Go to image \d{1,2}$/.test(key) || translations.es[key] || translations.zh[key] || translations.fr[key] || translations.ar[key];
 
         if (!hasTranslation) {
           return;
@@ -2152,12 +2296,16 @@
     document.documentElement.dir = supportedLanguage === "ar" ? "rtl" : "ltr";
     translateTextNodes(supportedLanguage);
     translateAttributes(supportedLanguage);
+    translatePageTitle(supportedLanguage);
     syncLanguageSelects(supportedLanguage);
     syncLanguageMenus(supportedLanguage);
     syncBackFallbacks(supportedLanguage);
     syncFloatingApplyHref(supportedLanguage);
+    syncPageLanguageUrl(supportedLanguage);
     document.querySelectorAll("input, select, textarea").forEach((field) => field.setCustomValidity(""));
     window.localStorage.setItem("site-language", supportedLanguage);
+    window.sessionStorage.setItem("latestApplicationLanguage", supportedLanguage);
+    window.localStorage.setItem("latestApplicationLanguage", supportedLanguage);
   }
 
   if (hamburger && nav) {
@@ -2231,6 +2379,7 @@
     let touchActive = false;
     let docVisible = !document.hidden;
     let inView = typeof IntersectionObserver === "undefined";
+    let allowDotTrackScroll = false;
     const count = slides.length;
     const dotCount = Math.min(dots.length, count);
 
@@ -2251,10 +2400,20 @@
         return;
       }
 
-      const target = dots[dotIndex];
-      target.scrollIntoView({
-        inline: "center",
-        block: "nearest",
+      const dot = dots[dotIndex];
+      const maxScroll = dotsTrack.scrollWidth - dotsTrack.clientWidth;
+
+      if (maxScroll <= 0) {
+        return;
+      }
+
+      const trackRect = dotsTrack.getBoundingClientRect();
+      const dotRect = dot.getBoundingClientRect();
+      const dotCenter = dotRect.left - trackRect.left + dotsTrack.scrollLeft + dotRect.width / 2;
+      const nextLeft = Math.max(0, Math.min(dotCenter - dotsTrack.clientWidth / 2, maxScroll));
+
+      dotsTrack.scrollTo({
+        left: nextLeft,
         behavior: prefersReducedMotion ? "auto" : "smooth"
       });
     }
@@ -2275,7 +2434,9 @@
         dot.setAttribute("aria-current", isActive ? "true" : "false");
       }
 
-      scrollDotIntoView(currentIndex);
+      if (allowDotTrackScroll) {
+        scrollDotIntoView(currentIndex);
+      }
     }
 
     function stopAutoplay() {
@@ -2379,10 +2540,19 @@
     );
 
     showSlide(currentIndex);
+    allowDotTrackScroll = true;
     maybeStartAutoplay();
   }
 
+  initHomepageScrollPosition();
   communitySliders.forEach(initCommunitySlider);
+
+  if (isHomePage()) {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    console.log("[Homepage] scroll reset", { source: "post-slider-init", scrollY: window.scrollY });
+  }
 
   backButtons.forEach((button) => {
     button.addEventListener("click", function (event) {
@@ -2432,9 +2602,28 @@
   enhanceLanguageSwitchers();
   setupLocalizedValidation();
   const initialLanguage = normalizeLanguage(defaultLanguage);
-  if (!redirectForHomeLanguage(initialLanguage)) {
+  if (!redirectLegacyHomePages() && !redirectForHomeLanguage(initialLanguage)) {
     applyLanguage(initialLanguage);
   }
+
+  window.PPM_I18N = {
+    applyLanguage,
+    translateText,
+    normalizeLanguage,
+    storedLanguage,
+    languageOptions,
+    languageHomeFallback,
+    buildLocalizedHref(path, language) {
+      const lang = normalizeLanguage(language || storedLanguage());
+      const url = new URL(path, window.location.href);
+      if (lang === "en") {
+        url.searchParams.delete("lang");
+      } else {
+        url.searchParams.set("lang", lang);
+      }
+      return `${url.pathname}${url.search}`;
+    }
+  };
 
   document.querySelectorAll(".accordion-item").forEach((item) => {
     item.addEventListener("toggle", function () {
@@ -2601,6 +2790,7 @@
     const selectedLanguage = currentLanguage();
 
     updateHiddenFormField(form, "application-id", applicationId);
+    updateHiddenFormField(form, "application_id", applicationId);
     updateHiddenFormField(form, "selected-language", selectedLanguage);
     updateHiddenFormField(form, "support_email", supportEmail);
     updateHiddenFormField(form, "to_email", applicantEmail);
@@ -2608,9 +2798,12 @@
     return applicantEmail;
   }
 
-  function collectEmailJsTemplateParams(form) {
+  function collectEmailJsTemplateParams(form, applicationId) {
     const params = {};
     const formData = new FormData(form);
+    const resolvedApplicationId = String(
+      applicationId || formData.get("application_id") || formData.get("application-id") || ""
+    ).trim();
 
     formData.forEach((value, key) => {
       if (FORMSPREE_ONLY_FIELD_NAMES.includes(key)) {
@@ -2618,6 +2811,11 @@
       }
       params[key] = typeof value === "string" ? value : String(value);
     });
+
+    if (resolvedApplicationId) {
+      params.application_id = resolvedApplicationId;
+      params["application-id"] = resolvedApplicationId;
+    }
 
     const applicantEmail = String(params.email || "").trim();
     if (applicantEmail) {
@@ -2641,7 +2839,14 @@
 
     const emailjs = await prepareEmailJs();
     const applicantEmail = prepareApplicationFormForEmailJs(form, applicationId);
-    const templateParams = collectEmailJsTemplateParams(form);
+    const templateParams = collectEmailJsTemplateParams(form, applicationId);
+
+    if (!applicationId || !templateParams.application_id) {
+      const error = new Error("Application ID is missing before EmailJS send.");
+      error.stage = "email";
+      logEmailJsError("Application ID missing for EmailJS", error);
+      throw error;
+    }
 
     if (!isValidEmailAddress(applicantEmail)) {
       const error = new Error("Applicant email is missing or invalid.");
@@ -2650,8 +2855,10 @@
       throw error;
     }
 
+    console.log("[Application] EmailJS params before send", templateParams);
     logEmailJsDebug("Template params prepared", {
       applicationId,
+      application_id: templateParams.application_id,
       applicantEmail,
       fieldCount: Object.keys(templateParams).length,
       hasName: Boolean(templateParams.name),
@@ -2664,6 +2871,11 @@
         EMAILJS_CONFIRMATION_TEMPLATE,
         templateParams
       );
+      console.log("[Application] EmailJS send success", {
+        status: result?.status,
+        text: result?.text,
+        application_id: templateParams.application_id
+      });
       logEmailJsDebug("Confirmation email sent successfully", {
         status: result?.status,
         text: result?.text
@@ -2775,6 +2987,7 @@
     const formData = new FormData(form);
     const selectedLanguage = currentLanguage();
     formData.set("application-id", applicationId);
+    formData.set("application_id", applicationId);
     formData.set("selected-language", selectedLanguage);
 
     const applicantEmail = String(formData.get("email") || "").trim();
@@ -2820,6 +3033,7 @@
 
     const applicationId = generateApplicationId();
     const selectedLanguage = currentLanguage();
+    console.log("[Application] Generated application ID:", applicationId);
     console.log("[Application] Submission started", { applicationId, language: selectedLanguage });
 
     const { formData, applicantEmail } = buildApplicationPayload(form, applicationId);

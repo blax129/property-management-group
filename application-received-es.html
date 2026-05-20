@@ -2,186 +2,19 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Confirmación de solicitud de alquiler recibida.">
-  <title>Solicitud Recibida | Paul Goodling</title>
-  <link rel="icon" href="image/logo.png">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body class="simple-flow-page">
-  <header class="site-header back-nav">
-    <div class="container header-inner">
-      <a href="es.html" class="back-button" aria-label="Volver a la página anterior">
-        <span class="back-button-icon" aria-hidden="true">←</span>
-        <span>Volver</span>
-      </a>
-
-      <div class="language-switcher header-language" aria-label="Selector de idioma">
-        <span aria-hidden="true">Idioma</span>
-        <select class="language-select" aria-label="Seleccionar idioma">
-          <option value="en">English</option>
-          <option value="es">Español</option>
-          <option value="zh">中文</option>
-          <option value="fr">Français</option>
-          <option value="ar">العربية</option>
-        </select>
-      </div>
-
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir navegación">
-        <span class="sr-only">Abrir navegación</span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
-        <a href="es.html#home"><span class="nav-icon" aria-hidden="true"></span>Inicio</a>
-        <a href="es.html#about"><span class="nav-icon" aria-hidden="true"></span>Acerca de</a>
-        <a href="es.html#process"><span class="nav-icon" aria-hidden="true"></span>Proceso de alquiler</a>
-        <a href="es.html#faq"><span class="nav-icon" aria-hidden="true"></span>Preguntas</a>
-        <a href="es.html#contact"><span class="nav-icon" aria-hidden="true"></span>Contacto</a>
-        <a href="es.html#consultation"><span class="nav-icon" aria-hidden="true"></span>Solicitar consulta</a>
-        <div class="language-switcher nav-language" aria-label="Selector de idioma">
-          <span>Idioma</span>
-          <select class="language-select" aria-label="Seleccionar idioma">
-            <option value="en">English</option>
-            <option value="es">Español</option>
-            <option value="zh">中文</option>
-            <option value="fr">Français</option>
-            <option value="ar">العربية</option>
-          </select>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="section received-section">
-      <div class="container narrow">
-        <div class="status-badge">
-          <span>Solicitud recibida</span>
-        </div>
-
-        <div class="confirmation-card">
-          <p>Gracias por enviar su solicitud de alquiler.</p>
-          <p>Pronto se enviará un correo de confirmación a la dirección proporcionada en su solicitud para verificar que su solicitud se recibió correctamente.</p>
-          <p>Tenga en cuenta que se requiere una tarifa de solicitud reembolsable de $75 antes de que pueda comenzar el proceso de aprobación.</p>
-          <p>Una vez confirmado el pago, comenzará oficialmente el proceso de revisión y aprobación de su solicitud.</p>
-
-          <div class="application-id">
-            <strong>ID de solicitud:</strong>
-            <span id="application-id-value">Pendiente</span>
-          </div>
-        </div>
-
-
-        <div class="confirmation-card">
-          <h2>Tiempo estimado de revisión</h2>
-          <p>La mayoría de las revisiones de solicitud se completan dentro de 24 a 48 horas. Si se necesita más información, se le contactará usando el correo electrónico o número de teléfono proporcionado en su solicitud.</p>
-        </div>
-
-        <div class="confirmation-card">
-          <h2>Confirmación por correo electrónico</h2>
-          <p>Pronto se enviará un correo de confirmación a la dirección proporcionada en su solicitud. Ese correo confirmará que su solicitud fue recibida y está pendiente de revisión.</p>
-        </div>
-
-        <div class="confirmation-card">
-          <h2>Proceso de revisión privado</h2>
-          <p>El proceso de solicitud es gestionado directamente por el equipo de administración de la propiedad. Los datos enviados se revisan con cuidado, y cualquier instrucción de próximo paso se vincula a su solicitud.</p>
-        </div>
-
-        <div class="confirmation-card">
-          <h2>Transparencia de tarifas</h2>
-          <p>Si se solicita una tarifa de solicitud reembolsable después de la revisión, se devuelve si la solicitud no es aprobada o si usted decide no continuar después de la visita. Si se aprueba y sigue adelante, se aplica al primer mes de renta.</p>
-        </div>
-
-        <div class="confirmation-card">
-          <h2>Preguntas o verificación</h2>
-          <p>Si desea confirmar un mensaje, preguntar sobre tiempos o aclarar el proceso de solicitud, contacte directamente a Paul Goodling usando la información siguiente.</p>
-
-          <div class="contact-info">
-            <div class="contact-item">
-              <strong>Correo electrónico:</strong>
-              <a href="mailto:support@property-management.group" class="contact-email-ltr">support@property-management.group</a>
-            </div>
-            <div class="contact-item">
-              <strong>Teléfono:</strong>
-              <a href="tel:+15136286294">+1 (513) 628-6294</a>
-            </div>
-          </div>
-
-          <div class="received-actions">
-            <a class="button button-primary" href="es.html">Volver al inicio</a>
-            <a class="button button-secondary" href="mailto:support@property-management.group">Enviar correo a Paul Goodling</a>
-            <a class="button button-secondary" href="tel:+15136286294">Llamar a Paul Goodling</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section ehc-section">
-      <div class="container narrow">
-        <div class="ehc-card">
-          <div class="ehc-logo-placeholder">
-            <img src="image/logo2.jpeg" alt="Logo de Igualdad de Oportunidad de Vivienda">
-          </div>
-          <div class="ehc-content">
-            <h3>Igualdad de oportunidad de vivienda</h3>
-            <p>Apoyamos prácticas de vivienda justas e igualitarias para todos los solicitantes, de acuerdo con las pautas de vivienda aplicables y las normas contra la discriminación.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-content">
-      <div class="footer-identity">
-        <strong>Paul Goodling</strong>
-        <span class="footer-role">Administradora de propiedades</span>
-      </div>
-      <p class="footer-legal">&copy; 2026 Paul Goodling. Alquileres administrados de forma privada.</p>
-    </div>
-  </footer>
-
+  <meta http-equiv="refresh" content="0; url=application-received.html?lang=es">
+  <title>Redirecting…</title>
   <script>
     (function () {
-      const idTarget = document.getElementById('application-id-value');
-      if (!idTarget) {
-        return;
+      var q = location.search ? location.search + '&lang=es' : '?lang=es';
+      if (location.search && /[?&]lang=/.test(location.search)) {
+        q = location.search;
       }
-
-      const params = new URLSearchParams(window.location.search);
-      const idFromUrl = params.get('applicationId');
-      const languageFromUrl = params.get('lang');
-      const supportedLanguages = ['en', 'es', 'zh', 'fr', 'ar'];
-      const normalizeLanguage = (language) => {
-        const value = String(language || '').toLowerCase().split('-')[0];
-        return supportedLanguages.includes(value) ? value : 'es';
-      };
-      const storedId = window.sessionStorage.getItem('latestApplicationId') || window.localStorage.getItem('latestApplicationId');
-      const applicationId = idFromUrl || storedId;
-      const selectedLanguage = normalizeLanguage(languageFromUrl ||
-        window.sessionStorage.getItem('latestApplicationLanguage') ||
-        window.localStorage.getItem('latestApplicationLanguage') ||
-        window.localStorage.getItem('site-language') ||
-        document.documentElement.lang ||
-        'es');
-
-      if (applicationId) {
-        idTarget.textContent = applicationId;
-      }
-
-      if (idFromUrl) {
-        window.sessionStorage.setItem('latestApplicationId', idFromUrl);
-        window.localStorage.setItem('latestApplicationId', idFromUrl);
-      }
-
-      window.sessionStorage.setItem('latestApplicationLanguage', selectedLanguage);
-      window.localStorage.setItem('latestApplicationLanguage', selectedLanguage);
-      window.localStorage.setItem('site-language', selectedLanguage);
+      location.replace('application-received.html' + q);
     })();
   </script>
-  <script src="script.js"></script>
+</head>
+<body>
+  <p><a href="application-received.html?lang=es">Continue</a></p>
 </body>
 </html>
