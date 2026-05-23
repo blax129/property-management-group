@@ -787,7 +787,7 @@
     }
 
     .pp-venmo-account__username,
-    .pp-chime-account__chimesign {
+    .pp-chime-account__phone {
       margin: 0 0 18px;
       font-size: clamp(1.2rem, 4.8vw, 1.45rem);
       font-weight: 800;
@@ -796,6 +796,27 @@
       color: var(--pp-gold-light);
       font-family: ui-monospace, "SF Mono", Menlo, monospace;
       word-break: break-word;
+    }
+
+    .pp-chime-account__details--solo {
+      padding-top: 0;
+      border-top: none;
+    }
+
+    .pp-chime-account__details--solo .pp-chime-account__phone {
+      margin-bottom: 0;
+    }
+
+    .pp-chime-instructions {
+      margin-bottom: 16px;
+      padding: clamp(16px, 3.5vw, 18px);
+      border-radius: var(--pp-radius-sm);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(37, 99, 235, 0.14);
+    }
+
+    .pp-chime-instructions .pp-steps {
+      margin-bottom: 0;
     }
 
     .pp-venmo-account__details,
@@ -1733,69 +1754,21 @@
         </div>
       </article>
 
-      <!-- Venmo -->
-      <article class="pp-card pp-card--venmo" aria-labelledby="venmo-title">
-        <div class="pp-card__head">
-          <div class="pp-card__icon pp-card__icon--venmo" aria-hidden="true">V</div>
-          <div>
-            <h2 class="pp-card__title" id="venmo-title">Venmo to Venmo</h2>
-            <p class="pp-card__desc">Send your payment securely using the verified Venmo account below.</p>
-          </div>
-        </div>
-        <div class="pp-venmo-account" aria-label="Verified Venmo payment details">
-          <p class="pp-venmo-account__eyebrow">Venmo Username</p>
-          <p class="pp-venmo-account__username" id="venmoUsername" data-copy="@Franddy-Figueroa-1">@Franddy-Figueroa-1</p>
-          <dl class="pp-venmo-account__details">
-            <div class="pp-venmo-account__row">
-              <dt>Account Holder Name</dt>
-              <dd>Franddy Figueroa</dd>
-            </div>
-            <div class="pp-venmo-account__row">
-              <dt>Verification Reference</dt>
-              <dd>Last 4 Digits: 6995</dd>
-            </div>
-          </dl>
-        </div>
-
-        <div class="pp-venmo-copy">
-          <button
-            type="button"
-            class="pp-copy-btn"
-            data-copy-target="venmoUsername"
-            data-payment-method="Venmo"
-            data-copy-toast="Venmo username copied"
-            aria-label="Copy Venmo username @Franddy-Figueroa-1"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.6"/></svg>
-            Copy Username
-          </button>
-        </div>
-
-        <div class="pp-venmo-trust">
-          <p class="pp-notice pp-notice--trust">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8.7-8 9-4.5-.3-8-4-8-9V7l8-4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>Please verify the account name and last four digits before sending payment.</span>
-          </p>
-        </div>
-      </article>
-
       <!-- Chime -->
       <article class="pp-card pp-card--chime" aria-labelledby="chime-title">
         <div class="pp-card__head">
           <div class="pp-card__icon pp-card__icon--chime" aria-hidden="true">Ch</div>
           <div>
-            <h2 class="pp-card__title" id="chime-title">Chime to Chime</h2>
-            <p class="pp-card__desc">Transfer securely using the verified Chime account below.</p>
+            <h2 class="pp-card__title" id="chime-title">Chime Pay Anyone</h2>
+            <p class="pp-card__desc">Send your refundable application fee securely through Chime using the Pay Anyone feature.</p>
           </div>
         </div>
 
-        <div class="pp-chime-account" aria-label="Verified Chime payment details">
-          <p class="pp-chime-account__eyebrow">ChimeSign</p>
-          <p class="pp-chime-account__chimesign" id="chimeSign" data-copy="$Paul-Goodling">$Paul-Goodling</p>
-          <dl class="pp-chime-account__details">
+        <div class="pp-chime-account" aria-label="Chime Pay Anyone payment details">
+          <dl class="pp-chime-account__details pp-chime-account__details--solo">
             <div class="pp-chime-account__row">
-              <dt>Account Holder Name</dt>
-              <dd>Paul Goodling</dd>
+              <dt>Payment Phone Number</dt>
+              <dd class="pp-chime-account__phone" id="chimePhoneNumber" data-copy="+15136286294">+1 (513) 628-6294</dd>
             </div>
           </dl>
         </div>
@@ -1804,20 +1777,30 @@
           <button
             type="button"
             class="pp-copy-btn"
-            data-copy-target="chimeSign"
+            data-copy-target="chimePhoneNumber"
             data-payment-method="Chime"
-            data-copy-toast="ChimeSign copied successfully"
-            aria-label="Copy ChimeSign $Paul-Goodling"
+            data-copy-toast="Phone number copied successfully"
+            aria-label="Copy payment phone number +1 (513) 628-6294"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.6"/></svg>
-            Copy ChimeSign
+            Copy Phone Number
           </button>
+        </div>
+
+        <div class="pp-chime-instructions" aria-label="How to send payment with Chime Pay Anyone">
+          <ol class="pp-steps">
+            <li><span aria-hidden="true">1</span><span>Open the Chime app.</span></li>
+            <li><span aria-hidden="true">2</span><span>Tap Pay Anyone.</span></li>
+            <li><span aria-hidden="true">3</span><span>Enter the payment phone number shown above.</span></li>
+            <li><span aria-hidden="true">4</span><span>Confirm the recipient details before sending.</span></li>
+            <li><span aria-hidden="true">5</span><span>After payment, upload or send your payment confirmation.</span></li>
+          </ol>
         </div>
 
         <div class="pp-chime-trust">
           <p class="pp-notice pp-notice--trust">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8.7-8 9-4.5-.3-8-4-8-9V7l8-4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>Please confirm the ChimeSign and account holder name before sending payment.</span>
+            <span>Please confirm the phone number carefully before sending payment. Your application review will begin once payment confirmation is received.</span>
           </p>
         </div>
       </article>

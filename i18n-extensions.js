@@ -100,29 +100,65 @@
       fr: "Vérifiez le nom du compte et les quatre derniers chiffres avant d’envoyer le paiement.",
       ar: "يُرجى التحقق من اسم الحساب والأرقام الأربعة الأخيرة قبل إرسال الدفع."
     },
-    "Chime to Chime": {
-      es: "Chime a Chime",
-      zh: "Chime 至 Chime",
-      fr: "Chime à Chime",
-      ar: "Chime إلى Chime"
+    "Chime Pay Anyone": {
+      es: "Chime Pay Anyone",
+      zh: "Chime Pay Anyone",
+      fr: "Chime Pay Anyone",
+      ar: "Chime Pay Anyone"
     },
-    "Transfer securely using the verified Chime account below.": {
-      es: "Transfiera de forma segura usando la cuenta Chime verificada a continuación.",
-      zh: "请使用下方已验证的 Chime 账户安全转账。",
-      fr: "Effectuez un virement sécurisé via le compte Chime vérifié ci-dessous.",
-      ar: "حوّل بأمان باستخدام حساب Chime الموثّق أدناه."
+    "Send your refundable application fee securely through Chime using the Pay Anyone feature.": {
+      es: "Envíe su tarifa de solicitud reembolsable de forma segura a través de Chime con la función Pay Anyone.",
+      zh: "通过 Chime 的 Pay Anyone 功能安全支付可退还的申请费。",
+      fr: "Envoyez vos frais de candidature remboursables en toute sécurité via Chime avec la fonction Pay Anyone.",
+      ar: "أرسل رسوم الطلب القابلة للاسترداد بأمان عبر Chime باستخدام ميزة Pay Anyone."
     },
-    "Copy ChimeSign": {
-      es: "Copiar ChimeSign",
-      zh: "复制 ChimeSign",
-      fr: "Copier le ChimeSign",
-      ar: "نسخ ChimeSign"
+    "Payment Phone Number": {
+      es: "Número de teléfono de pago",
+      zh: "付款电话号码",
+      fr: "Numéro de téléphone de paiement",
+      ar: "رقم هاتف الدفع"
     },
-    "Please confirm the ChimeSign and account holder name before sending payment.": {
-      es: "Confirme el ChimeSign y el nombre del titular antes de enviar el pago.",
-      zh: "付款前请确认 ChimeSign 及账户持有人姓名。",
-      fr: "Confirmez le ChimeSign et le nom du titulaire avant d’envoyer le paiement.",
-      ar: "يُرجى تأكيد ChimeSign واسم صاحب الحساب قبل إرسال الدفع."
+    "Copy Phone Number": {
+      es: "Copiar número de teléfono",
+      zh: "复制电话号码",
+      fr: "Copier le numéro de téléphone",
+      ar: "نسخ رقم الهاتف"
+    },
+    "Open the Chime app.": {
+      es: "Abra la aplicación Chime.",
+      zh: "打开 Chime 应用。",
+      fr: "Ouvrez l’application Chime.",
+      ar: "افتح تطبيق Chime."
+    },
+    "Tap Pay Anyone.": {
+      es: "Toque Pay Anyone.",
+      zh: "点击 Pay Anyone。",
+      fr: "Appuyez sur Pay Anyone.",
+      ar: "اضغط على Pay Anyone."
+    },
+    "Enter the payment phone number shown above.": {
+      es: "Ingrese el número de teléfono de pago que se muestra arriba.",
+      zh: "输入上方显示的付款电话号码。",
+      fr: "Saisissez le numéro de téléphone de paiement indiqué ci-dessus.",
+      ar: "أدخل رقم هاتف الدفع الموضح أعلاه."
+    },
+    "Confirm the recipient details before sending.": {
+      es: "Confirme los datos del destinatario antes de enviar.",
+      zh: "发送前请确认收款人信息。",
+      fr: "Confirmez les informations du destinataire avant d’envoyer.",
+      ar: "أكّد تفاصيل المستلم قبل الإرسال."
+    },
+    "After payment, upload or send your payment confirmation.": {
+      es: "Después del pago, suba o envíe su confirmación de pago.",
+      zh: "付款后，请上传或发送您的付款确认。",
+      fr: "Après le paiement, téléversez ou envoyez votre confirmation de paiement.",
+      ar: "بعد الدفع، ارفع أو أرسل تأكيد الدفع."
+    },
+    "Please confirm the phone number carefully before sending payment. Your application review will begin once payment confirmation is received.": {
+      es: "Confirme el número de teléfono cuidadosamente antes de enviar el pago. La revisión de su solicitud comenzará una vez recibida la confirmación de pago.",
+      zh: "付款前请仔细核对电话号码。收到付款确认后，我们将开始审核您的申请。",
+      fr: "Vérifiez attentivement le numéro de téléphone avant d’envoyer le paiement. L’examen de votre candidature commencera une fois la confirmation de paiement reçue.",
+      ar: "يُرجى التأكد من رقم الهاتف بعناية قبل إرسال الدفع. ستبدأ مراجعة طلبك بمجرد استلام تأكيد الدفع."
     },
     "After payment, upload a screenshot or receipt confirmation.": {
       es: "Después del pago, suba una captura de pantalla o comprobante de confirmación.",
@@ -160,11 +196,11 @@
       fr: "Nom d’utilisateur Venmo copié",
       ar: "تم نسخ اسم مستخدم Venmo"
     },
-    "ChimeSign copied successfully": {
-      es: "ChimeSign copiado correctamente",
-      zh: "ChimeSign 已复制",
-      fr: "ChimeSign copié avec succès",
-      ar: "تم نسخ ChimeSign بنجاح"
+    "Phone number copied successfully": {
+      es: "Número de teléfono copiado correctamente",
+      zh: "电话号码已复制",
+      fr: "Numéro de téléphone copié avec succès",
+      ar: "تم نسخ رقم الهاتف بنجاح"
     },
     "Copy failed — please copy manually": {
       es: "No se pudo copiar — cópielo manualmente",
