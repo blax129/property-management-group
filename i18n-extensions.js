@@ -652,11 +652,11 @@
       fr: "Envoyer le commentaire",
       ar: "إرسال الملاحظات"
     },
-    "Thank you — your comment has been submitted. It will not appear on this page.": {
-      es: "Gracias — su comentario ha sido enviado. No aparecerá en esta página.",
-      zh: "谢谢 — 您的评论已提交，不会显示在本页面上。",
-      fr: "Merci — votre commentaire a été envoyé. Il n’apparaîtra pas sur cette page.",
-      ar: "شكرًا — تم إرسال تعليقك ولن يظهر على هذه الصفحة."
+    "Thank you — your comment has been submitted.": {
+      es: "Gracias — su comentario ha sido enviado.",
+      zh: "谢谢 — 您的评论已提交。",
+      fr: "Merci — votre commentaire a été envoyé.",
+      ar: "شكرًا — تم إرسال تعليقك."
     },
     "Please enter your name and comment.": {
       es: "Ingrese su nombre y comentario.",

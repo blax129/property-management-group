@@ -3822,7 +3822,7 @@
       form.reset();
       if (status) {
         status.textContent = translateText(
-          "Thank you — your comment has been submitted. It will not appear on this page.",
+          "Thank you — your comment has been submitted.",
           currentLanguage()
         );
         status.classList.remove("is-error");
