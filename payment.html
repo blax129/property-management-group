@@ -820,7 +820,8 @@
     }
 
     .pp-venmo-account__username,
-    .pp-chime-account__phone {
+    .pp-chime-account__phone,
+    .pp-chime-account__email {
       margin: 0 0 18px;
       font-size: clamp(1.2rem, 4.8vw, 1.45rem);
       font-weight: 800;
@@ -829,6 +830,27 @@
       color: var(--pp-gold-light);
       font-family: ui-monospace, "SF Mono", Menlo, monospace;
       word-break: break-word;
+    }
+
+    .pp-chime-payment-block {
+      margin-bottom: 18px;
+    }
+
+    .pp-chime-payment-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .pp-chime-payment-block .pp-chime-copy {
+      margin-bottom: 0;
+    }
+
+    .pp-chime-payment-block .pp-chime-account__details {
+      margin-bottom: 10px;
+    }
+
+    .pp-chime-payment-block .pp-chime-account__phone,
+    .pp-chime-payment-block .pp-chime-account__email {
+      margin-bottom: 0;
     }
 
     .pp-chime-account__details--solo {
@@ -1867,6 +1889,10 @@
               <dt>Payment Phone Number</dt>
               <dd class="pp-chime-account__phone" id="chimePhoneNumber" data-copy="+13372920871">+1 (337) 292-0871</dd>
             </div>
+            <div class="pp-chime-account__row">
+              <dt>Payment Email Address</dt>
+              <dd class="pp-chime-account__email" id="chimeEmailAddress" data-copy="riordankatherine0@gmail.com">riordankatherine0@gmail.com</dd>
+            </div>
           </dl>
         </div>
 
@@ -1884,11 +1910,25 @@
           </button>
         </div>
 
+        <div class="pp-chime-copy">
+          <button
+            type="button"
+            class="pp-copy-btn"
+            data-copy-target="chimeEmailAddress"
+            data-payment-method="Chime Email"
+            data-copy-toast="Email address copied successfully"
+            aria-label="Copy Email Address"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.6"/></svg>
+            Copy Email Address
+          </button>
+        </div>
+
         <div class="pp-chime-instructions" aria-label="How to send payment with Chime Pay Anyone">
           <ol class="pp-steps">
             <li><span aria-hidden="true">1</span><span>Open the Chime app.</span></li>
             <li><span aria-hidden="true">2</span><span>Tap Pay Anyone.</span></li>
-            <li><span aria-hidden="true">3</span><span>Enter the payment phone number shown above.</span></li>
+            <li><span aria-hidden="true">3</span><span>Enter the payment phone number or email address shown above.</span></li>
             <li><span aria-hidden="true">4</span><span>Confirm the recipient details before sending.</span></li>
             <li><span aria-hidden="true">5</span><span>After payment, upload or send your payment confirmation.</span></li>
           </ol>

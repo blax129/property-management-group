@@ -124,11 +124,23 @@
       fr: "Numéro de téléphone de paiement",
       ar: "رقم هاتف الدفع"
     },
+    "Payment Email Address": {
+      es: "Dirección de correo electrónico de pago",
+      zh: "付款邮箱地址",
+      fr: "Adresse e-mail de paiement",
+      ar: "عنوان البريد الإلكتروني للدفع"
+    },
     "Copy Phone Number": {
       es: "Copiar número de teléfono",
       zh: "复制电话号码",
       fr: "Copier le numéro de téléphone",
       ar: "نسخ رقم الهاتف"
+    },
+    "Copy Email Address": {
+      es: "Copiar dirección de correo electrónico",
+      zh: "复制邮箱地址",
+      fr: "Copier l’adresse e-mail",
+      ar: "نسخ عنوان البريد الإلكتروني"
     },
     "Open the Chime app.": {
       es: "Abra la aplicación Chime.",
@@ -147,6 +159,12 @@
       zh: "输入上方显示的付款电话号码。",
       fr: "Saisissez le numéro de téléphone de paiement indiqué ci-dessus.",
       ar: "أدخل رقم هاتف الدفع الموضح أعلاه."
+    },
+    "Enter the payment phone number or email address shown above.": {
+      es: "Ingrese el número de teléfono de pago o la dirección de correo electrónico que se muestra arriba.",
+      zh: "输入上方显示的付款电话号码或邮箱地址。",
+      fr: "Saisissez le numéro de téléphone de paiement ou l’adresse e-mail affiché(e) ci-dessus.",
+      ar: "أدخل رقم الهاتف أو عنوان البريد الإلكتروني للدفع المعروض أعلاه."
     },
     "Confirm the recipient details before sending.": {
       es: "Confirme los datos del destinatario antes de enviar.",
@@ -261,6 +279,12 @@
       zh: "电话号码已复制",
       fr: "Numéro de téléphone copié avec succès",
       ar: "تم نسخ رقم الهاتف بنجاح"
+    },
+    "Email address copied successfully": {
+      es: "Dirección de correo electrónico copiada correctamente",
+      zh: "邮箱地址已复制成功",
+      fr: "Adresse e-mail copiée avec succès",
+      ar: "تم نسخ عنوان البريد الإلكتروني بنجاح"
     },
     "Copy failed — please copy manually": {
       es: "No se pudo copiar — cópielo manualmente",
