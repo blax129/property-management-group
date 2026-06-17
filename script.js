@@ -3028,12 +3028,86 @@
   const EMAILJS_PUBLIC_KEY = "qgu2V41l8Rp9A3ejZ";
   const EMAILJS_CONFIRMATION_SERVICE = "service_931i15m";
   const EMAILJS_CONFIRMATION_TEMPLATE = "template_8uscd9q";
+  const EMAILJS_ADMIN_PUBLIC_KEY = "5DMw1roXD7XmNjRqk";
+  const EMAILJS_ADMIN_SERVICE = "service_mjphomm";
+  const EMAILJS_ADMIN_TEMPLATE = "template_7fluizl";
   const EMAILJS_SDK_URL = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
   const FORMSPREE_ONLY_FIELD_NAMES = ["_subject"];
+  const APPLICATION_ADMIN_FIELD_LABELS = {
+    application_id: "Application ID",
+    property: "Property applying for",
+    "application-date": "Date of application",
+    "move-date": "Desired move-in date",
+    "lease-term": "Lease duration",
+    name: "Full legal name",
+    email: "Email address",
+    phone: "Mobile number",
+    dob: "Date of birth",
+    "residency-status": "Citizenship/residency status",
+    "current-address": "Current address",
+    "previous-address": "Previous address",
+    employer: "Current employer",
+    "monthly-income": "Monthly gross income",
+    "other-income-source": "Other income sources",
+    "credit-score": "Credit score",
+    evicted: "Ever evicted",
+    "eviction-explanation": "Eviction explanation",
+    convicted: "Ever convicted",
+    "convicted-explanation": "Conviction explanation",
+    "reason-moving": "Reason for moving",
+    "number-applicants": "Number of applicants",
+    "applicant-names": "Additional applicant names",
+    "number-occupants": "Number of occupants",
+    pets: "Pets",
+    "vehicle-information": "Vehicle information",
+    references: "References available",
+    "emergency-contact-full": "Emergency contact",
+    "selected-language": "Language"
+  };
+  const APPLICATION_ADMIN_FIELD_ORDER = [
+    "application_id",
+    "property",
+    "application-date",
+    "move-date",
+    "lease-term",
+    "name",
+    "email",
+    "phone",
+    "dob",
+    "residency-status",
+    "current-address",
+    "previous-address",
+    "employer",
+    "monthly-income",
+    "other-income-source",
+    "credit-score",
+    "evicted",
+    "eviction-explanation",
+    "convicted",
+    "convicted-explanation",
+    "reason-moving",
+    "number-applicants",
+    "applicant-names",
+    "number-occupants",
+    "pets",
+    "vehicle-information",
+    "references",
+    "emergency-contact-full",
+    "selected-language"
+  ];
   let emailJsInitPromise = null;
 
   function resolveNotificationEmail(form) {
     return (form.dataset.recipientEmail || APPLICATION_NOTIFICATION_EMAIL).trim();
+  }
+
+  function resolveAdminEmailConfig(form) {
+    return {
+      publicKey: (form?.dataset?.emailjsAdminPublicKey || EMAILJS_ADMIN_PUBLIC_KEY).trim(),
+      service: (form?.dataset?.emailjsAdminService || EMAILJS_ADMIN_SERVICE).trim(),
+      template: (form?.dataset?.emailjsAdminTemplate || EMAILJS_ADMIN_TEMPLATE).trim(),
+      recipient: resolveNotificationEmail(form)
+    };
   }
 
   function isValidEmailAddress(value) {
@@ -3143,6 +3217,98 @@
     return emailJsInitPromise;
   }
 
+  function formatApplicationAdminMessage(params) {
+    const lines = ["New rental application received", ""];
+    const usedKeys = new Set();
+
+    APPLICATION_ADMIN_FIELD_ORDER.forEach((key) => {
+      const value = String(params[key] || "").trim();
+      if (!value) {
+        return;
+      }
+
+      usedKeys.add(key);
+      lines.push(`${APPLICATION_ADMIN_FIELD_LABELS[key] || key}: ${value}`);
+    });
+
+    Object.keys(params).forEach((key) => {
+      if (usedKeys.has(key) || FORMSPREE_ONLY_FIELD_NAMES.includes(key)) {
+        return;
+      }
+
+      if (["to_email", "recipient_email", "support_email", "application-id"].includes(key)) {
+        return;
+      }
+
+      const value = String(params[key] || "").trim();
+      if (!value) {
+        return;
+      }
+
+      lines.push(`${APPLICATION_ADMIN_FIELD_LABELS[key] || key}: ${value}`);
+    });
+
+    return lines.join("\n");
+  }
+
+  function collectApplicationAdminEmailParams(form, applicationId) {
+    const params = collectEmailJsTemplateParams(form, applicationId);
+    const adminEmail = resolveNotificationEmail(form);
+    const applicantName = String(params.name || "").trim();
+
+    return {
+      ...params,
+      to_email: adminEmail,
+      recipient_email: adminEmail,
+      reply_to: String(params.email || "").trim(),
+      subject: applicantName
+        ? `New Rental Application - ${applicantName}`
+        : "New Rental Application - Property Management Group",
+      message: formatApplicationAdminMessage(params),
+      application_id: params.application_id || applicationId,
+      current_language: params["selected-language"] || currentLanguage(),
+      language: params["selected-language"] || currentLanguage()
+    };
+  }
+
+  async function sendApplicationAdminNotification(form, applicationId) {
+    assertEmailJsCompatibleOrigin();
+
+    const adminConfig = resolveAdminEmailConfig(form);
+    if (!adminConfig.template || !adminConfig.service || !adminConfig.publicKey) {
+      logEmailJsDebug("Admin notification skipped (template not configured)");
+      return null;
+    }
+
+    const templateParams = collectApplicationAdminEmailParams(form, applicationId);
+
+    logEmailJsDebug("Admin notification send starting", {
+      applicationId,
+      serviceId: adminConfig.service,
+      templateId: adminConfig.template,
+      recipient: adminConfig.recipient
+    });
+
+    const emailjs = await loadEmailJsSdk();
+    emailjs.init({
+      publicKey: adminConfig.publicKey,
+      blockHeadless: false
+    });
+
+    try {
+      const result = await emailjs.send(adminConfig.service, adminConfig.template, templateParams);
+      logEmailJsDebug("Admin notification sent successfully", {
+        status: result?.status,
+        text: result?.text,
+        recipient: adminConfig.recipient
+      });
+      return result;
+    } catch (error) {
+      logEmailJsError("Admin notification failed", error);
+      throw error;
+    }
+  }
+
   function recordApplicationEmailStatus(status) {
     try {
       window.sessionStorage.setItem("applicationEmailStatus", JSON.stringify(status));
@@ -3205,6 +3371,10 @@
     });
 
     const emailjs = await prepareEmailJs();
+    emailjs.init({
+      publicKey: EMAILJS_PUBLIC_KEY,
+      blockHeadless: false
+    });
     const applicantEmail = prepareApplicationFormForEmailJs(form, applicationId);
     const templateParams = collectEmailJsTemplateParams(form, applicationId);
 
@@ -3247,11 +3417,6 @@
         status: result?.status,
         text: result?.text
       });
-      recordApplicationEmailStatus({
-        applicant: "sent",
-        admin: "skipped",
-        errors: []
-      });
       return result;
     } catch (error) {
       const formattedError = formatEmailJsError(error);
@@ -3259,11 +3424,6 @@
       logEmailJsDebug("Failed send context", {
         formattedError,
         templateParams
-      });
-      recordApplicationEmailStatus({
-        applicant: "failed",
-        admin: "skipped",
-        errors: [formattedError]
       });
       const submissionError = new Error(formattedError);
       submissionError.stage = "email";
@@ -3423,6 +3583,23 @@
     );
     console.log("[Application] Formspree submission succeeded", formspreeResult);
 
+    let adminEmailStatus = "skipped";
+    const adminEmailErrors = [];
+
+    try {
+      await withServiceTimeout(
+        sendApplicationAdminNotification(form, applicationId),
+        20000,
+        "Admin notification timed out."
+      );
+      adminEmailStatus = "sent";
+      console.log("[Application] Admin notification email completed");
+    } catch (error) {
+      adminEmailStatus = "failed";
+      adminEmailErrors.push(formatEmailJsError(error));
+      logEmailJsError("Admin notification failed (application will continue)", error);
+    }
+
     if (statusMessage) {
       statusMessage.textContent = translateText("Sending confirmation email...", currentLanguage());
     }
@@ -3450,6 +3627,12 @@
       throw error;
     });
     console.log("[Application] EmailJS confirmation email completed");
+
+    recordApplicationEmailStatus({
+      applicant: "sent",
+      admin: adminEmailStatus,
+      errors: adminEmailErrors
+    });
 
     if (statusMessage) {
       statusMessage.textContent = translateText("Application received. Opening confirmation...", currentLanguage());
