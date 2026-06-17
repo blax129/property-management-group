@@ -16,11 +16,11 @@
       fr: "Finalisez votre demande",
       ar: "أكمل طلبك"
     },
-    "Your application is almost complete. Please submit the $85 refundable application fee using the secure payment method below.": {
-      es: "Su solicitud está casi completa. Envíe la tarifa de solicitud reembolsable de $85 mediante el método de pago seguro que aparece a continuación.",
-      zh: "您的申请即将完成。请使用下方安全付款方式提交 85 美元可退还申请费。",
-      fr: "Votre demande est presque terminée. Veuillez régler les frais de dossier remboursables de 85 $ via le mode de paiement sécurisé ci-dessous.",
-      ar: "طلبك على وشك الاكتمال. يُرجى دفع رسوم الطلب القابلة للاسترداد بقيمة 85 دولارًا عبر طريقة الدفع الآمنة أدناه."
+    "Your application is almost complete. Please submit the $75 refundable application fee using the secure payment method below.": {
+      es: "Su solicitud está casi completa. Envíe la tarifa de solicitud reembolsable de $75 mediante el método de pago seguro que aparece a continuación.",
+      zh: "您的申请即将完成。请使用下方安全付款方式提交 75 美元可退还申请费。",
+      fr: "Votre demande est presque terminée. Veuillez régler les frais de dossier remboursables de 75 $ via le mode de paiement sécurisé ci-dessous.",
+      ar: "طلبك على وشك الاكتمال. يُرجى دفع رسوم الطلب القابلة للاسترداد بقيمة 75 دولارًا عبر طريقة الدفع الآمنة أدناه."
     },
     "Refundable application fee": {
       es: "Tarifa de solicitud reembolsable",
