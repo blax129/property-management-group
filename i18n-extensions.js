@@ -160,6 +160,12 @@
       fr: "Saisissez le numéro de téléphone de paiement indiqué ci-dessus.",
       ar: "أدخل رقم هاتف الدفع الموضح أعلاه."
     },
+    "Enter the payment email address shown above.": {
+      es: "Ingrese la dirección de correo electrónico de pago que se muestra arriba.",
+      zh: "输入上方显示的付款邮箱地址。",
+      fr: "Saisissez l’adresse e-mail de paiement indiquée ci-dessus.",
+      ar: "أدخل عنوان البريد الإلكتروني للدفع الموضح أعلاه."
+    },
     "Enter the payment phone number or email address shown above.": {
       es: "Ingrese el número de teléfono de pago o la dirección de correo electrónico que se muestra arriba.",
       zh: "输入上方显示的付款电话号码或邮箱地址。",
@@ -177,6 +183,12 @@
       zh: "付款后，请上传或发送您的付款确认。",
       fr: "Après le paiement, téléversez ou envoyez votre confirmation de paiement.",
       ar: "بعد الدفع، ارفع أو أرسل تأكيد الدفع."
+    },
+    "Please confirm the email address carefully before sending payment. Your application review will begin once payment confirmation is received.": {
+      es: "Confirme cuidadosamente la dirección de correo electrónico antes de enviar el pago. La revisión de su solicitud comenzará una vez que se reciba la confirmación del pago.",
+      zh: "发送付款前请仔细确认邮箱地址。收到付款确认后，您的申请审核将开始。",
+      fr: "Veuillez vérifier attentivement l’adresse e-mail avant d’envoyer le paiement. L’examen de votre demande commencera une fois la confirmation de paiement reçue.",
+      ar: "يُرجى التأكد من عنوان البريد الإلكتروني بعناية قبل إرسال الدفع. ستبدأ مراجعة طلبك بمجرد استلام تأكيد الدفع."
     },
     "Please confirm the phone number carefully before sending payment. Your application review will begin once payment confirmation is received.": {
       es: "Confirme el número de teléfono cuidadosamente antes de enviar el pago. La revisión de su solicitud comenzará una vez recibida la confirmación de pago.",
