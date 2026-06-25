@@ -160,6 +160,18 @@
       fr: "Appuyez sur « Send Money to Anyone ».",
       ar: "اضغط على \"Send Money to Anyone\"."
     },
+    "Chime app screen showing where to tap Send Money to Anyone": {
+      es: "Pantalla de la app Chime que muestra dónde tocar Send Money to Anyone",
+      zh: "显示在何处点击 Send Money to Anyone 的 Chime 应用界面",
+      fr: "Écran de l’application Chime indiquant où appuyer sur Send Money to Anyone",
+      ar: "شاشة تطبيق Chime توضح أين تضغط على Send Money to Anyone"
+    },
+    "How to send payment with Chime Pay Anyone": {
+      es: "Cómo enviar el pago con Chime Pay Anyone",
+      zh: "如何使用 Chime Pay Anyone 发送付款",
+      fr: "Comment envoyer le paiement avec Chime Pay Anyone",
+      ar: "كيفية إرسال الدفع عبر Chime Pay Anyone"
+    },
     "Tap \"Send Money to Anyone\" as shown below.": {
       es: "Toque \"Send Money to Anyone\" como se muestra a continuación.",
       zh: "点击下方的“Send Money to Anyone”。",

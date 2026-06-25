@@ -2473,14 +2473,17 @@
   }
 
   function translateAttributes(language) {
-    document.querySelectorAll("[placeholder], [aria-label]").forEach((element) => {
-      ["placeholder", "aria-label"].forEach((attribute) => {
+    [
+      { attribute: "placeholder", keyName: "placeholderKey" },
+      { attribute: "aria-label", keyName: "ariaLabelKey" },
+      { attribute: "alt", keyName: "altKey" }
+    ].forEach(({ attribute, keyName }) => {
+      document.querySelectorAll(`[${attribute}]`).forEach((element) => {
         if (!element.hasAttribute(attribute)) {
           return;
         }
 
         const current = element.getAttribute(attribute);
-        const keyName = attribute === "placeholder" ? "placeholderKey" : "ariaLabelKey";
         const key = element.dataset[keyName] || resolveTranslationKey(current, element);
         const canTranslate = /^Go to image \d{1,2}$/.test(key) || hasTranslatableKey(key, current);
 
