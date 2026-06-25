@@ -715,7 +715,7 @@
       color: var(--pp-muted);
     }
 
-    .pp-steps li span:first-child {
+    .pp-steps li > span:first-child {
       width: 28px;
       height: 28px;
       display: grid;
@@ -726,6 +726,33 @@
       color: var(--pp-gold-light);
       background: rgba(37, 99, 235, 0.12);
       border: 1px solid rgba(37, 99, 235, 0.25);
+    }
+
+    .pp-steps__content {
+      display: grid;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .pp-chime-step-label {
+      display: block;
+      white-space: nowrap;
+      line-height: 1.45;
+      font-size: clamp(12px, 3.4vw, 14px);
+    }
+
+    .pp-chime-step-illustration {
+      margin: 2px 0 0;
+      max-width: min(100%, 320px);
+    }
+
+    .pp-chime-step-illustration img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 1px solid rgba(37, 99, 235, 0.16);
+      box-shadow: 0 4px 14px rgba(15, 39, 68, 0.08);
     }
 
     .pp-copy-block {
@@ -1524,7 +1551,7 @@
       line-height: 1.45;
     }
 
-    .pp-steps li span:first-child {
+    .pp-steps li > span:first-child {
       width: 30px;
       height: 30px;
     }
@@ -1916,13 +1943,50 @@
               </button>
             </div>
           </div>
+
+          <div class="pp-chime-payment-block">
+            <dl class="pp-chime-account__details pp-chime-account__details--solo">
+              <div class="pp-chime-account__row">
+                <dt>Payment phone number</dt>
+                <dd class="pp-chime-account__phone" id="chimePhoneNumber" data-copy="+13152723641">315 272 3641</dd>
+              </div>
+            </dl>
+            <div class="pp-chime-copy">
+              <button
+                type="button"
+                class="pp-copy-btn"
+                data-copy-target="chimePhoneNumber"
+                data-payment-method="Chime"
+                data-copy-toast="Phone number copied successfully"
+                aria-label="Copy phone number 315 272 3641"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.6"/></svg>
+                Copy phone number
+              </button>
+            </div>
+          </div>
         </div>
 
         <div class="pp-chime-instructions" aria-label="How to send payment with Chime Pay Anyone">
           <ol class="pp-steps">
             <li><span aria-hidden="true">1</span><span>Open the Chime app.</span></li>
-            <li><span aria-hidden="true">2</span><span>Tap Pay Anyone.</span></li>
-            <li><span aria-hidden="true">3</span><span>Enter the payment email address shown above.</span></li>
+            <li>
+              <span aria-hidden="true">2</span>
+              <div class="pp-steps__content">
+                <span class="pp-chime-step-label">Tap "Send Money to Anyone".</span>
+                <figure class="pp-chime-step-illustration">
+                  <img
+                    src="image/chime-send-money-anyone.png"
+                    alt="Chime app screen showing where to tap Send Money to Anyone"
+                    width="1024"
+                    height="585"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </figure>
+              </div>
+            </li>
+            <li><span aria-hidden="true">3</span><span>Enter the payment number or email address shown above.</span></li>
             <li><span aria-hidden="true">4</span><span>Confirm the recipient details before sending.</span></li>
             <li><span aria-hidden="true">5</span><span>After payment, upload or send your payment confirmation.</span></li>
           </ol>
@@ -1965,7 +2029,7 @@
         <div class="pp-chime-trust">
           <p class="pp-notice pp-notice--trust">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8.7-8 9-4.5-.3-8-4-8-9V7l8-4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>Please confirm the email address carefully before sending payment. Your application review will begin once payment confirmation is received.</span>
+            <span>Please confirm the recipient details carefully before sending payment. Your application review will begin once payment confirmation is received.</span>
           </p>
           <p class="pp-notice pp-notice--trust">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v5m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>

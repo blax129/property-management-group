@@ -154,6 +154,24 @@
       fr: "Appuyez sur Pay Anyone.",
       ar: "اضغط على Pay Anyone."
     },
+    "Tap \"Send Money to Anyone\".": {
+      es: "Toque \"Send Money to Anyone\".",
+      zh: "点击“Send Money to Anyone”。",
+      fr: "Appuyez sur « Send Money to Anyone ».",
+      ar: "اضغط على \"Send Money to Anyone\"."
+    },
+    "Tap \"Send Money to Anyone\" as shown below.": {
+      es: "Toque \"Send Money to Anyone\" como se muestra a continuación.",
+      zh: "点击下方的“Send Money to Anyone”。",
+      fr: "Appuyez sur « Send Money to Anyone » comme indiqué ci-dessous.",
+      ar: "اضغط على \"Send Money to Anyone\" كما هو موضح أدناه."
+    },
+    "Tap \"Send Money to Anyone\" and use the payment email provided above.": {
+      es: "Toque \"Send Money to Anyone\" y use la dirección de correo electrónico de pago indicada arriba.",
+      zh: "点击“Send Money to Anyone”，并使用上方提供的付款邮箱。",
+      fr: "Appuyez sur « Send Money to Anyone » et utilisez l’adresse e-mail de paiement indiquée ci-dessus.",
+      ar: "اضغط على \"Send Money to Anyone\" واستخدم عنوان البريد الإلكتروني للدفع الموجود أعلاه."
+    },
     "Enter the payment phone number shown above.": {
       es: "Ingrese el número de teléfono de pago que se muestra arriba.",
       zh: "输入上方显示的付款电话号码。",
@@ -165,6 +183,12 @@
       zh: "输入上方显示的付款邮箱地址。",
       fr: "Saisissez l’adresse e-mail de paiement indiquée ci-dessus.",
       ar: "أدخل عنوان البريد الإلكتروني للدفع الموضح أعلاه."
+    },
+    "Enter the payment number or email address shown above.": {
+      es: "Ingrese el número de pago o la dirección de correo electrónico que se muestra arriba.",
+      zh: "输入上方显示的付款号码或邮箱地址。",
+      fr: "Saisissez le numéro de paiement ou l’adresse e-mail affiché(e) ci-dessus.",
+      ar: "أدخل رقم الدفع أو عنوان البريد الإلكتروني المعروض أعلاه."
     },
     "Enter the payment phone number or email address shown above.": {
       es: "Ingrese el número de teléfono de pago o la dirección de correo electrónico que se muestra arriba.",
