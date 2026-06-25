@@ -672,8 +672,17 @@
     }
 
     .pp-card__icon--chime {
-      background: linear-gradient(145deg, #1ec677, #0d9f5f);
-      color: #fff;
+      padding: 0;
+      background: transparent;
+      color: inherit;
+      overflow: hidden;
+    }
+
+    .pp-card__icon--chime img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .pp-card__title {
@@ -1876,7 +1885,9 @@
       <!-- Chime -->
       <article class="pp-card pp-card--chime" aria-labelledby="chime-title">
         <div class="pp-card__head">
-          <div class="pp-card__icon pp-card__icon--chime" aria-hidden="true">Ch</div>
+          <div class="pp-card__icon pp-card__icon--chime" aria-hidden="true">
+            <img src="image/chime-logo-payment.png" alt="" width="56" height="56" loading="lazy" decoding="async">
+          </div>
           <div>
             <h2 class="pp-card__title" id="chime-title">Chime Pay Anyone</h2>
             <p class="pp-card__desc">Send your refundable application fee securely through Chime using the Pay Anyone feature.</p>
