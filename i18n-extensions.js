@@ -196,6 +196,12 @@
       fr: "Vérifiez attentivement le numéro de téléphone avant d’envoyer le paiement. L’examen de votre candidature commencera une fois la confirmation de paiement reçue.",
       ar: "يُرجى التأكد من رقم الهاتف بعناية قبل إرسال الدفع. ستبدأ مراجعة طلبك بمجرد استلام تأكيد الدفع."
     },
+    "Please confirm the recipient details carefully before sending payment. Your application review will begin once payment confirmation is received.": {
+      es: "Confirme cuidadosamente los datos del destinatario antes de enviar el pago. La revisión de su solicitud comenzará una vez que se reciba la confirmación del pago.",
+      zh: "发送付款前请仔细确认收款人信息。收到付款确认后，您的申请审核将开始。",
+      fr: "Veuillez vérifier attentivement les informations du destinataire avant d’envoyer le paiement. L’examen de votre demande commencera une fois la confirmation de paiement reçue.",
+      ar: "يُرجى التأكد من تفاصيل المستلم بعناية قبل إرسال الدفع. ستبدأ مراجعة طلبك بمجرد استلام تأكيد الدفع."
+    },
     "Don't Have Chime?": {
       es: "¿No tiene Chime?",
       zh: "还没有 Chime？",
