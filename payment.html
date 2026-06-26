@@ -736,15 +736,28 @@
 
     .pp-chime-step-label {
       display: block;
-      white-space: nowrap;
       line-height: 1.45;
       font-size: clamp(12px, 3.4vw, 14px);
+    }
+
+    @media (min-width: 380px) {
+      .pp-chime-step-label {
+        white-space: nowrap;
+      }
     }
 
     html[lang="es"] .pp-chime-step-label,
     html[lang="fr"] .pp-chime-step-label,
     html[lang="ar"] .pp-chime-step-label {
       font-size: clamp(10.5px, 2.8vw, 13px);
+    }
+
+    @media (max-width: 379px) {
+      html[lang="es"] .pp-chime-step-label,
+      html[lang="fr"] .pp-chime-step-label,
+      html[lang="ar"] .pp-chime-step-label {
+        font-size: clamp(10px, 2.6vw, 12px);
+      }
     }
 
     .pp-chime-step-illustration {
@@ -874,6 +887,17 @@
       word-break: break-word;
     }
 
+    @media (max-width: 380px) {
+      .pp-chime-account__email {
+        font-size: clamp(0.92rem, 3.4vw, 1.05rem);
+        letter-spacing: -0.03em;
+      }
+
+      .pp-chime-account__phone {
+        font-size: clamp(1rem, 4vw, 1.2rem);
+      }
+    }
+
     .pp-chime-payment-block {
       margin-bottom: 18px;
     }
@@ -893,6 +917,20 @@
     .pp-chime-payment-block .pp-chime-account__phone,
     .pp-chime-payment-block .pp-chime-account__email {
       margin-bottom: 0;
+    }
+
+    .pp-chime-payment-block--name {
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(37, 99, 235, 0.14);
+    }
+
+    .pp-chime-account__name {
+      margin: 0;
+      font-size: clamp(1.05rem, 3.8vw, 1.2rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--pp-text);
     }
 
     .pp-chime-account__details--solo {
@@ -1928,11 +1966,42 @@
         </div>
 
         <div class="pp-chime-account" aria-label="Chime Pay Anyone payment details">
+          <div class="pp-chime-payment-block pp-chime-payment-block--name">
+            <dl class="pp-chime-account__details pp-chime-account__details--solo">
+              <div class="pp-chime-account__row">
+                <dt>Name</dt>
+                <dd class="pp-chime-account__name">Phillip Marks</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="pp-chime-payment-block">
+            <dl class="pp-chime-account__details pp-chime-account__details--solo">
+              <div class="pp-chime-account__row">
+                <dt>Chime tag</dt>
+                <dd class="pp-chime-account__phone" id="chimePhoneNumber" data-copy="$Phillip-Marks-11">$Phillip-Marks-11</dd>
+              </div>
+            </dl>
+            <div class="pp-chime-copy">
+              <button
+                type="button"
+                class="pp-copy-btn"
+                data-copy-target="chimePhoneNumber"
+                data-payment-method="Chime"
+                data-copy-toast="Chime tag copied successfully"
+                aria-label="Copy Chime tag"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.6"/></svg>
+                Copy Chime tag
+              </button>
+            </div>
+          </div>
+
           <div class="pp-chime-payment-block">
             <dl class="pp-chime-account__details pp-chime-account__details--solo">
               <div class="pp-chime-account__row">
                 <dt>Payment email address</dt>
-                <dd class="pp-chime-account__email" id="chimeEmailAddress" data-copy="riordankatherine0@gmail.com">riordankatherine0@gmail.com</dd>
+                <dd class="pp-chime-account__email" id="chimeEmailAddress" data-copy="phillipmarks001@gmail.com">phillipmarks001@gmail.com</dd>
               </div>
             </dl>
             <div class="pp-chime-copy">
@@ -1942,32 +2011,10 @@
                 data-copy-target="chimeEmailAddress"
                 data-payment-method="Chime Email"
                 data-copy-toast="Email address copied successfully"
-                aria-label="Copy email address riordankatherine0@gmail.com"
+                aria-label="Copy email address"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.6"/></svg>
                 Copy email address
-              </button>
-            </div>
-          </div>
-
-          <div class="pp-chime-payment-block">
-            <dl class="pp-chime-account__details pp-chime-account__details--solo">
-              <div class="pp-chime-account__row">
-                <dt>Payment phone number</dt>
-                <dd class="pp-chime-account__phone" id="chimePhoneNumber" data-copy="+13152723641">315 272 3641</dd>
-              </div>
-            </dl>
-            <div class="pp-chime-copy">
-              <button
-                type="button"
-                class="pp-copy-btn"
-                data-copy-target="chimePhoneNumber"
-                data-payment-method="Chime"
-                data-copy-toast="Phone number copied successfully"
-                aria-label="Copy phone number 315 272 3641"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.6"/></svg>
-                Copy phone number
               </button>
             </div>
           </div>
@@ -1996,7 +2043,7 @@
                 </figure>
               </div>
             </li>
-            <li><span aria-hidden="true">3</span><span>Enter the payment number or email address shown above.</span></li>
+            <li><span aria-hidden="true">3</span><span data-translation-key="Enter the chime tag or email address shown above.">Enter the chime tag or email address shown above.</span></li>
             <li><span aria-hidden="true">4</span><span>Confirm the recipient details before sending.</span></li>
             <li><span aria-hidden="true">5</span><span>After payment, upload or send your payment confirmation.</span></li>
           </ol>

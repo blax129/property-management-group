@@ -118,6 +118,24 @@
       fr: "Envoyez vos frais de candidature remboursables en toute sécurité via Chime avec la fonction Pay Anyone.",
       ar: "أرسل رسوم الطلب القابلة للاسترداد بأمان عبر Chime باستخدام ميزة Pay Anyone."
     },
+    "Chime tag": {
+      es: "Etiqueta de Chime",
+      zh: "Chime 标签",
+      fr: "Tag Chime",
+      ar: "وسم Chime"
+    },
+    "Copy Chime tag": {
+      es: "Copiar etiqueta de Chime",
+      zh: "复制 Chime 标签",
+      fr: "Copier le tag Chime",
+      ar: "نسخ وسم Chime"
+    },
+    "Chime tag copied successfully": {
+      es: "Etiqueta de Chime copiada correctamente",
+      zh: "Chime 标签已复制",
+      fr: "Tag Chime copié avec succès",
+      ar: "تم نسخ وسم Chime بنجاح"
+    },
     "Payment phone number": {
       es: "Número de teléfono de pago",
       zh: "付款电话号码",
@@ -129,6 +147,12 @@
       zh: "付款邮箱地址",
       fr: "Adresse e-mail de paiement",
       ar: "عنوان البريد الإلكتروني للدفع"
+    },
+    "Name": {
+      es: "Nombre",
+      zh: "姓名",
+      fr: "Nom",
+      ar: "الاسم"
     },
     "Copy phone number": {
       es: "Copiar número de teléfono",
@@ -195,6 +219,12 @@
       zh: "输入上方显示的付款邮箱地址。",
       fr: "Saisissez l’adresse e-mail de paiement indiquée ci-dessus.",
       ar: "أدخل عنوان البريد الإلكتروني للدفع الموضح أعلاه."
+    },
+    "Enter the chime tag or email address shown above.": {
+      es: "Ingrese la etiqueta de Chime o la dirección de correo electrónico que se muestra arriba.",
+      zh: "输入上方显示的 Chime 标签或邮箱地址。",
+      fr: "Saisissez le tag Chime ou l’adresse e-mail affiché(e) ci-dessus.",
+      ar: "أدخل وسم Chime أو عنوان البريد الإلكتروني المعروض أعلاه."
     },
     "Enter the payment number or email address shown above.": {
       es: "Ingrese el número de pago o la dirección de correo electrónico que se muestra arriba.",

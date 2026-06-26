@@ -19,10 +19,18 @@
     <rect x="7.75" y="13.5" width="16.5" height="1.4" rx="0.2"/>
     <rect x="7.75" y="21.75" width="16.5" height="1.1" rx="0.2"/>
   </g>
-  <g fill="#0f2744">
-    <path d="M11.1 15.6h1v4.2h-1zm0 0h2.6c.9 0 1.5-.55 1.5-1.4s-.6-1.4-1.5-1.4h-2.6zm1 1v2.2h1.6c.45 0 .7-.28.7-.68s-.25-.68-.7-.68z"/>
-    <path d="M15.2 15.6h1v4.2h-1zm0 0h2.5c.88 0 1.42-.52 1.42-1.35s-.54-1.35-1.42-1.35h-2.5zm1 1v2.1h1.55c.42 0 .68-.25.68-.62s-.26-.62-.68-.62z"/>
-    <path d="M19.2 15.6h1.02l1.92 3.2v-3.2h.95v4.2h-.98l-1.95-3.22v3.22h-.96z"/>
-  </g>
+  <text
+    x="16"
+    y="19.3"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', Times, serif"
+    font-size="5.4"
+    font-weight="700"
+    fill="#07111f"
+    stroke="#ffffff"
+    stroke-width="0.28"
+    paint-order="stroke fill"
+    letter-spacing="0.05"
+  >PPM</text>
   <path d="M9 24.25h14" stroke="#c9a962" stroke-width="0.55" stroke-linecap="round" opacity="0.7"/>
 </svg>
