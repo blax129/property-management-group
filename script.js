@@ -2241,10 +2241,17 @@
     return storedProperty();
   }
 
+  function normalizedPageName(url) {
+    const tail = url.pathname.split("/").filter(Boolean).pop();
+    return tail || "index.html";
+  }
+
   function buildApplicationFlowHref(path, options = {}) {
     const url = new URL(path, window.location.href);
     const lang = normalizeLanguage(options.language ?? storedLanguage());
-    const property = String(options.property ?? storedProperty()).trim();
+    const property = String(
+      options.property ?? propertyFromUrl() ?? storedProperty()
+    ).trim();
     const applicationId = String(options.applicationId || "").trim();
 
     if (lang === "en") {
@@ -2328,6 +2335,10 @@
     const file = currentHomeFile();
     if (file === "es.html") {
       const target = new URL("index.html?lang=es", window.location.href);
+      const urlProperty = propertyFromUrl();
+      if (urlProperty) {
+        target.searchParams.set("property", urlProperty);
+      }
       if (window.location.hash) {
         target.hash = window.location.hash;
       }
@@ -2401,12 +2412,20 @@
     }
 
     const lang = normalizeLanguage(language);
-    const target = buildHomePageHref(lang);
+    const urlProperty = propertyFromUrl();
+    if (urlProperty) {
+      persistProperty(urlProperty);
+    }
+
+    const target = buildApplicationFlowHref("index.html", {
+      language: lang,
+      property: urlProperty || storedProperty()
+    });
     const targetUrl = new URL(target, window.location.href);
     const currentUrl = new URL(window.location.href);
 
     if (
-      currentUrl.pathname.split("/").pop() !== targetUrl.pathname.split("/").pop() ||
+      normalizedPageName(currentUrl) !== normalizedPageName(targetUrl) ||
       currentUrl.search !== targetUrl.search
     ) {
       persistLanguageChoice(lang);
@@ -3091,6 +3110,10 @@
     initialLanguage,
     href: window.location.href
   });
+  if (propertyFromUrl()) {
+    persistProperty(propertyFromUrl());
+  }
+
   if (!redirectLegacyHomePages() && !redirectForHomeLanguage(initialLanguage)) {
     applyLanguage(initialLanguage);
   }
