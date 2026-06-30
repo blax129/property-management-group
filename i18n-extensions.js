@@ -160,11 +160,11 @@
       fr: "Candidature pour :",
       ar: "التقديم على:"
     },
-    "You were directed here after inquiring about a rental listing. Complete the application below and enter the property address in the form.": {
-      es: "Fue dirigido aquí después de consultar sobre un anuncio de alquiler. Complete la solicitud a continuación e ingrese la dirección de la propiedad en el formulario.",
-      zh: "您在咨询租赁房源后被引导至此。请填写下方申请表，并在表单中输入房源地址。",
-      fr: "Vous avez été dirigé ici après avoir demandé des renseignements sur une annonce locative. Complétez la demande ci-dessous et saisissez l’adresse du bien dans le formulaire.",
-      ar: "تم توجيهك إلى هنا بعد الاستفسار عن إعلان إيجار. أكمل الطلب أدناه وأدخل عنوان العقار في النموذج."
+    "You were directed here after inquiring about a rental listing. Complete the application below.": {
+      es: "Fue dirigido aquí después de consultar sobre un anuncio de alquiler. Complete la solicitud a continuación.",
+      zh: "您在咨询租赁房源后被引导至此。请填写下方申请表。",
+      fr: "Vous avez été dirigé ici après avoir demandé des renseignements sur une annonce locative. Complétez la demande ci-dessous.",
+      ar: "تم توجيهك إلى هنا بعد الاستفسار عن إعلان إيجار. أكمل الطلب أدناه."
     },
     "You were directed here after inquiring about a rental listing. Complete the application below for the property shown above.": {
       es: "Fue dirigido aquí después de consultar sobre un anuncio de alquiler. Complete la solicitud a continuación para la propiedad indicada arriba.",
