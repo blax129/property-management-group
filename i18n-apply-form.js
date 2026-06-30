@@ -177,11 +177,11 @@
       fr: "Informations financières et antécédents",
       ar: "المعلومات المالية والخلفية"
     },
-    "Credit Score (optional)": {
-      es: "Puntaje de crédito (opcional)",
-      zh: "信用评分（可选）",
-      fr: "Score de crédit (facultatif)",
-      ar: "درجة الائتمان (اختياري)"
+    "Credit Score": {
+      es: "Puntaje de crédito",
+      zh: "信用评分",
+      fr: "Score de crédit",
+      ar: "درجة الائتمان"
     },
     "Have You Ever Been Evicted": {
       es: "¿Alguna vez ha sido desalojado?",
