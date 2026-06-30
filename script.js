@@ -1244,27 +1244,32 @@
     es: {
       "Please complete this required field.": "Complete este campo obligatorio.",
       "Please enter a valid email address.": "Ingrese una dirección de correo electrónico válida.",
-      "Please check this box to continue.": "Marque esta casilla para continuar."
+      "Please check this box to continue.": "Marque esta casilla para continuar.",
+      "Please enter a credit score between 300 and 850, or leave blank.": "Ingrese un puntaje de crédito entre 300 y 850, o déjelo en blanco."
     },
     zh: {
       "Please complete this required field.": "请填写此必填字段。",
       "Please enter a valid email address.": "请输入有效的电子邮件地址。",
-      "Please check this box to continue.": "请勾选此框以继续。"
+      "Please check this box to continue.": "请勾选此框以继续。",
+      "Please enter a credit score between 300 and 850, or leave blank.": "请输入 300 至 850 之间的信用评分，或留空。"
     },
     fr: {
       "Please complete this required field.": "Veuillez remplir ce champ obligatoire.",
       "Please enter a valid email address.": "Veuillez saisir une adresse e-mail valide.",
-      "Please check this box to continue.": "Veuillez cocher cette case pour continuer."
+      "Please check this box to continue.": "Veuillez cocher cette case pour continuer.",
+      "Please enter a credit score between 300 and 850, or leave blank.": "Saisissez un score de crédit entre 300 et 850, ou laissez le champ vide."
     },
     pt: {
       "Please complete this required field.": "Preencha este campo obrigatório.",
       "Please enter a valid email address.": "Informe um endereço de e-mail válido.",
-      "Please check this box to continue.": "Marque esta caixa para continuar."
+      "Please check this box to continue.": "Marque esta caixa para continuar.",
+      "Please enter a credit score between 300 and 850, or leave blank.": "Informe uma pontuação de crédito entre 300 e 850, ou deixe em branco."
     },
     ar: {
       "Please complete this required field.": "يرجى إكمال هذا الحقل المطلوب.",
       "Please enter a valid email address.": "يرجى إدخال عنوان بريد إلكتروني صالح.",
-      "Please check this box to continue.": "يرجى تحديد هذا المربع للمتابعة."
+      "Please check this box to continue.": "يرجى تحديد هذا المربع للمتابعة.",
+      "Please enter a credit score between 300 and 850, or leave blank.": "يرجى إدخال درجة ائتمان بين 300 و850، أو ترك الحقل فارغًا."
     }
   };
 
@@ -2676,6 +2681,10 @@
         : translateText("Please complete this required field.", currentLanguage());
     }
 
+    if (field.validity.customError && field.id === "credit-score") {
+      return translateText("Please enter a credit score between 300 and 850, or leave blank.", currentLanguage());
+    }
+
     if (field.validity.typeMismatch && field.type === "email") {
       return translateText("Please enter a valid email address.", currentLanguage());
     }
@@ -3753,6 +3762,44 @@
     return translateText("Something went wrong. Please try again.", currentLanguage());
   }
 
+  function normalizeOptionalCreditScore(form) {
+    const field = form.querySelector("#credit-score");
+    if (!field) {
+      return;
+    }
+
+    const value = String(field.value || "").trim();
+    if (!value) {
+      field.value = "";
+      field.setCustomValidity("");
+      return;
+    }
+
+    const score = Number(value);
+    if (!Number.isInteger(score) || score < 300 || score > 850) {
+      field.setCustomValidity(
+        translateText("Please enter a credit score between 300 and 850, or leave blank.", currentLanguage())
+      );
+      return;
+    }
+
+    field.value = String(score);
+    field.setCustomValidity("");
+  }
+
+  function redirectToApplicationConfirmation(form, applicationId, selectedLanguage, propertyName) {
+    const confirmationPage = form.dataset.confirmation || "application-received.html";
+    const redirectUrl = buildApplicationFlowHref(confirmationPage, {
+      language: selectedLanguage,
+      applicationId,
+      property: propertyName || storedProperty()
+    });
+
+    safePersistApplicationSession(applicationId, selectedLanguage, {}, propertyName || storedProperty());
+    console.log("Application redirect triggered:", redirectUrl);
+    window.location.replace(redirectUrl);
+  }
+
   async function submitMainApplication(form, submitButton, statusMessage) {
     const endpoint = form.dataset.formspreeEndpoint || FORMSPREE_APPLICATION_ENDPOINT;
 
@@ -3807,32 +3854,21 @@
       statusMessage.textContent = translateText("Sending confirmation email...", currentLanguage());
     }
 
-    await withServiceTimeout(
-      sendApplicationConfirmationEmail(form, applicationId),
-      45000,
-      "EmailJS notification timed out."
-    ).catch((error) => {
-      if (!error.stage) {
-        error.stage = "email";
-      }
-
-      if (/timed out/i.test(error.message)) {
-        const timeoutMessage =
-          window.location.protocol === "file:"
-            ? "EmailJS cannot send from a file:// page. Use http://localhost:8765/apply.html (run: python3 -m http.server 8765 in your project folder)."
-            : "EmailJS timed out. Check your connection and add this site URL under EmailJS Account → Security → Allowed domains.";
-        const timeoutError = new Error(timeoutMessage);
-        timeoutError.stage = "email";
-        timeoutError.originalError = error;
-        throw timeoutError;
-      }
-
-      throw error;
-    });
-    console.log("[Application] EmailJS confirmation email completed");
+    let applicantEmailStatus = "failed";
+    try {
+      await withServiceTimeout(
+        sendApplicationConfirmationEmail(form, applicationId),
+        45000,
+        "EmailJS notification timed out."
+      );
+      applicantEmailStatus = "sent";
+      console.log("[Application] EmailJS confirmation email completed");
+    } catch (error) {
+      logEmailJsError("Confirmation email failed (application will continue)", error);
+    }
 
     recordApplicationEmailStatus({
-      applicant: "sent",
+      applicant: applicantEmailStatus,
       admin: adminEmailStatus,
       errors: adminEmailErrors
     });
@@ -3848,15 +3884,8 @@
     }
 
     window.setTimeout(() => {
-      const confirmationPage = form.dataset.confirmation || "application-received.html";
-      const redirectUrl = buildApplicationFlowHref(confirmationPage, {
-        language: selectedLanguage,
-        applicationId,
-        property: propertyName || storedProperty()
-      });
-      console.log("Application redirect triggered:", redirectUrl);
-      window.location.href = redirectUrl;
-    }, 1200);
+      redirectToApplicationConfirmation(form, applicationId, selectedLanguage, propertyName);
+    }, applicantEmailStatus === "sent" ? 1200 : 400);
   }
 
   async function submitApplicationToFormspree(endpoint, formData) {
@@ -4259,6 +4288,12 @@
         return;
       }
 
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      normalizeOptionalCreditScore(form);
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
