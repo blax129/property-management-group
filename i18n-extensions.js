@@ -586,29 +586,29 @@
       fr: "Confirmation",
       ar: "التأكيد"
     },
-    "Complete Payment | Property Management Group": {
-      es: "Completar pago | Property Management Group",
-      zh: "完成付款 | Property Management Group",
-      fr: "Finaliser le paiement | Property Management Group",
-      ar: "إكمال الدفع | Property Management Group"
+    "Complete Payment | Private Property Management": {
+      es: "Completar pago | Private Property Management",
+      zh: "完成付款 | Private Property Management",
+      fr: "Finaliser le paiement | Private Property Management",
+      ar: "إكمال الدفع | Private Property Management"
     },
-    "Application Received | Property Management Group": {
-      es: "Solicitud recibida | Property Management Group",
-      zh: "申请已收到 | Property Management Group",
-      fr: "Demande reçue | Property Management Group",
-      ar: "تم استلام الطلب | Property Management Group"
+    "Application Received | Private Property Management": {
+      es: "Solicitud recibida | Private Property Management",
+      zh: "申请已收到 | Private Property Management",
+      fr: "Demande reçue | Private Property Management",
+      ar: "تم استلام الطلب | Private Property Management"
     },
-    "Rental Application | Property Management Group": {
-      es: "Solicitud de alquiler | Property Management Group",
-      zh: "租赁申请 | Property Management Group",
-      fr: "Demande de location | Property Management Group",
-      ar: "طلب إيجار | Property Management Group"
+    "Rental Application | Private Property Management": {
+      es: "Solicitud de alquiler | Private Property Management",
+      zh: "租赁申请 | Private Property Management",
+      fr: "Demande de location | Private Property Management",
+      ar: "طلب إيجار | Private Property Management"
     },
-    "Verification Received | Property Management Group": {
-      es: "Verificación recibida | Property Management Group",
-      zh: "验证已收到 | Property Management Group",
-      fr: "Vérification reçue | Property Management Group",
-      ar: "تم استلام التحقق | Property Management Group"
+    "Verification Received | Private Property Management": {
+      es: "Verificación recibida | Private Property Management",
+      zh: "验证已收到 | Private Property Management",
+      fr: "Vérification reçue | Private Property Management",
+      ar: "تم استلام التحقق | Private Property Management"
     },
     "Could not read the selected image.": {
       es: "No se pudo leer la imagen seleccionada.",
@@ -634,29 +634,35 @@
       fr: "La compression d’image n’est pas prise en charge par ce navigateur.",
       ar: "ضغط الصور غير مدعوم في هذا المتصفح."
     },
-    "Payment verification received for Property Management Group private rental application review.": {
-      es: "Verificación de pago recibida para la revisión privada de la solicitud de alquiler con Property Management Group.",
-      zh: "已收到 Property Management Group 私人租赁申请审核的付款验证。",
-      fr: "Vérification de paiement reçue pour l’examen privé de la demande de location avec Property Management Group.",
-      ar: "تم استلام التحقق من الدفع لمراجعة طلب الإيجار الخاص مع Property Management Group."
+    "Payment verification received for your Private Property Management rental application review.": {
+      es: "Verificación de pago recibida para la revisión de su solicitud de alquiler con Private Property Management.",
+      zh: "已收到您 Private Property Management 租赁申请的付款验证。",
+      fr: "Vérification de paiement reçue pour l’examen de votre demande de location avec Private Property Management.",
+      ar: "تم استلام التحقق من الدفع لمراجعة طلب الإيجار الخاص بكم مع Private Property Management."
     },
-    "© 2026 Property Management Group": {
-      es: "© 2026 Property Management Group",
-      zh: "© 2026 Property Management Group",
-      fr: "© 2026 Property Management Group",
-      ar: "© 2026 Property Management Group"
+    "© 2026 Private Property Management": {
+      es: "© 2026 Private Property Management",
+      zh: "© 2026 Private Property Management",
+      fr: "© 2026 Private Property Management",
+      ar: "© 2026 Private Property Management"
     },
-    "Privately managed rental homes by Property Management Group with a simple, secure application process.": {
-      es: "Viviendas de alquiler administradas de forma privada por Property Management Group con un proceso de solicitud simple y seguro.",
-      zh: "由 Property Management Group 私人管理的出租房源，提供简单安全的申请流程。",
-      fr: "Logements locatifs gérés en privé par Property Management Group avec un processus de candidature simple et sécurisé.",
-      ar: "مساكن إيجار بإدارة خاصة من Property Management Group مع عملية تقديم بسيطة وآمنة."
+    "Privately managed rental homes by Private Property Management with a simple, secure application process.": {
+      es: "Viviendas de alquiler administradas de forma privada por Private Property Management con un proceso de solicitud simple y seguro.",
+      zh: "由 Private Property Management 私人管理的出租房源，提供简单安全的申请流程。",
+      fr: "Logements locatifs gérés en privé par Private Property Management avec un processus de candidature simple et sécurisé.",
+      ar: "مساكن إيجار بإدارة خاصة من Private Property Management مع عملية تقديم بسيطة وآمنة."
     },
-    "Complete a private rental application for review by Property Management Group.": {
-      es: "Complete una solicitud de alquiler privada para revisión por Property Management Group.",
-      zh: "填写私人租赁申请，由 Property Management Group 审核。",
-      fr: "Remplissez une demande de location privée pour examen par Property Management Group.",
-      ar: "أكمل طلب إيجار خاص للمراجعة من Property Management Group."
+    "Complete a private rental application for review by Private Property Management.": {
+      es: "Complete una solicitud de alquiler privada para revisión por Private Property Management.",
+      zh: "填写私人租赁申请，由 Private Property Management 审核。",
+      fr: "Remplissez une demande de location privée pour examen par Private Property Management.",
+      ar: "أكمل طلب إيجار خاص للمراجعة من Private Property Management."
+    },
+    "Secure application fee payment for your rental application with Private Property Management.": {
+      es: "Pago seguro de la tarifa de solicitud para su solicitud de alquiler con Private Property Management.",
+      zh: "通过 Private Property Management 安全支付租赁申请费用。",
+      fr: "Paiement sécurisé des frais de dossier pour votre demande de location avec Private Property Management.",
+      ar: "دفع آمن لرسوم الطلب لطلب الإيجار الخاص بكم مع Private Property Management."
     },
     "Rental application received confirmation and private review status.": {
       es: "Confirmación de solicitud de alquiler recibida y estado de revisión privada.",
@@ -909,46 +915,46 @@
 
   global.__PPM_PAGE_TITLES__ = {
     "index.html": {
-      en: "Property Management Group | Private Property Manager",
-      es: "Property Management Group | Administrador Privado de Propiedades",
-      zh: "Property Management Group | 私人物业经理",
-      fr: "Property Management Group | Gestionnaire privé de propriétés",
-      ar: "Property Management Group | مدير عقارات خاص"
+      en: "Private Property Management",
+      es: "Private Property Management",
+      zh: "Private Property Management",
+      fr: "Private Property Management",
+      ar: "Private Property Management"
     },
     "apply.html": {
-      en: "Rental Application | Property Management Group",
-      es: "Solicitud de alquiler | Property Management Group",
-      zh: "租赁申请 | Property Management Group",
-      fr: "Demande de location | Property Management Group",
-      ar: "طلب إيجار | Property Management Group"
+      en: "Rental Application | Private Property Management",
+      es: "Solicitud de alquiler | Private Property Management",
+      zh: "租赁申请 | Private Property Management",
+      fr: "Demande de location | Private Property Management",
+      ar: "طلب إيجار | Private Property Management"
     },
     "application-received.html": {
-      en: "Application Received | Property Management Group",
-      es: "Solicitud recibida | Property Management Group",
-      zh: "申请已收到 | Property Management Group",
-      fr: "Demande reçue | Property Management Group",
-      ar: "تم استلام الطلب | Property Management Group"
+      en: "Application Received | Private Property Management",
+      es: "Solicitud recibida | Private Property Management",
+      zh: "申请已收到 | Private Property Management",
+      fr: "Demande reçue | Private Property Management",
+      ar: "تم استلام الطلب | Private Property Management"
     },
     "payment.html": {
-      en: "Complete Payment | Property Management Group",
-      es: "Completar pago | Property Management Group",
-      zh: "完成付款 | Property Management Group",
-      fr: "Finaliser le paiement | Property Management Group",
-      ar: "إكمال الدفع | Property Management Group"
+      en: "Complete Payment | Private Property Management",
+      es: "Completar pago | Private Property Management",
+      zh: "完成付款 | Private Property Management",
+      fr: "Finaliser le paiement | Private Property Management",
+      ar: "إكمال الدفع | Private Property Management"
     },
     "thankyou.html": {
-      en: "Verification Received | Property Management Group",
-      es: "Verificación recibida | Property Management Group",
-      zh: "验证已收到 | Property Management Group",
-      fr: "Vérification reçue | Property Management Group",
-      ar: "تم استلام التحقق | Property Management Group"
+      en: "Verification Received | Private Property Management",
+      es: "Verificación recibida | Private Property Management",
+      zh: "验证已收到 | Private Property Management",
+      fr: "Vérification reçue | Private Property Management",
+      ar: "تم استلام التحقق | Private Property Management"
     },
     "privacy-notice.html": {
-      en: "Privacy Notice | Property Management Group",
-      es: "Aviso de privacidad | Property Management Group",
-      zh: "隐私声明 | Property Management Group",
-      fr: "Avis de confidentialité | Property Management Group",
-      ar: "إشعار الخصوصية | Property Management Group"
+      en: "Privacy Notice | Private Property Management",
+      es: "Aviso de privacidad | Private Property Management",
+      zh: "隐私声明 | Private Property Management",
+      fr: "Avis de confidentialité | Private Property Management",
+      ar: "إشعار الخصوصية | Private Property Management"
     }
   };
 })(
