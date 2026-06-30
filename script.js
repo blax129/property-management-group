@@ -104,7 +104,7 @@
       "Community & HOA Guidelines Respected": "Se respetan las pautas de la comunidad y la HOA",
       "Rental process": "Proceso de alquiler",
       "Simple next steps": "Siguientes pasos simples",
-      "View Property Details": "Ver detalles de la propiedad",
+      "Inquire About a Listing": "Consultar sobre un anuncio de alquiler",
       "Review available property information before applying.": "Revise la información disponible de la propiedad antes de aplicar.",
       "Submit Application": "Enviar Solicitud",
       "Complete the secure rental application form.": "Complete el formulario seguro de solicitud de alquiler.",
@@ -313,7 +313,7 @@
       "Community & HOA Guidelines Respected": "尊重社区与 HOA 指南",
       "Rental process": "租赁流程",
       "Simple next steps": "简单的后续步骤",
-      "View Property Details": "查看房源详情",
+      "Inquire About a Listing": "咨询租赁房源",
       "Review available property information before applying.": "申请前请查看可用的房源信息。",
       "Submit Application": "提交申请",
       "Complete the secure rental application form.": "填写安全的租赁申请表。",
@@ -463,7 +463,7 @@
       "Community & HOA Guidelines Respected": "Directives de la communauté et de la HOA respectées",
       "Rental process": "Processus de location",
       "Simple next steps": "Étapes simples",
-      "View Property Details": "Consulter les détails du bien",
+      "Inquire About a Listing": "Demander des renseignements sur une annonce",
       "Review available property information before applying.": "Consultez les informations disponibles sur le bien avant de postuler.",
       "Submit Application": "Envoyer la demande",
       "Complete the secure rental application form.": "Remplissez le formulaire sécurisé de demande de location.",
@@ -610,7 +610,7 @@
       "Community & HOA Guidelines Respected": "Diretrizes da comunidade e da HOA respeitadas",
       "Rental process": "Processo de aluguel",
       "Simple next steps": "Próximos passos simples",
-      "View Property Details": "Ver detalhes do imóvel",
+      "Inquire About a Listing": "Perguntar sobre um anúncio de aluguel",
       "Review available property information before applying.": "Revise as informações disponíveis do imóvel antes de aplicar.",
       "Submit Application": "Enviar solicitação",
       "Complete the secure rental application form.": "Preencha o formulário seguro de solicitação de aluguel.",
@@ -760,7 +760,7 @@
       "Community & HOA Guidelines Respected": "احترام إرشادات المجتمع و HOA",
       "Rental process": "عملية الإيجار",
       "Simple next steps": "خطوات تالية بسيطة",
-      "View Property Details": "عرض تفاصيل العقار",
+      "Inquire About a Listing": "الاستفسار عن إعلان إيجار",
       "Review available property information before applying.": "راجع معلومات العقار المتاحة قبل التقديم.",
       "Submit Application": "إرسال الطلب",
       "Complete the secure rental application form.": "أكمل نموذج طلب الإيجار الآمن.",
@@ -914,7 +914,7 @@
     "Logo HOA": "HOA Logo",
     "Se respetan las pautas de la comunidad y la HOA": "Community & HOA Guidelines Respected",
     "Siguientes pasos simples": "Simple next steps",
-    "Ver detalles de la propiedad": "View Property Details",
+    "Consultar sobre un anuncio de alquiler": "Inquire About a Listing",
     "Revise la información disponible de la propiedad antes de aplicar.": "Review available property information before applying.",
     "Enviar Solicitud": "Submit Application",
     "Complete el formulario seguro de solicitud de alquiler.": "Complete the secure rental application form.",
@@ -1018,7 +1018,7 @@
     "Private Property Management trabaja de cerca con los solicitantes durante todo el proceso de alquiler, ayudándoles a comprender los requisitos, programar visitas a la propiedad y avanzar en cada paso con claridad y confianza.": "Private Property Management works closely with applicants throughout the rental process, helping them understand requirements, schedule property tours, and move through each step with clarity and confidence.",
     "Con un fuerte énfasis en la comunicación, la confiabilidad y el profesionalismo, Private Property Management está comprometido a hacer que la experiencia de arrendamiento sea fluida, bien estructurada y respetuosa para todos los involucrados.": "With a strong emphasis on communication, reliability, and professionalism, Private Property Management is committed to making the leasing experience smooth, well structured, and respectful for everyone involved.",
     "Cómo funciona el proceso de alquiler": "How the Rental Process Works",
-    "Revise la información disponible de la propiedad antes de comenzar la solicitud.": "Review the available property information before beginning the application.",
+    "Comuníquese con nosotros sobre el alquiler que le interesa y confirme la disponibilidad antes de aplicar.": "Contact us about the rental you're interested in and confirm availability before applying.",
     "Revise cuidadosamente la información disponible de la propiedad antes de comenzar el proceso de solicitud.": "Review the available property information carefully before beginning the application process.",
     "Complete el formulario de solicitud de alquiler con información precisa.": "Complete the rental application form with accurate information.",
     "Su solicitud se revisa antes de asignar cualquier instrucción de pago específica.": "Your submission is reviewed before any application-specific payment instructions are assigned.",
@@ -1080,7 +1080,7 @@
       "Responsive support for applicants and inquiries": "Apoyo receptivo para solicitantes y consultas",
       "Reliable coordination between tenants and property owners": "Coordinación confiable entre inquilinos y propietarios",
       "A focus on professionalism and smooth leasing experiences": "Enfoque en profesionalismo y experiencias de arrendamiento fluidas",
-      "Review the available property information before beginning the application.": "Revise la información disponible de la propiedad antes de comenzar la solicitud.",
+      "Contact us about the rental you're interested in and confirm availability before applying.": "Comuníquese con nosotros sobre el alquiler que le interesa y confirme la disponibilidad antes de aplicar.",
       "Community trust badge": "Distintivo de confianza comunitaria",
     },
     zh: {
@@ -1115,7 +1115,7 @@
       "Responsive support for applicants and inquiries": "为申请人和咨询提供及时支持",
       "Reliable coordination between tenants and property owners": "租户与业主之间的可靠协调",
       "A focus on professionalism and smooth leasing experiences": "注重专业性与顺畅的租赁体验",
-      "Review the available property information before beginning the application.": "开始申请前，请查看可用的房源信息。",
+      "Contact us about the rental you're interested in and confirm availability before applying.": "请联系我们咨询您感兴趣的房源，并在申请前确认可租情况。",
       "Community trust badge": "社区信任标识",
     },
     fr: {
@@ -1150,7 +1150,7 @@
       "Responsive support for applicants and inquiries": "Assistance réactive pour les candidats et les demandes",
       "Reliable coordination between tenants and property owners": "Coordination fiable entre locataires et propriétaires",
       "A focus on professionalism and smooth leasing experiences": "Accent sur le professionnalisme et des expériences de location fluides",
-      "Review the available property information before beginning the application.": "Consultez les informations disponibles sur le bien avant de commencer la demande.",
+      "Contact us about the rental you're interested in and confirm availability before applying.": "Contactez-nous au sujet de l’annonce qui vous intéresse et confirmez la disponibilité avant de postuler.",
       "Community trust badge": "Badge de confiance communautaire",
     },
     pt: {
@@ -1205,7 +1205,7 @@
       "Responsive support for applicants and inquiries": "دعم سريع للمتقدمين والاستفسارات",
       "Reliable coordination between tenants and property owners": "تنسيق موثوق بين المستأجرين ومالكي العقارات",
       "A focus on professionalism and smooth leasing experiences": "التركيز على الاحترافية وتجارب تأجير سلسة",
-      "Review the available property information before beginning the application.": "راجع معلومات العقار المتاحة قبل بدء التقديم.",
+      "Contact us about the rental you're interested in and confirm availability before applying.": "تواصل معنا بخصوص الإيجار الذي يهمك وتأكد من التوفّر قبل التقديم.",
       "Community trust badge": "شارة ثقة المجتمع",
     }
   };
@@ -1220,19 +1220,19 @@
       "Private Property Management is a dedicated property manager focused on providing organized, transparent, and professional rental support for property owners and prospective tenants.": "Private Property Management es un administrador de propiedades dedicado a brindar apoyo de alquiler organizado, transparente y profesional para propietarios y posibles inquilinos.",
       "Private Property Management works closely with applicants throughout the rental process, helping them understand requirements, schedule property tours, and move through each step with clarity and confidence.": "Private Property Management trabaja de cerca con los solicitantes durante todo el proceso de alquiler, ayudándoles a comprender los requisitos, programar visitas a la propiedad y avanzar en cada paso con claridad y confianza.",
       "With a strong emphasis on communication, reliability, and professionalism, Private Property Management is committed to making the leasing experience smooth, well structured, and respectful for everyone involved.": "Con un fuerte énfasis en la comunicación, la confiabilidad y el profesionalismo, Private Property Management está comprometido a hacer que la experiencia de arrendamiento sea fluida, bien estructurada y respetuosa para todos los involucrados.",
-      "Review the available property information before beginning the application.": "Revise la información disponible de la propiedad antes de comenzar la solicitud.",
+      "Contact us about the rental you're interested in and confirm availability before applying.": "Comuníquese con nosotros sobre el alquiler que le interesa y confirme la disponibilidad antes de aplicar.",
       "Your submission is reviewed before any application-specific payment instructions are assigned.": "Su solicitud se revisa antes de asignar cualquier instrucción de pago específica.",
       "A closer look at the community setting and residential experience.": "Una mirada más cercana al entorno comunitario y la experiencia residencial."
     },
     zh: {
-      "Review the available property information before beginning the application.": "开始申请前，请查看可用的房源信息。"
+      "Contact us about the rental you're interested in and confirm availability before applying.": "请联系我们咨询您感兴趣的房源，并在申请前确认可租情况。"
     },
     fr: {
-      "Review the available property information before beginning the application.": "Consultez les informations disponibles sur le bien avant de commencer la demande."
+      "Contact us about the rental you're interested in and confirm availability before applying.": "Contactez-nous au sujet de l’annonce qui vous intéresse et confirmez la disponibilité avant de postuler."
     },
     pt: {},
     ar: {
-      "Review the available property information before beginning the application.": "راجع معلومات العقار المتاحة قبل بدء التقديم."
+      "Contact us about the rental you're interested in and confirm availability before applying.": "تواصل معنا بخصوص الإيجار الذي يهمك وتأكد من التوفّر قبل التقديم."
     }
   };
 

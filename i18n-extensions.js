@@ -172,6 +172,18 @@
       fr: "Vous avez été dirigé ici après avoir demandé des renseignements sur une annonce locative. Complétez la demande ci-dessous pour le bien situé au ",
       ar: "تم توجيهك إلى هنا بعد الاستفسار عن إعلان إيجار. أكمل الطلب أدناه للعقار في "
     },
+    "Inquire About a Listing": {
+      es: "Consultar sobre un anuncio de alquiler",
+      zh: "咨询租赁房源",
+      fr: "Demander des renseignements sur une annonce",
+      ar: "الاستفسار عن إعلان إيجار"
+    },
+    "Contact us about the rental you're interested in and confirm availability before applying.": {
+      es: "Comuníquese con nosotros sobre el alquiler que le interesa y confirme la disponibilidad antes de aplicar.",
+      zh: "请联系我们咨询您感兴趣的房源，并在申请前确认可租情况。",
+      fr: "Contactez-nous au sujet de l’annonce qui vous intéresse et confirmez la disponibilité avant de postuler.",
+      ar: "تواصل معنا بخصوص الإيجار الذي يهمك وتأكد من التوفّر قبل التقديم."
+    },
     "Copy phone number": {
       es: "Copiar número de teléfono",
       zh: "复制电话号码",
