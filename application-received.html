@@ -78,6 +78,13 @@
 
         <!-- Application Received Card -->
         <div class="confirmation-card">
+          <div class="property-context-banner property-context-banner--compact" data-property-context-banner hidden>
+            <p class="property-context-banner__text">
+              <span class="property-context-banner__label">Applying for:</span>
+              <strong class="property-context-banner__value" data-property-context-value></strong>
+            </p>
+          </div>
+
           <p>Thank you for submitting your rental application.</p>
           <p>A confirmation email will be sent shortly to the email address provided in your application to verify that your application has been successfully received.</p>
           
@@ -130,6 +137,22 @@
       const params = new URLSearchParams(window.location.search);
       const idFromUrl = params.get('applicationId');
       const languageFromUrl = params.get('lang');
+      const propertyFromUrl = params.get('property');
+
+      if (window.PPM_PROPERTY && typeof window.PPM_PROPERTY.resolveApplicationProperty === 'function') {
+        window.PPM_PROPERTY.resolveApplicationProperty();
+      } else if (propertyFromUrl) {
+        try {
+          window.sessionStorage.setItem('latestApplicationProperty', propertyFromUrl);
+          window.localStorage.setItem('latestApplicationProperty', propertyFromUrl);
+        } catch (error) {
+          console.warn('Could not persist application property:', error);
+        }
+      }
+
+      if (window.PPM_PROPERTY && typeof window.PPM_PROPERTY.renderPropertyContextBanner === 'function') {
+        window.PPM_PROPERTY.renderPropertyContextBanner();
+      }
       const supportedLanguages = ['en', 'es', 'zh', 'fr', 'ar'];
       const normalizeLanguage = (language) => {
         const value = String(language || '').toLowerCase().split('-')[0];
@@ -167,21 +190,42 @@
 
       const backButton = document.getElementById('applicationBackButton');
       if (backButton) {
-        backButton.href = selectedLanguage === 'en' ? 'apply.html' : `apply.html?lang=${encodeURIComponent(selectedLanguage)}`;
+        if (window.PPM_PROPERTY && typeof window.PPM_PROPERTY.buildApplicationFlowHref === 'function') {
+          backButton.href = window.PPM_PROPERTY.buildApplicationFlowHref('apply.html', {
+            language: selectedLanguage,
+            property: window.PPM_PROPERTY.storedProperty ? window.PPM_PROPERTY.storedProperty() : ''
+          });
+        } else {
+          backButton.href = selectedLanguage === 'en' ? 'apply.html' : `apply.html?lang=${encodeURIComponent(selectedLanguage)}`;
+        }
         backButton.dataset.fallbackHome = backButton.href;
       }
 
       const paymentLink = document.getElementById('payment-next-steps-link');
+      const storedProperty = window.PPM_PROPERTY && typeof window.PPM_PROPERTY.storedProperty === 'function'
+        ? window.PPM_PROPERTY.storedProperty()
+        : '';
 
       const buildPaymentUrl = () => {
-        const params = new URLSearchParams();
+        if (window.PPM_PROPERTY && typeof window.PPM_PROPERTY.buildApplicationFlowHref === 'function') {
+          return window.PPM_PROPERTY.buildApplicationFlowHref('payment.html', {
+            language: selectedLanguage,
+            applicationId,
+            property: storedProperty
+          });
+        }
+
+        const paymentParams = new URLSearchParams();
         if (applicationId) {
-          params.set('applicationId', applicationId);
+          paymentParams.set('applicationId', applicationId);
         }
         if (selectedLanguage && selectedLanguage !== 'en') {
-          params.set('lang', selectedLanguage);
+          paymentParams.set('lang', selectedLanguage);
         }
-        const query = params.toString();
+        if (storedProperty) {
+          paymentParams.set('property', storedProperty);
+        }
+        const query = paymentParams.toString();
         return query ? `payment.html?${query}` : 'payment.html';
       };
 

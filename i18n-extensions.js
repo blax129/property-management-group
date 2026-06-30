@@ -154,6 +154,12 @@
       fr: "Nom",
       ar: "الاسم"
     },
+    "Applying for:": {
+      es: "Solicitud para:",
+      zh: "申请房源：",
+      fr: "Candidature pour :",
+      ar: "التقديم على:"
+    },
     "Copy phone number": {
       es: "Copiar número de teléfono",
       zh: "复制电话号码",

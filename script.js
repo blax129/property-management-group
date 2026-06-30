@@ -2175,8 +2175,143 @@
     );
   }
 
+  const PROPERTY_STORAGE_KEY = "latestApplicationProperty";
+
+  function propertyFromUrl() {
+    const value = new URLSearchParams(window.location.search).get("property");
+    if (!value) {
+      return "";
+    }
+
+    try {
+      return decodeURIComponent(value).trim();
+    } catch (error) {
+      return value.trim();
+    }
+  }
+
+  function storedProperty() {
+    try {
+      return (
+        window.sessionStorage.getItem(PROPERTY_STORAGE_KEY) ||
+        window.localStorage.getItem(PROPERTY_STORAGE_KEY) ||
+        ""
+      ).trim();
+    } catch (error) {
+      return "";
+    }
+  }
+
+  function persistProperty(property) {
+    const value = String(property || "").trim();
+    if (!value) {
+      return "";
+    }
+
+    try {
+      window.sessionStorage.setItem(PROPERTY_STORAGE_KEY, value);
+      window.localStorage.setItem(PROPERTY_STORAGE_KEY, value);
+    } catch (error) {
+      console.warn("Could not persist application property:", error);
+    }
+
+    return value;
+  }
+
+  function clearStoredProperty() {
+    try {
+      window.sessionStorage.removeItem(PROPERTY_STORAGE_KEY);
+      window.localStorage.removeItem(PROPERTY_STORAGE_KEY);
+    } catch (error) {
+      console.warn("Could not clear application property:", error);
+    }
+  }
+
+  function resolveApplicationProperty() {
+    const fromUrl = propertyFromUrl();
+    if (fromUrl) {
+      return persistProperty(fromUrl);
+    }
+
+    if (isHomePage()) {
+      clearStoredProperty();
+      return "";
+    }
+
+    return storedProperty();
+  }
+
+  function buildApplicationFlowHref(path, options = {}) {
+    const url = new URL(path, window.location.href);
+    const lang = normalizeLanguage(options.language ?? storedLanguage());
+    const property = String(options.property ?? storedProperty()).trim();
+    const applicationId = String(options.applicationId || "").trim();
+
+    if (lang === "en") {
+      url.searchParams.delete("lang");
+    } else {
+      url.searchParams.set("lang", lang);
+    }
+
+    if (property) {
+      url.searchParams.set("property", property);
+    } else {
+      url.searchParams.delete("property");
+    }
+
+    if (applicationId) {
+      url.searchParams.set("applicationId", applicationId);
+    } else {
+      url.searchParams.delete("applicationId");
+    }
+
+    return `${url.pathname}${url.search}${url.hash || ""}`;
+  }
+
+  function buildHomePageHref(language) {
+    return buildApplicationFlowHref("index.html", { language });
+  }
+
+  function renderPropertyContextBanner() {
+    const property = isHomePage() ? propertyFromUrl() : (propertyFromUrl() || storedProperty());
+    document.querySelectorAll("[data-property-context-banner]").forEach((banner) => {
+      const valueNode = banner.querySelector("[data-property-context-value]");
+      if (!property) {
+        banner.hidden = true;
+        return;
+      }
+
+      banner.hidden = false;
+      if (valueNode) {
+        valueNode.textContent = property;
+      }
+    });
+  }
+
+  function applyPropertyContextToForm() {
+    const field = document.getElementById("property");
+    if (!field) {
+      return;
+    }
+
+    const property = storedProperty();
+    if (property && !field.value.trim()) {
+      field.value = property;
+    }
+  }
+
+  function applyPropertyContext() {
+    resolveApplicationProperty();
+    renderPropertyContextBanner();
+    applyPropertyContextToForm();
+
+    if (isHomePage()) {
+      syncFloatingApplyHref(document.documentElement.lang || storedLanguage());
+    }
+  }
+
   function languageHomeFallback() {
-    return languageHomeFallbacks[storedLanguage()] || languageHomeFallbacks.en;
+    return buildHomePageHref(storedLanguage());
   }
 
   function currentHomeFile() {
@@ -2266,7 +2401,7 @@
     }
 
     const lang = normalizeLanguage(language);
-    const target = languageHomeFallbacks[lang] || languageHomeFallbacks.en;
+    const target = buildHomePageHref(lang);
     const targetUrl = new URL(target, window.location.href);
     const currentUrl = new URL(window.location.href);
 
@@ -2315,7 +2450,7 @@
   function syncFloatingApplyHref(language) {
     const lang = normalizeLanguage(language);
     document.querySelectorAll("a.floating-apply").forEach((link) => {
-      link.href = lang === "en" ? "apply.html" : `apply.html?lang=${encodeURIComponent(lang)}`;
+      link.href = buildApplicationFlowHref("apply.html", { language: lang });
     });
   }
 
@@ -2350,7 +2485,7 @@
       }
 
       if (applicationForm) {
-        button.dataset.fallbackHome = languageHomeFallbacks[supportedLanguage] || languageHomeFallbacks.en;
+        button.dataset.fallbackHome = buildHomePageHref(supportedLanguage);
       }
     });
   }
@@ -2636,6 +2771,7 @@
     syncFloatingApplyHref(supportedLanguage);
     syncPrivacyNoticeLink(supportedLanguage);
     syncPageLanguageUrl(supportedLanguage);
+    applyPropertyContext();
     document.querySelectorAll("input, select, textarea").forEach((field) => field.setCustomValidity(""));
     persistLanguageChoice(supportedLanguage);
   }
@@ -2976,7 +3112,24 @@
         url.searchParams.set("lang", lang);
       }
       return `${url.pathname}${url.search}`;
-    }
+    },
+    buildApplicationFlowHref,
+    buildHomePageHref,
+    resolveApplicationProperty,
+    storedProperty,
+    persistProperty,
+    renderPropertyContextBanner,
+    clearStoredProperty
+  };
+
+  window.PPM_PROPERTY = {
+    buildApplicationFlowHref,
+    buildHomePageHref,
+    resolveApplicationProperty,
+    storedProperty,
+    persistProperty,
+    renderPropertyContextBanner,
+    clearStoredProperty
   };
 
   document.querySelectorAll(".accordion-item").forEach((item) => {
@@ -3489,7 +3642,7 @@
     });
   }
 
-  function safePersistApplicationSession(applicationId, selectedLanguage, applicantProfile) {
+  function safePersistApplicationSession(applicationId, selectedLanguage, applicantProfile, propertyName) {
     try {
       window.sessionStorage.setItem("latestApplicationId", applicationId);
       window.localStorage.setItem("latestApplicationId", applicationId);
@@ -3498,6 +3651,7 @@
 
       const applicantName = String(applicantProfile?.name || "").trim();
       const applicantEmail = String(applicantProfile?.email || "").trim();
+      const property = String(propertyName || "").trim();
 
       if (applicantName) {
         window.sessionStorage.setItem("latestApplicantName", applicantName);
@@ -3507,6 +3661,10 @@
       if (applicantEmail) {
         window.sessionStorage.setItem("latestApplicantEmail", applicantEmail);
         window.localStorage.setItem("latestApplicantEmail", applicantEmail);
+      }
+
+      if (property) {
+        persistProperty(property);
       }
     } catch (error) {
       console.warn("Could not persist application session data:", error);
@@ -3568,11 +3726,12 @@
 
     const { formData, applicantEmail } = buildApplicationPayload(form, applicationId);
     const applicantName = String(formData.get("name") || "").trim();
+    const propertyName = String(formData.get("property") || "").trim();
 
     safePersistApplicationSession(applicationId, selectedLanguage, {
       name: applicantName,
       email: applicantEmail
-    });
+    }, propertyName);
 
     if (statusMessage) {
       statusMessage.textContent = translateText("Sending application for review...", currentLanguage());
@@ -3649,7 +3808,11 @@
 
     window.setTimeout(() => {
       const confirmationPage = form.dataset.confirmation || "application-received.html";
-      const redirectUrl = `${confirmationPage}?applicationId=${encodeURIComponent(applicationId)}&lang=${encodeURIComponent(selectedLanguage)}`;
+      const redirectUrl = buildApplicationFlowHref(confirmationPage, {
+        language: selectedLanguage,
+        applicationId,
+        property: propertyName || storedProperty()
+      });
       console.log("Application redirect triggered:", redirectUrl);
       window.location.href = redirectUrl;
     }, 1200);

@@ -97,6 +97,39 @@
 
     img, svg { display: block; max-width: 100%; }
 
+    .property-context-banner {
+      margin: 0 0 14px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: rgba(30, 77, 140, 0.08);
+      border: 1px solid rgba(37, 99, 235, 0.18);
+    }
+
+    .property-context-banner__text {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--pp-muted);
+    }
+
+    .property-context-banner__label {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--pp-soft);
+    }
+
+    .property-context-banner__value {
+      display: block;
+      font-size: clamp(15px, 4vw, 17px);
+      font-weight: 700;
+      color: var(--pp-text);
+      word-break: break-word;
+    }
+
     .sr-only {
       position: absolute;
       width: 1px;
@@ -1948,6 +1981,13 @@
   </div>
 
   <main class="pp-main" id="main">
+    <div class="property-context-banner" data-property-context-banner hidden>
+      <p class="property-context-banner__text">
+        <span class="property-context-banner__label">Applying for:</span>
+        <strong class="property-context-banner__value" data-property-context-value></strong>
+      </p>
+    </div>
+
     <header class="pp-hero">
       <p class="pp-hero__sub">Your application is almost complete. Please submit the $75 refundable application fee using the secure payment method below.</p>
     </header>
@@ -2243,10 +2283,28 @@
       window.sessionStorage.setItem('latestApplicationLanguage', selectedLanguage);
       window.localStorage.setItem('latestApplicationLanguage', selectedLanguage);
 
+      if (window.PPM_PROPERTY && typeof window.PPM_PROPERTY.resolveApplicationProperty === 'function') {
+        window.PPM_PROPERTY.resolveApplicationProperty();
+        window.PPM_PROPERTY.renderPropertyContextBanner();
+      }
+
+      const storedProperty = window.PPM_PROPERTY && typeof window.PPM_PROPERTY.storedProperty === 'function'
+        ? window.PPM_PROPERTY.storedProperty()
+        : '';
+
       const buildReceivedUrl = () => {
+        if (window.PPM_PROPERTY && typeof window.PPM_PROPERTY.buildApplicationFlowHref === 'function') {
+          return window.PPM_PROPERTY.buildApplicationFlowHref('application-received.html', {
+            language: selectedLanguage,
+            applicationId,
+            property: storedProperty
+          });
+        }
+
         const q = new URLSearchParams();
         if (applicationId) q.set('applicationId', applicationId);
         if (selectedLanguage !== 'en') q.set('lang', selectedLanguage);
+        if (storedProperty) q.set('property', storedProperty);
         const query = q.toString();
         return query ? `application-received.html?${query}` : 'application-received.html';
       };
