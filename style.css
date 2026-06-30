@@ -130,6 +130,14 @@ a {
   gap: 14px;
 }
 
+.header-brand-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
 .brand {
   min-width: 0;
   flex: 1 1 auto;
@@ -7172,9 +7180,9 @@ body::after,
 }
 
 .home-page .brand {
-  flex: 0 1 auto;
+  flex: 0 0 auto;
   min-width: 0;
-  max-width: calc(100% - 56px);
+  max-width: none;
 }
 
 .home-page .brand-copy {
@@ -7581,6 +7589,10 @@ html:has(body.payment-confirmation-page) {
     flex: 0 0 50px !important;
     padding: 4px !important;
     border-radius: 12px !important;
+  }
+
+  .home-page .header-brand-group {
+    max-width: calc(100% - 56px);
   }
 
   .home-page .header-inner {
@@ -8832,7 +8844,45 @@ body.phone-choice-open {
 }
 
 .property-context-banner--home {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: min(100%, 480px);
   margin: 0;
+  border: 1px solid rgba(30, 77, 140, 0.14);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.property-context-banner--home[hidden] {
+  display: none;
+}
+
+.property-context-banner--home .property-context-banner__inner {
+  min-height: 0;
+  padding: 8px 12px 8px 10px;
+  gap: 10px;
+}
+
+.property-context-banner--home .property-context-banner__icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+}
+
+.property-context-banner--home .property-context-banner__icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.property-context-banner--home .property-context-banner__label {
+  font-size: 11px;
+}
+
+.property-context-banner--home .property-context-banner__value {
+  font-size: clamp(13px, 2.6vw, 16px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .property-context-banner--apply {
