@@ -8846,17 +8846,6 @@ body.phone-choice-open {
   max-width: 680px;
 }
 
-.confirmation-card .listing-bridge-note {
-  margin: 0 0 18px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(30, 77, 140, 0.08) 100%),
-    rgba(15, 23, 42, 0.34);
-  border: 1px solid rgba(148, 163, 184, 0.16);
-  border-left: 3px solid #60a5fa;
-  color: rgba(226, 232, 240, 0.92);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-}
-
 .property-context-banner {
   --property-banner-accent: var(--blue, #1e4d8c);
   position: relative;

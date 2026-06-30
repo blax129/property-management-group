@@ -172,18 +172,6 @@
       fr: "Vous avez été dirigé ici après avoir demandé des renseignements sur une annonce locative. Complétez la demande ci-dessous pour le bien indiqué ci-dessus.",
       ar: "تم توجيهك إلى هنا بعد الاستفسار عن إعلان إيجار. أكمل الطلب أدناه للعقار الموضح أعلاه."
     },
-    "You were directed here after inquiring about a rental listing.": {
-      es: "Fue dirigido aquí después de consultar sobre un anuncio de alquiler.",
-      zh: "您在咨询租赁房源后被引导至此。",
-      fr: "Vous avez été dirigé ici après avoir demandé des renseignements sur une annonce locative.",
-      ar: "تم توجيهك إلى هنا بعد الاستفسار عن إعلان إيجار."
-    },
-    "Your application for the property listed above follows your rental listing inquiry.": {
-      es: "Su solicitud para la propiedad indicada arriba corresponde a su consulta sobre el anuncio de alquiler.",
-      zh: "您对上方所列房源的申请与您咨询的租赁房源相关。",
-      fr: "Votre demande pour le bien indiqué ci-dessus fait suite à votre demande concernant l’annonce locative.",
-      ar: "طلبك للعقار الموضح أعلاه يتبع استفسارك عن إعلان الإيجار."
-    },
     "Copy phone number": {
       es: "Copiar número de teléfono",
       zh: "复制电话号码",
