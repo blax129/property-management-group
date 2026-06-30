@@ -1863,7 +1863,7 @@
       "Sending...": "Enviando...",
       "Sending application for review...": "Enviando solicitud para revisión...",
       "Sending confirmation email...": "Enviando correo de confirmación...",
-      "Your application was saved, but the confirmation email could not be sent. Please contact support@property-management.group.": "Su solicitud fue guardada, pero no se pudo enviar el correo de confirmación. Comuníquese con support@property-management.group.",
+      "Your application was saved, but the confirmation email could not be sent. Please contact support@privatepropmgt.com.": "Su solicitud fue guardada, pero no se pudo enviar el correo de confirmación. Comuníquese con support@privatepropmgt.com.",
       "Application received. Opening confirmation...": "Solicitud recibida. Abriendo confirmación...",
       "Application received...": "Solicitud recibida..."
     },
@@ -3341,7 +3341,7 @@
   }
 
   const FORMSPREE_APPLICATION_ENDPOINT = "https://formspree.io/f/mykaaoad";
-  const APPLICATION_NOTIFICATION_EMAIL = "support@property-management.group";
+  const APPLICATION_NOTIFICATION_EMAIL = "support@privatepropmgt.com";
   const EMAILJS_PUBLIC_KEY = "qgu2V41l8Rp9A3ejZ";
   const EMAILJS_CONFIRMATION_SERVICE = "service_931i15m";
   const EMAILJS_CONFIRMATION_TEMPLATE = "template_8uscd9q";
@@ -3850,7 +3850,7 @@
   function formatApplicationSubmitError(error) {
     if (error?.stage === "email") {
       const base = translateText(
-        "Your application was saved, but the confirmation email could not be sent. Please contact support@property-management.group.",
+        "Your application was saved, but the confirmation email could not be sent. Please contact support@privatepropmgt.com.",
         currentLanguage()
       );
       const detail = error?.message ? ` ${error.message}` : "";
