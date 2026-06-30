@@ -8841,6 +8841,11 @@ body.phone-choice-open {
   display: none;
 }
 
+.listing-bridge-note [data-listing-bridge-property] {
+  color: var(--navy, #0f2744);
+  font-weight: 700;
+}
+
 .page-hero .listing-bridge-note {
   margin-top: 16px;
   max-width: 680px;

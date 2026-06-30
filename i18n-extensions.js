@@ -166,11 +166,11 @@
       fr: "Vous avez été dirigé ici après avoir demandé des renseignements sur une annonce locative. Complétez la demande ci-dessous.",
       ar: "تم توجيهك إلى هنا بعد الاستفسار عن إعلان إيجار. أكمل الطلب أدناه."
     },
-    "You were directed here after inquiring about a rental listing. Complete the application below for the property shown above.": {
-      es: "Fue dirigido aquí después de consultar sobre un anuncio de alquiler. Complete la solicitud a continuación para la propiedad indicada arriba.",
-      zh: "您在咨询租赁房源后被引导至此。请为上方显示的房源填写下方申请表。",
-      fr: "Vous avez été dirigé ici après avoir demandé des renseignements sur une annonce locative. Complétez la demande ci-dessous pour le bien indiqué ci-dessus.",
-      ar: "تم توجيهك إلى هنا بعد الاستفسار عن إعلان إيجار. أكمل الطلب أدناه للعقار الموضح أعلاه."
+    "You were directed here after inquiring about a rental listing. Complete the application below for the property on ": {
+      es: "Fue dirigido aquí después de consultar sobre un anuncio de alquiler. Complete la solicitud a continuación para la propiedad en ",
+      zh: "您在咨询租赁房源后被引导至此。请为以下地址的房源填写申请表：",
+      fr: "Vous avez été dirigé ici après avoir demandé des renseignements sur une annonce locative. Complétez la demande ci-dessous pour le bien situé au ",
+      ar: "تم توجيهك إلى هنا بعد الاستفسار عن إعلان إيجار. أكمل الطلب أدناه للعقار في "
     },
     "Copy phone number": {
       es: "Copiar número de teléfono",

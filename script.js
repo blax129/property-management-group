@@ -2313,6 +2313,10 @@
 
       if (withProperty) {
         withProperty.hidden = !hasProperty;
+        const propertyNode = withProperty.querySelector("[data-listing-bridge-property]");
+        if (propertyNode) {
+          propertyNode.textContent = property;
+        }
       }
     });
   }
