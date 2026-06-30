@@ -3226,11 +3226,118 @@
     }
 
     const today = getLocalDateInputValue();
-    applicationForm.querySelectorAll("#application-date, #move-date, #dob").forEach((field) => {
-      if (!field.value) {
-        field.value = today;
+    const applicationDateField = applicationForm.querySelector("#application-date");
+    if (applicationDateField && !applicationDateField.value) {
+      applicationDateField.value = today;
+    }
+  }
+
+  const APPLICATION_DRAFT_KEY = "ppm-application-draft";
+  const APPLICATION_NEXT_APPLICANT_FLAG = "ppm-application-next-applicant";
+  const APPLICATION_SHARED_FIELD_NAMES = new Set([
+    "property",
+    "move-date",
+    "lease-term",
+    "number-applicants",
+    "applicant-names",
+    "number-occupants",
+    "pets",
+    "vehicle-information",
+    "reason-moving"
+  ]);
+
+  function markApplicationReadyForNextApplicant() {
+    try {
+      window.sessionStorage.setItem(APPLICATION_NEXT_APPLICANT_FLAG, "1");
+    } catch (error) {
+      console.warn("Could not mark application ready for next applicant:", error);
+    }
+  }
+
+  function resetApplicationFormForNextApplicant(form) {
+    if (!form) {
+      return;
+    }
+
+    const preservedValues = {};
+    APPLICATION_SHARED_FIELD_NAMES.forEach((fieldName) => {
+      const field = form.querySelector(`[name="${CSS.escape(fieldName)}"]`);
+      if (!field) {
+        return;
       }
+
+      if (field.type === "checkbox") {
+        preservedValues[fieldName] = field.checked;
+        return;
+      }
+
+      preservedValues[fieldName] = field.value;
     });
+
+    const storedPropertyValue = storedProperty();
+    if (storedPropertyValue) {
+      preservedValues.property = storedPropertyValue;
+    }
+
+    form.querySelectorAll("input, select, textarea").forEach((field) => {
+      if (!field.name || field.type === "file") {
+        return;
+      }
+
+      if (field.type === "checkbox") {
+        field.checked = false;
+        return;
+      }
+
+      if (field.type === "radio") {
+        field.checked = false;
+        return;
+      }
+
+      field.value = "";
+    });
+
+    Object.entries(preservedValues).forEach(([fieldName, value]) => {
+      const field = form.querySelector(`[name="${CSS.escape(fieldName)}"]`);
+      if (!field || field.type === "checkbox" || field.type === "radio") {
+        return;
+      }
+
+      field.value = value == null ? "" : String(value);
+    });
+
+    initApplicationDateDefaults();
+    form.querySelectorAll("input, select, textarea").forEach((field) => field.setCustomValidity(""));
+  }
+
+  function initApplicationRepeatApplicant() {
+    const form = document.getElementById("application-form");
+    if (!form) {
+      return;
+    }
+
+    let shouldReset = false;
+    try {
+      shouldReset = window.sessionStorage.getItem(APPLICATION_NEXT_APPLICANT_FLAG) === "1";
+    } catch (error) {
+      console.warn("Could not read next-applicant flag:", error);
+    }
+
+    if (!shouldReset) {
+      return;
+    }
+
+    try {
+      window.sessionStorage.removeItem(APPLICATION_NEXT_APPLICANT_FLAG);
+      window.localStorage.removeItem(APPLICATION_DRAFT_KEY);
+    } catch (error) {
+      console.warn("Could not clear repeat-applicant session state:", error);
+    }
+
+    resetApplicationFormForNextApplicant(form);
+    applyPropertyContextToForm();
+    renderPropertyContextBanner();
+    renderListingBridgeCopy();
   }
 
   const FORMSPREE_APPLICATION_ENDPOINT = "https://formspree.io/f/mykaaoad";
@@ -3800,6 +3907,7 @@
     });
 
     safePersistApplicationSession(applicationId, selectedLanguage, {}, propertyName || storedProperty());
+    markApplicationReadyForNextApplicant();
     console.log("Application redirect triggered:", redirectUrl);
     window.location.replace(redirectUrl);
   }
@@ -4042,8 +4150,6 @@
 
   initPhoneChoicePrompt();
 
-  const APPLICATION_DRAFT_KEY = "ppm-application-draft";
-
   function initApplicationDraft() {
     const form = document.getElementById("application-form");
     if (!form) {
@@ -4254,6 +4360,7 @@
     });
   }
 
+  initApplicationRepeatApplicant();
   initApplicationDraft();
   initTestimonialAvatars();
   initTestimonialsComments();
