@@ -2295,6 +2295,23 @@
     });
   }
 
+  function renderListingBridgeCopy() {
+    const property = propertyFromUrl() || storedProperty();
+    document.querySelectorAll("[data-listing-bridge]").forEach((bridge) => {
+      const generic = bridge.querySelector('[data-listing-bridge-variant="generic"]');
+      const withProperty = bridge.querySelector('[data-listing-bridge-variant="property"]');
+      const hasProperty = Boolean(property);
+
+      if (generic) {
+        generic.hidden = hasProperty;
+      }
+
+      if (withProperty) {
+        withProperty.hidden = !hasProperty;
+      }
+    });
+  }
+
   function applyPropertyContextToForm() {
     const field = document.getElementById("property");
     if (!field) {
@@ -2310,6 +2327,7 @@
   function applyPropertyContext() {
     resolveApplicationProperty();
     renderPropertyContextBanner();
+    renderListingBridgeCopy();
     applyPropertyContextToForm();
 
     if (isHomePage()) {
