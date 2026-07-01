@@ -1245,31 +1245,31 @@
       "Please complete this required field.": "Complete este campo obligatorio.",
       "Please enter a valid email address.": "Ingrese una dirección de correo electrónico válida.",
       "Please check this box to continue.": "Marque esta casilla para continuar.",
-      "Please enter a credit score between 300 and 850, or leave blank.": "Ingrese un puntaje de crédito entre 300 y 850, o déjelo en blanco."
+      "Please enter a credit score between 100 and 800, or leave blank.": "Ingrese un puntaje de crédito entre 100 y 800, o déjelo en blanco."
     },
     zh: {
       "Please complete this required field.": "请填写此必填字段。",
       "Please enter a valid email address.": "请输入有效的电子邮件地址。",
       "Please check this box to continue.": "请勾选此框以继续。",
-      "Please enter a credit score between 300 and 850, or leave blank.": "请输入 300 至 850 之间的信用评分，或留空。"
+      "Please enter a credit score between 100 and 800, or leave blank.": "请输入 100 至 800 之间的信用评分，或留空。"
     },
     fr: {
       "Please complete this required field.": "Veuillez remplir ce champ obligatoire.",
       "Please enter a valid email address.": "Veuillez saisir une adresse e-mail valide.",
       "Please check this box to continue.": "Veuillez cocher cette case pour continuer.",
-      "Please enter a credit score between 300 and 850, or leave blank.": "Saisissez un score de crédit entre 300 et 850, ou laissez le champ vide."
+      "Please enter a credit score between 100 and 800, or leave blank.": "Saisissez un score de crédit entre 100 et 800, ou laissez le champ vide."
     },
     pt: {
       "Please complete this required field.": "Preencha este campo obrigatório.",
       "Please enter a valid email address.": "Informe um endereço de e-mail válido.",
       "Please check this box to continue.": "Marque esta caixa para continuar.",
-      "Please enter a credit score between 300 and 850, or leave blank.": "Informe uma pontuação de crédito entre 300 e 850, ou deixe em branco."
+      "Please enter a credit score between 100 and 800, or leave blank.": "Informe uma pontuação de crédito entre 100 e 800, ou deixe em branco."
     },
     ar: {
       "Please complete this required field.": "يرجى إكمال هذا الحقل المطلوب.",
       "Please enter a valid email address.": "يرجى إدخال عنوان بريد إلكتروني صالح.",
       "Please check this box to continue.": "يرجى تحديد هذا المربع للمتابعة.",
-      "Please enter a credit score between 300 and 850, or leave blank.": "يرجى إدخال درجة ائتمان بين 300 و850، أو ترك الحقل فارغًا."
+      "Please enter a credit score between 100 and 800, or leave blank.": "يرجى إدخال درجة ائتمان بين 100 و800، أو ترك الحقل فارغًا."
     }
   };
 
@@ -2686,7 +2686,7 @@
     }
 
     if (field.validity.customError && field.id === "credit-score") {
-      return translateText("Please enter a credit score between 300 and 850, or leave blank.", currentLanguage());
+      return translateText("Please enter a credit score between 100 and 800, or leave blank.", currentLanguage());
     }
 
     if (field.validity.typeMismatch && field.type === "email") {
@@ -3880,22 +3880,26 @@
     }
 
     const value = String(field.value || "").trim();
+    field.setCustomValidity("");
+
     if (!value) {
       field.value = "";
-      field.setCustomValidity("");
+      return;
+    }
+
+    const noScoreAnswer = /^(n\/?a|none|no|not applicable|unknown|don'?t know|no credit|sin credito|sin puntaje)$/i;
+    if (noScoreAnswer.test(value)) {
+      field.value = "";
       return;
     }
 
     const score = Number(value);
-    if (!Number.isInteger(score) || score < 300 || score > 850) {
-      field.setCustomValidity(
-        translateText("Please enter a credit score between 300 and 850, or leave blank.", currentLanguage())
-      );
+    if (Number.isInteger(score) && score >= 100 && score <= 800) {
+      field.value = String(score);
       return;
     }
 
-    field.value = String(score);
-    field.setCustomValidity("");
+    field.value = "";
   }
 
   function redirectToApplicationConfirmation(form, applicationId, selectedLanguage, propertyName) {
@@ -4399,12 +4403,8 @@
         return;
       }
 
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-
       normalizeOptionalCreditScore(form);
+
       if (!form.checkValidity()) {
         form.reportValidity();
         return;

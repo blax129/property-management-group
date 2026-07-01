@@ -183,6 +183,18 @@
       fr: "Score de crédit",
       ar: "درجة الائتمان"
     },
+    "(optional)": {
+      es: "(opcional)",
+      zh: "（可选）",
+      fr: "(facultatif)",
+      ar: "(اختياري)"
+    },
+    "Leave blank if unknown": {
+      es: "Déjelo en blanco si no lo sabe",
+      zh: "如不清楚请留空",
+      fr: "Laissez vide si inconnu",
+      ar: "اتركه فارغًا إذا لم تكن تعرف"
+    },
     "Have You Ever Been Evicted": {
       es: "¿Alguna vez ha sido desalojado?",
       zh: "您是否曾被驱逐？",
