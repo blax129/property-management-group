@@ -45,6 +45,11 @@
     Cache-Control = "public, max-age=86400"
 
 [[headers]]
+  for = "/og-private-property-management-v2.png"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
   for = "/image/*"
   [headers.values]
     Cache-Control = "public, max-age=86400"
