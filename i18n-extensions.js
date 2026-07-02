@@ -700,12 +700,6 @@
       fr: "Les demandes de remboursement sont traitées dans l’heure suivant leur réception, si la demande n’a pas été approuvée.",
       ar: "تتم معالجة طلبات الاسترداد خلال ساعة من استلام طلبك، بشرط ألا يكون الطلب قد تمت الموافقة عليه."
     },
-    "Refund processing": {
-      es: "Procesamiento de reembolso",
-      zh: "退款处理",
-      fr: "Traitement du remboursement",
-      ar: "معالجة الاسترداد"
-    },
     "Refund policy": {
       es: "Política de reembolso",
       zh: "退款政策",
