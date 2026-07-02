@@ -9,13 +9,25 @@
 
 [[redirects]]
   from = "https://property-management.group/*"
-  to = "https://privatepropmgt.com/:splat"
+  to = "https://privatepropmanagement.com/:splat"
   status = 301
   force = true
 
 [[redirects]]
   from = "https://www.property-management.group/*"
-  to = "https://privatepropmgt.com/:splat"
+  to = "https://privatepropmanagement.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://privatepropmgt.com/*"
+  to = "https://privatepropmanagement.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.privatepropmgt.com/*"
+  to = "https://privatepropmanagement.com/:splat"
   status = 301
   force = true
 
@@ -26,6 +38,11 @@
     X-Frame-Options = "SAMEORIGIN"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/og-preview.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
 
 [[headers]]
   for = "/image/*"
