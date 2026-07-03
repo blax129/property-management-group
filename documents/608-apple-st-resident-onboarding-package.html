@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resident Onboarding Package — 608 Apple St, Green Forest, AR</title>
+  <style>
+    :root {
+      --navy: #0f2744;
+      --navy-mid: #1e4d8c;
+      --navy-light: #2a5f9e;
+      --gray-900: #1a2332;
+      --gray-700: #4a5568;
+      --gray-500: #718096;
+      --gray-300: #cbd5e0;
+      --gray-100: #f4f6f9;
+      --gold: #c9a962;
+      --white: #ffffff;
+      --font-serif: "Georgia", "Times New Roman", serif;
+      --font-sans: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    @page {
+      size: letter;
+      margin: 0.65in 0.75in 0.85in 0.75in;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 10.5pt;
+      line-height: 1.55;
+      color: var(--gray-900);
+      background: #e8ecf1;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .package {
+      max-width: 8.5in;
+      margin: 0 auto;
+      background: var(--white);
+      box-shadow: 0 4px 24px rgba(15, 39, 68, 0.12);
+    }
+
+    @media print {
+      body { background: white; }
+      .package { box-shadow: none; max-width: none; }
+      .no-print { display: none !important; }
+      .page { page-break-after: always; }
+      .page:last-child { page-break-after: auto; }
+      .avoid-break { break-inside: avoid; }
+    }
+
+    /* ── Running header/footer ── */
+    .page {
+      position: relative;
+      min-height: 10in;
+      padding: 0.55in 0.75in 0.9in;
+    }
+
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2.5px solid var(--navy);
+      padding-bottom: 10px;
+      margin-bottom: 22px;
+    }
+
+    .page-header img {
+      height: 42px;
+      width: auto;
+    }
+
+    .page-header-meta {
+      text-align: right;
+      font-size: 8pt;
+      color: var(--gray-500);
+      line-height: 1.4;
+    }
+
+    .page-header-meta strong {
+      display: block;
+      color: var(--navy);
+      font-size: 8.5pt;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .page-footer {
+      position: absolute;
+      bottom: 0.35in;
+      left: 0.75in;
+      right: 0.75in;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 1px solid var(--gray-300);
+      padding-top: 8px;
+      font-size: 7.5pt;
+      color: var(--gray-500);
+    }
+
+    .initials-block {
+      display: flex;
+      gap: 18px;
+      font-size: 7.5pt;
+    }
+
+    .initials-line {
+      border-bottom: 1px solid var(--gray-700);
+      min-width: 72px;
+      display: inline-block;
+      margin-left: 4px;
+    }
+
+    /* ── Cover ── */
+    .cover {
+      min-height: 10in;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(165deg, var(--navy) 0%, #07111f 55%, var(--navy-mid) 100%);
+      color: var(--white);
+      padding: 0.85in 0.9in;
+      page-break-after: always;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::before {
+      content: "";
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: rgba(201, 169, 98, 0.08);
+    }
+
+    .cover::after {
+      content: "";
+      position: absolute;
+      bottom: -60px;
+      left: -60px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .cover-top {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover-top img {
+      height: 64px;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+    }
+
+    .cover-brand {
+      font-size: 11pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      opacity: 0.92;
+    }
+
+    .cover-brand span {
+      display: block;
+      font-size: 8.5pt;
+      letter-spacing: 0.18em;
+      opacity: 0.65;
+      margin-top: 2px;
+    }
+
+    .cover-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      padding: 40px 0;
+    }
+
+    .cover-label {
+      font-size: 9pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    .cover-title {
+      font-family: var(--font-serif);
+      font-size: 32pt;
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+
+    .cover-subtitle {
+      font-size: 13pt;
+      opacity: 0.88;
+      max-width: 5.5in;
+      line-height: 1.5;
+    }
+
+    .cover-property {
+      margin-top: 36px;
+      padding: 22px 26px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(201,169,98,0.25);
+      border-radius: 6px;
+      backdrop-filter: blur(4px);
+    }
+
+    .cover-property h2 {
+      font-size: 9pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .cover-property p {
+      font-size: 11pt;
+      line-height: 1.6;
+    }
+
+    .cover-bottom {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      font-size: 9pt;
+      opacity: 0.85;
+    }
+
+    .cover-bottom dt {
+      font-size: 7.5pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.65;
+      margin-bottom: 3px;
+    }
+
+    .cover-bottom dd {
+      margin: 0 0 12px;
+      font-size: 9.5pt;
+    }
+
+    /* ── Typography ── */
+    h1.doc-title {
+      font-family: var(--font-serif);
+      font-size: 20pt;
+      color: var(--navy);
+      margin-bottom: 6px;
+      font-weight: 400;
+    }
+
+    .doc-subtitle {
+      font-size: 10pt;
+      color: var(--gray-500);
+      margin-bottom: 22px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--gray-300);
+    }
+
+    h2.section-title {
+      font-size: 11pt;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 22px 0 10px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid var(--gold);
+      font-weight: 700;
+    }
+
+    h3.clause-title {
+      font-size: 10pt;
+      color: var(--navy-mid);
+      margin: 16px 0 6px;
+      font-weight: 700;
+    }
+
+    p { margin-bottom: 10px; }
+
+    .lead {
+      font-size: 11pt;
+      color: var(--gray-700);
+      line-height: 1.65;
+    }
+
+    .highlight-box {
+      background: var(--gray-100);
+      border-left: 4px solid var(--navy-mid);
+      padding: 14px 18px;
+      margin: 16px 0;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .highlight-box.urgent {
+      background: #fef9ee;
+      border-left-color: var(--gold);
+    }
+
+    .highlight-box strong { color: var(--navy); }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 24px;
+      margin: 14px 0 18px;
+    }
+
+    .info-item label {
+      display: block;
+      font-size: 7.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gray-500);
+      margin-bottom: 2px;
+    }
+
+    .info-item span {
+      font-size: 10pt;
+      color: var(--gray-900);
+      font-weight: 500;
+    }
+
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 18px;
+      font-size: 9.5pt;
+    }
+
+    table.data-table th {
+      background: var(--navy);
+      color: white;
+      text-align: left;
+      padding: 8px 10px;
+      font-size: 8pt;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    table.data-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--gray-300);
+      vertical-align: top;
+    }
+
+    table.data-table tr:nth-child(even) td {
+      background: var(--gray-100);
+    }
+
+    table.data-table .amount {
+      text-align: right;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .toc-list {
+      list-style: none;
+      margin: 20px 0;
+    }
+
+    .toc-list li {
+      display: flex;
+      align-items: baseline;
+      padding: 10px 0;
+      border-bottom: 1px dotted var(--gray-300);
+      font-size: 10.5pt;
+    }
+
+    .toc-list li span:first-child {
+      flex: 1;
+      color: var(--navy);
+      font-weight: 500;
+    }
+
+    .toc-list li span:last-child {
+      color: var(--gray-500);
+      font-size: 9pt;
+      margin-left: 12px;
+    }
+
+    .toc-section {
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-top: 18px;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    ol.clauses, ol.sub-clauses {
+      margin: 8px 0 12px 20px;
+    }
+
+    ol.clauses li, ol.sub-clauses li {
+      margin-bottom: 8px;
+      text-align: justify;
+    }
+
+    .signature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px 32px;
+      margin-top: 28px;
+    }
+
+    .sig-block {
+      break-inside: avoid;
+    }
+
+    .sig-line {
+      border-bottom: 1px solid var(--gray-900);
+      height: 28px;
+      margin-bottom: 4px;
+    }
+
+    .sig-label {
+      font-size: 8pt;
+      color: var(--gray-500);
+    }
+
+    .receipt-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      background: var(--navy);
+      color: white;
+      padding: 18px 22px;
+      border-radius: 4px;
+      margin-bottom: 22px;
+    }
+
+    .receipt-banner h2 {
+      font-family: var(--font-serif);
+      font-size: 18pt;
+      font-weight: 400;
+    }
+
+    .receipt-banner .receipt-no {
+      text-align: right;
+      font-size: 8.5pt;
+      opacity: 0.85;
+    }
+
+    .receipt-banner .receipt-no strong {
+      display: block;
+      font-size: 12pt;
+      opacity: 1;
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    .paid-stamp {
+      display: inline-block;
+      border: 3px solid #2d8a4e;
+      color: #2d8a4e;
+      font-weight: 800;
+      font-size: 14pt;
+      letter-spacing: 0.15em;
+      padding: 6px 18px;
+      transform: rotate(-4deg);
+      margin: 10px 0;
+      border-radius: 4px;
+    }
+
+    .checklist {
+      list-style: none;
+      margin: 10px 0;
+    }
+
+    .checklist li {
+      padding: 6px 0 6px 28px;
+      position: relative;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .checklist li::before {
+      content: "☐";
+      position: absolute;
+      left: 0;
+      color: var(--navy-mid);
+      font-size: 12pt;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--navy);
+      color: white;
+      font-size: 7.5pt;
+      padding: 3px 8px;
+      border-radius: 3px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .print-btn {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      background: var(--navy);
+      color: white;
+      border: none;
+      padding: 12px 22px;
+      font-size: 10pt;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(15,39,68,0.3);
+      z-index: 100;
+      font-weight: 600;
+    }
+
+    .print-btn:hover { background: var(--navy-mid); }
+
+    .page-num::after {
+      content: attr(data-page);
+    }
+  </style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">Print / Save as PDF</button>
+
+<div class="package">
+
+  <!-- ═══════════════════ COVER PAGE ═══════════════════ -->
+  <section class="cover">
+    <div class="cover-top">
+      <img src="../image/ppm-group-logo.svg" alt="Property Management Group">
+      <div class="cover-brand">
+        Private Property Management
+        <span>Property Management Group</span>
+      </div>
+    </div>
+
+    <div class="cover-main">
+      <div class="cover-label">Official Resident Onboarding Package</div>
+      <h1 class="cover-title">Approval, Lease &amp;<br>Payment Documentation</h1>
+      <p class="cover-subtitle">A complete onboarding packet prepared for approved applicants. This document contains your conditional approval letter, payment receipt, residential lease agreement, and resident move-in handbook.</p>
+
+      <div class="cover-property">
+        <h2>Subject Property</h2>
+        <p><strong>608 Apple St</strong><br>Green Forest, AR 72638<br>
+        4 Beds · 2 Baths · 1,956 sq ft · Single Story</p>
+      </div>
+    </div>
+
+    <dl class="cover-bottom">
+      <div>
+        <dt>Primary Contact / Applicant</dt>
+        <dd>Shelby Elaine Carpenter</dd>
+        <dt>All Approved Tenants (5)</dt>
+        <dd>Shelby Elaine Carpenter · Jasmine Rose Maxwell · Kyler David Ginn · Gabriel Ryan Griggs · Lukkas McLain Flores</dd>
+        <dt>Lease Commencement</dt>
+        <dd>August 1, 2026</dd>
+      </div>
+      <div>
+        <dt>Property Owner</dt>
+        <dd>Jeff Fuell</dd>
+        <dt>Property Manager</dt>
+        <dd>Katherine Riordan</dd>
+        <dt>Package Date</dt>
+        <dd>July 3, 2026</dd>
+        <dt>Reference No.</dt>
+        <dd>PPM-608-APPLE-2026-001</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- ═══════════════════ TABLE OF CONTENTS ═══════════════════ -->
+  <div class="page">
+    <header class="page-header">
+      <img src="../image/ppm-group-logo.svg" alt="PPM">
+      <div class="page-header-meta">
+        <strong>Private Property Management</strong>
+        608 Apple St · Green Forest, AR 72638<br>
+        Package Ref: PPM-608-APPLE-2026-001
+      </div>
+    </header>
+
+    <h1 class="doc-title">Table of Contents</h1>
+    <p class="doc-subtitle">Resident Onboarding Package — Shelby Elaine Carpenter et al.</p>
+
+    <div class="toc-section">Section I — Approval</div>
+    <ul class="toc-list">
+      <li><span>Document 1: Conditional Approval Letter</span><span>Page 3</span></li>
+    </ul>
+
+    <div class="toc-section">Section II — Payment Confirmation</div>
+    <ul class="toc-list">
+      <li><span>Document 2: Application Fee Payment Receipt</span><span>Page 4</span></li>
+    </ul>
+
+    <div class="toc-section">Section III — Lease Agreement</div>
+    <ul class="toc-list">
+      <li><span>Document 3: Residential Lease Agreement</span><span>Pages 5–14</span></li>
+      <li><span>&nbsp;&nbsp;&nbsp;Article 1 — Parties, Property &amp; Term</span><span>Page 5</span></li>
+      <li><span>&nbsp;&nbsp;&nbsp;Article 2 — Rent, Deposits &amp; Fees</span><span>Page 6</span></li>
+      <li><span>&nbsp;&nbsp;&nbsp;Article 3 — Utilities &amp; Services</span><span>Page 7</span></li>
+      <li><span>&nbsp;&nbsp;&nbsp;Article 4 — Occupancy, Use &amp; Rules</span><span>Page 8</span></li>
+      <li><span>&nbsp;&nbsp;&nbsp;Article 5 — Maintenance &amp; Repairs</span><span>Page 9</span></li>
+      <li><span>&nbsp;&nbsp;&nbsp;Article 6 — Pets</span><span>Page 10</span></li>
+      <li><span>&nbsp;&nbsp;&nbsp;Article 7 — Entry, Inspection &amp; Access</span><span>Page 10</span></li>
+      <li><span>&nbsp;&nbsp;&nbsp;Article 8 — Insurance &amp; Liability</span><span>Page 11</span></li>
+      <li><span>&nbsp;&nbsp;&nbsp;Article 9 — Default &amp; Remedies</span><span>Page 11</span></li>
+      <li><span>&nbsp;&nbsp;&nbsp;Article 10 — Disclosures &amp; Addenda</span><span>Page 12</span></li>
+      <li><span>&nbsp;&nbsp;&nbsp;Article 11 — General Provisions</span><span>Page 13</span></li>
+      <li><span>&nbsp;&nbsp;&nbsp;Signature Page</span><span>Page 14</span></li>
+    </ul>
+
+    <div class="toc-section">Section IV — Resident Handbook</div>
+    <ul class="toc-list">
+      <li><span>Document 4: Resident Move-In Handbook</span><span>Pages 15–17</span></li>
+    </ul>
+
+    <div class="highlight-box" style="margin-top: 28px;">
+      <strong>Important:</strong> All five (5) approved applicants listed herein must review, initial each page of the Lease Agreement, and execute the Signature Page prior to move-in. The security deposit of <strong>$800.00</strong> must be paid in full before keys are issued. See Approval Letter for next steps.
+    </div>
+
+    <footer class="page-footer">
+      <span>Private Property Management · support@property-management.group</span>
+      <span class="page-num" data-page="Page 2"></span>
+    </footer>
+  </div>
+
+  <!-- ═══════════════════ DOCUMENT 1: APPROVAL LETTER ═══════════════════ -->
+  <div class="page">
+    <header class="page-header">
+      <img src="../image/ppm-group-logo.svg" alt="PPM">
+      <div class="page-header-meta">
+        <strong>Document 1 of 4</strong>
+        Conditional Approval Letter
+      </div>
+    </header>
+
+    <h1 class="doc-title">Conditional Approval Letter</h1>
+    <p class="doc-subtitle">Rental Application Approval — 608 Apple St, Green Forest, AR 72638</p>
+
+    <p style="margin-bottom: 18px;"><strong>Date:</strong> July 3, 2026 &nbsp;&nbsp;|&nbsp;&nbsp; <strong>Reference:</strong> PPM-608-APPLE-2026-001</p>
+
+    <p><strong>Shelby Elaine Carpenter</strong><br>
+    5830 Highway 62 W, Apt 205<br>
+    Eureka Springs, AR 72632</p>
+
+    <p style="margin-top: 16px;"><strong>CC:</strong> Jasmine Rose Maxwell · Kyler David Ginn · Gabriel Ryan Griggs · Lukkas McLain Flores</p>
+
+    <p class="lead" style="margin-top: 22px;">Dear Ms. Carpenter and Approved Co-Applicants,</p>
+
+    <p class="lead">On behalf of <strong>Private Property Management</strong> (Property Management Group), we are pleased to inform you that your rental application for the property located at <strong>608 Apple St, Green Forest, AR 72638</strong> has been <strong>conditionally approved</strong>, subject to the terms outlined in this letter and the enclosed Residential Lease Agreement.</p>
+
+    <p>We acknowledge your request that all five (5) approved adult applicants be named as tenants on the lease. Accordingly, this approval applies jointly and severally to the following individuals:</p>
+
+    <table class="data-table avoid-break">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Full Legal Name</th>
+          <th>Application ID</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><strong>Shelby Elaine Carpenter</strong> <span class="badge">Primary Contact</span></td>
+          <td>APP-20260702-265852</td>
+          <td>s.carpenter48.sc@gmail.com</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Jasmine Rose Maxwell</td>
+          <td>APP-20260701-684841</td>
+          <td>jazmom333@gmail.com</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Kyler David Ginn</td>
+          <td>APP-20260702-386990</td>
+          <td>KDGBus@gmail.com</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Gabriel Ryan Griggs</td>
+          <td>APP-20260702-760767</td>
+          <td>ggriggs2005@gmail.com</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Lukkas McLain Flores</td>
+          <td>APP-20260702-403182</td>
+          <td>twistedfox25@gmail.com</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="section-title">Approved Lease Terms</h2>
+    <div class="info-grid avoid-break">
+      <div class="info-item"><label>Property Address</label><span>608 Apple St, Green Forest, AR 72638</span></div>
+      <div class="info-item"><label>Property Type</label><span>Single-Family Residence · 4 BR / 2 BA · 1,956 sq ft</span></div>
+      <div class="info-item"><label>Monthly Rent</label><span>$1,050.00 per month</span></div>
+      <div class="info-item"><label>Security Deposit</label><span>$800.00 (due prior to move-in)</span></div>
+      <div class="info-item"><label>Lease Term</label><span>12 months — August 1, 2026 through July 31, 2027</span></div>
+      <div class="info-item"><label>Lease Start Date</label><span>August 1, 2026</span></div>
+      <div class="info-item"><label>Utilities Included</label><span>Water, Trash, Sewer</span></div>
+      <div class="info-item"><label>Property Owner</label><span>Jeff Fuell · (315) 272-3641</span></div>
+    </div>
+
+    <h2 class="section-title">Conditions of Approval</h2>
+    <p>Your approval is subject to satisfaction of the following conditions on or before the lease commencement date of <strong>August 1, 2026</strong>:</p>
+    <ol class="clauses">
+      <li><strong>Execution of Lease:</strong> All five (5) approved tenants must sign the enclosed Residential Lease Agreement and initial each page.</li>
+      <li><strong>Security Deposit:</strong> Payment of the full security deposit of <strong>$800.00</strong> (see Next Steps below).</li>
+      <li><strong>Proof of Insurance:</strong> Each tenant is strongly encouraged to obtain renter's insurance; the landlord may require proof of liability coverage prior to or within fourteen (14) days of move-in.</li>
+      <li><strong>Utility Transfer:</strong> Tenants shall transfer electricity and natural gas service into the name(s) of the tenant(s) prior to move-in (see Resident Handbook).</li>
+      <li><strong>Move-In Inspection:</strong> Completion of the joint move-in inspection checklist within forty-eight (48) hours of occupancy.</li>
+    </ol>
+
+    <div class="highlight-box urgent avoid-break">
+      <strong>▸ NEXT STEP — SECURITY DEPOSIT REQUIRED</strong><br><br>
+      Application fees have been received in full ($375.00 for five applicants). <strong>No portion of the security deposit has been paid to date.</strong><br><br>
+      To proceed toward move-in, the full security deposit of <strong>$800.00</strong> must be submitted and confirmed <strong>prior to key release</strong>. Payment instructions will be provided separately by your property manager, Katherine Riordan (<a href="mailto:riordankatherine0@gmail.com">riordankatherine0@gmail.com</a>). You may also contact our office at <strong>support@property-management.group</strong>.<br><br>
+      <em>First month's rent of $1,050.00 is due on or before August 1, 2026, unless otherwise agreed in writing.</em>
+    </div>
+
+    <p>We congratulate you on your approval and look forward to welcoming you to your new home. Should you have any questions regarding this package, please do not hesitate to contact us.</p>
+
+    <p style="margin-top: 24px;">Sincerely,</p>
+
+    <div class="signature-grid" style="grid-template-columns: 1fr; max-width: 3.5in; margin-top: 20px;">
+      <div class="sig-block">
+        <div class="sig-line"></div>
+        <div class="sig-label"><strong>Katherine Riordan</strong><br>Property Manager · Private Property Management<br>riordankatherine0@gmail.com</div>
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      <div class="initials-block">
+        <span>Tenant Initials<span class="initials-line"></span></span>
+        <span>Tenant Initials<span class="initials-line"></span></span>
+        <span>Tenant Initials<span class="initials-line"></span></span>
+      </div>
+      <span class="page-num" data-page="Page 3"></span>
+    </footer>
+  </div>
+
+  <!-- ═══════════════════ DOCUMENT 2: PAYMENT RECEIPT ═══════════════════ -->
+  <div class="page">
+    <header class="page-header">
+      <img src="../image/ppm-group-logo.svg" alt="PPM">
+      <div class="page-header-meta">
+        <strong>Document 2 of 4</strong>
+        Payment Receipt
+      </div>
+    </header>
+
+    <div class="receipt-banner avoid-break">
+      <div>
+        <h2>Payment Receipt</h2>
+        <p style="opacity:0.85; margin-top:4px; font-size:9pt;">Private Property Management · Property Management Group</p>
+      </div>
+      <div class="receipt-no">
+        Receipt No.<br>
+        <strong>RCPT-608-20260702-375</strong>
+        <div style="margin-top:8px; font-size:8pt;">Date Issued: July 3, 2026</div>
+      </div>
+    </div>
+
+    <div class="paid-stamp">PAID IN FULL</div>
+
+    <div class="info-grid avoid-break">
+      <div class="info-item"><label>Received From</label><span>Shelby Elaine Carpenter et al. (5 Applicants)</span></div>
+      <div class="info-item"><label>Payment Date</label><span>July 2, 2026</span></div>
+      <div class="info-item"><label>Payment Method</label><span>Chime Transfer</span></div>
+      <div class="info-item"><label>Property Reference</label><span>608 Apple St, Green Forest, AR 72638</span></div>
+      <div class="info-item"><label>Package Reference</label><span>PPM-608-APPLE-2026-001</span></div>
+      <div class="info-item"><label>Processed By</label><span>Katherine Riordan, Property Manager</span></div>
+    </div>
+
+    <h2 class="section-title">Transaction Summary</h2>
+
+    <table class="data-table avoid-break">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Applicant</th>
+          <th>Qty</th>
+          <th class="amount">Unit Price</th>
+          <th class="amount">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Non-Refundable Application Fee</td>
+          <td>Shelby Elaine Carpenter</td>
+          <td>1</td>
+          <td class="amount">$75.00</td>
+          <td class="amount">$75.00</td>
+        </tr>
+        <tr>
+          <td>Non-Refundable Application Fee</td>
+          <td>Jasmine Rose Maxwell</td>
+          <td>1</td>
+          <td class="amount">$75.00</td>
+          <td class="amount">$75.00</td>
+        </tr>
+        <tr>
+          <td>Non-Refundable Application Fee</td>
+          <td>Kyler David Ginn</td>
+          <td>1</td>
+          <td class="amount">$75.00</td>
+          <td class="amount">$75.00</td>
+        </tr>
+        <tr>
+          <td>Non-Refundable Application Fee</td>
+          <td>Gabriel Ryan Griggs</td>
+          <td>1</td>
+          <td class="amount">$75.00</td>
+          <td class="amount">$75.00</td>
+        </tr>
+        <tr>
+          <td>Non-Refundable Application Fee</td>
+          <td>Lukkas McLain Flores</td>
+          <td>1</td>
+          <td class="amount">$75.00</td>
+          <td class="amount">$75.00</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4" style="text-align:right; font-weight:700; padding:12px 10px; background:var(--gray-100); border-top:2px solid var(--navy);">Total Paid</td>
+          <td class="amount" style="font-size:12pt; font-weight:700; padding:12px 10px; background:var(--gray-100); border-top:2px solid var(--navy);">$375.00</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <h2 class="section-title">Outstanding Balances</h2>
+    <table class="data-table avoid-break">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Status</th>
+          <th class="amount">Amount Due</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Security Deposit</td>
+          <td><span class="badge" style="background:#c53030;">UNPAID — Due Before Move-In</span></td>
+          <td class="amount">$800.00</td>
+        </tr>
+        <tr>
+          <td>First Month's Rent (August 2026)</td>
+          <td><span class="badge" style="background:var(--gray-500);">Due August 1, 2026</span></td>
+          <td class="amount">$1,050.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="highlight-box avoid-break">
+      <strong>Payment Acknowledgment:</strong> This receipt confirms receipt of application fees only. Application fees are non-refundable. This receipt does not constitute a lease agreement or guarantee of occupancy until the security deposit is paid, the lease is fully executed by all parties, and all conditions of approval are satisfied.
+    </div>
+
+    <div class="signature-grid" style="margin-top: 30px;">
+      <div class="sig-block">
+        <div class="sig-line"></div>
+        <div class="sig-label">Authorized Signature — Private Property Management</div>
+      </div>
+      <div class="sig-block">
+        <div class="sig-line"></div>
+        <div class="sig-label">Date</div>
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      <span>Receipt RCPT-608-20260702-375 · Non-Refundable Application Fees</span>
+      <span class="page-num" data-page="Page 4"></span>
+    </footer>
+  </div>
+
+  <!-- ═══════════════════ DOCUMENT 3: LEASE — PAGES 5-14 ═══════════════════ -->
+  <!-- LEASE PAGE 1 -->
+  <div class="page">
+    <header class="page-header">
+      <img src="../image/ppm-group-logo.svg" alt="PPM">
+      <div class="page-header-meta">
+        <strong>Document 3 of 4</strong>
+        Residential Lease Agreement
+      </div>
+    </header>
+
+    <h1 class="doc-title">Residential Lease Agreement</h1>
+    <p class="doc-subtitle">State of Arkansas · Single-Family Dwelling · Joint &amp; Several Tenancy</p>
+
+    <p>THIS RESIDENTIAL LEASE AGREEMENT ("Lease" or "Agreement") is entered into as of <strong>August 1, 2026</strong> ("Effective Date"), by and between the parties identified below.</p>
+
+    <h2 class="section-title">Article 1 — Parties, Property &amp; Term</h2>
+
+    <h3 class="clause-title">1.1 Landlord / Owner</h3>
+    <p><strong>Jeff Fuell</strong>, owner of the Premises ("Landlord"), represented in property management matters by <strong>Katherine Riordan</strong>, Property Manager, Private Property Management (Property Management Group), email: riordankatherine0@gmail.com, company email: support@property-management.group, owner phone: (315) 272-3641.</p>
+
+    <h3 class="clause-title">1.2 Tenants (Joint &amp; Several)</h3>
+    <p>The following individuals, collectively referred to as "Tenant" or "Tenants," enter into this Lease jointly and severally, meaning each Tenant is individually responsible for the full performance of all obligations under this Lease:</p>
+
+    <table class="data-table avoid-break">
+      <thead>
+        <tr><th>Name</th><th>Date of Birth</th><th>Phone</th><th>Email</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Shelby Elaine Carpenter</td><td>07/22/2005</td><td>(870) 350-0117</td><td>s.carpenter48.sc@gmail.com</td></tr>
+        <tr><td>Jasmine Rose Maxwell</td><td>11/16/2005</td><td>(870) 350-3516</td><td>jazmom333@gmail.com</td></tr>
+        <tr><td>Kyler David Ginn</td><td>01/22/2005</td><td>(870) 613-3259</td><td>KDGBus@gmail.com</td></tr>
+        <tr><td>Gabriel Ryan Griggs</td><td>07/17/2005</td><td>(870) 423-8764</td><td>ggriggs2005@gmail.com</td></tr>
+        <tr><td>Lukkas McLain Flores</td><td>09/25/1994</td><td>(479) 721-1314</td><td>twistedfox25@gmail.com</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="clause-title">1.3 Premises</h3>
+    <p>Landlord leases to Tenant the residential property located at:</p>
+    <div class="highlight-box">
+      <strong>608 Apple St, Green Forest, AR 72638</strong><br>
+      4 Bedrooms · 2 Bathrooms · Approximately 1,956 Square Feet · Single Story<br>
+      Built 1970 · Brick/Vinyl Siding · Crawl Space Foundation · Central Gas Heat · Central Electric Air
+    </div>
+
+    <h3 class="clause-title">1.4 Term</h3>
+    <p>The initial term of this Lease shall commence on <strong>August 1, 2026</strong> ("Commencement Date") and shall expire at 11:59 p.m. on <strong>July 31, 2027</strong> ("Expiration Date"), unless terminated earlier in accordance with this Lease or renewed by written agreement of the parties.</p>
+
+    <h3 class="clause-title">1.5 Possession</h3>
+    <p>Tenant shall be entitled to possession of the Premises on the Commencement Date, provided that: (a) this Lease has been signed by all Tenants and Landlord; (b) the security deposit has been paid in full; (c) first month's rent has been paid or arranged per Section 2; and (d) all conditions of approval have been satisfied.</p>
+
+    <footer class="page-footer">
+      <div class="initials-block">
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+      </div>
+      <span class="page-num" data-page="Page 5"></span>
+    </footer>
+  </div>
+
+  <!-- LEASE PAGE 2 -->
+  <div class="page">
+    <header class="page-header">
+      <img src="../image/ppm-group-logo.svg" alt="PPM">
+      <div class="page-header-meta"><strong>Residential Lease Agreement</strong> · 608 Apple St</div>
+    </header>
+
+    <h2 class="section-title">Article 2 — Rent, Deposits &amp; Fees</h2>
+
+    <h3 class="clause-title">2.1 Monthly Rent</h3>
+    <p>Tenant shall pay Landlord monthly rent of <strong>One Thousand Fifty Dollars ($1,050.00)</strong>, due in advance on the <strong>1st day of each calendar month</strong> during the term of this Lease. The first month's rent for August 2026 is due on or before the Commencement Date.</p>
+
+    <h3 class="clause-title">2.2 Late Fees</h3>
+    <p>If rent is not received by the 5th day of the month, Tenant shall pay a late fee of <strong>$50.00</strong>, plus an additional <strong>$10.00 per day</strong> thereafter until paid in full, not to exceed the maximum permitted by Arkansas law. Returned payment fees of $35.00 shall apply to any dishonored payment.</p>
+
+    <h3 class="clause-title">2.3 Security Deposit</h3>
+    <p>Tenant has paid or shall pay a security deposit of <strong>Eight Hundred Dollars ($800.00)</strong> prior to move-in. As of the date of this Lease, the application fee of $375.00 ($75.00 × 5 applicants) has been paid; <strong>no portion of the security deposit has been paid</strong>. The security deposit shall be held by Landlord as security for Tenant's faithful performance of all terms of this Lease. Within sixty (60) days after termination of tenancy and surrender of the Premises, Landlord shall return the deposit less lawful deductions for unpaid rent, damages beyond normal wear and tear, and other charges permitted by Arkansas law, together with an itemized accounting.</p>
+
+    <h3 class="clause-title">2.4 Application Fees</h3>
+    <p>Non-refundable application fees of $75.00 per adult applicant ($375.00 total for five applicants) were paid prior to execution of this Lease via Chime transfer, as documented in Receipt No. RCPT-608-20260702-375.</p>
+
+    <h3 class="clause-title">2.5 Payment Method</h3>
+    <p>Rent and other charges shall be paid by method approved by Landlord or Property Manager. Tenants shall follow payment instructions provided in the Resident Move-In Handbook or by the Property Manager. Cash payments should be avoided unless pre-approved in writing.</p>
+
+    <h3 class="clause-title">2.6 Proration</h3>
+    <p>If Tenant takes possession on a date other than the first day of a month, rent for that partial month shall be prorated at a daily rate of $1,050.00 divided by the number of days in that month, unless otherwise agreed in writing.</p>
+
+    <h2 class="section-title">Article 3 — Utilities &amp; Services</h2>
+
+    <h3 class="clause-title">3.1 Utilities Included in Rent</h3>
+    <p>Landlord shall pay for and provide the following utilities/services as part of the monthly rent:</p>
+    <ul class="checklist">
+      <li style="padding-left:28px;"><strong>Water</strong> — municipal water service to the Premises</li>
+      <li style="padding-left:28px;"><strong>Sewer</strong> — public sewer service</li>
+      <li style="padding-left:28px;"><strong>Trash Collection</strong> — residential trash service as arranged by Landlord</li>
+    </ul>
+
+    <h3 class="clause-title">3.2 Tenant-Paid Utilities</h3>
+    <p>Tenant shall establish, maintain, and pay directly to the utility provider for:</p>
+    <ol class="sub-clauses">
+      <li><strong>Electricity</strong> — Carroll Electric Cooperative or applicable provider</li>
+      <li><strong>Natural Gas</strong> — applicable gas provider</li>
+      <li>Any other utility, communication, or subscription service used at the Premises</li>
+    </ol>
+    <p>Tenant shall transfer all tenant-paid utilities into the name(s) of the Tenant(s) prior to the Commencement Date and shall not allow utilities to be disconnected during the term of this Lease.</p>
+
+    <h3 class="clause-title">3.3 Appliances &amp; Equipment</h3>
+    <p>The Premises includes the following appliances, provided in working order at move-in: electric range, dishwasher, microwave, gas water heater. Washer and dryer hookups are provided; appliances are not included unless separately agreed in writing. Tenant shall use all appliances in accordance with manufacturer instructions.</p>
+
+    <footer class="page-footer">
+      <div class="initials-block">
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+      </div>
+      <span class="page-num" data-page="Page 6"></span>
+    </footer>
+  </div>
+
+  <!-- LEASE PAGE 3 -->
+  <div class="page">
+    <header class="page-header">
+      <img src="../image/ppm-group-logo.svg" alt="PPM">
+      <div class="page-header-meta"><strong>Residential Lease Agreement</strong> · 608 Apple St</div>
+    </header>
+
+    <h2 class="section-title">Article 4 — Occupancy, Use &amp; Rules</h2>
+
+    <h3 class="clause-title">4.1 Permitted Occupancy</h3>
+    <p>The Premises shall be occupied only by the five (5) named Tenants listed in Section 1.2. No additional persons shall reside at the Premises for more than fourteen (14) consecutive days or more than twenty-one (21) days in any calendar month without Landlord's prior written consent. Overnight guests must comply with all Lease terms.</p>
+
+    <h3 class="clause-title">4.2 Residential Use</h3>
+    <p>The Premises shall be used exclusively as a private residential dwelling. Tenant shall not use the Premises for any illegal purpose, nor for any business, commercial, or professional activity without Landlord's written consent.</p>
+
+    <h3 class="clause-title">4.3 Joint &amp; Several Liability</h3>
+    <p>Each Tenant is jointly and severally liable for the full performance of every obligation under this Lease, including rent, fees, damages, and all other charges. Landlord may enforce this Lease against any one or more Tenants without affecting the liability of the others. Internal arrangements among Tenants regarding rent splits do not affect their collective obligation to Landlord.</p>
+
+    <h3 class="clause-title">4.4 Quiet Enjoyment</h3>
+    <p>Landlord covenants that Tenant, upon paying rent and performing all terms of this Lease, shall peacefully and quietly hold and enjoy the Premises during the term.</p>
+
+    <h3 class="clause-title">4.5 Rules &amp; Regulations</h3>
+    <p>Tenant shall comply with all rules in the Resident Move-In Handbook (incorporated by reference), all applicable federal, state, and local laws, and all HOA or subdivision rules if applicable. Tenant shall not:</p>
+    <ol class="sub-clauses">
+      <li>Create or permit nuisances, excessive noise, or disturbances affecting neighbors;</li>
+      <li>Engage in illegal activity on or about the Premises;</li>
+      <li>Smoke inside the Premises (unless otherwise agreed in writing);</li>
+      <li>Store hazardous materials without authorization;</li>
+      <li>Operate unauthorized businesses from the Premises;</li>
+      <li>Allow vehicles to be repaired or stored on the lawn or driveway in violation of local ordinances.</li>
+    </ol>
+
+    <h3 class="clause-title">4.6 Parking</h3>
+    <p>Tenant may park passenger vehicles in the concrete driveway and designated areas. Commercial vehicles, inoperable vehicles, and RV/boat storage require prior written approval. See Resident Handbook for parking assignments among roommates.</p>
+
+    <h3 class="clause-title">4.7 Keys &amp; Access Devices</h3>
+    <p>Tenant shall not duplicate keys or access devices without Landlord's consent. All keys shall be returned at move-out. Lost keys may be replaced at Tenant's expense.</p>
+
+    <h2 class="section-title">Article 5 — Maintenance &amp; Repairs</h2>
+
+    <h3 class="clause-title">5.1 Landlord's Responsibilities</h3>
+    <p>Landlord shall maintain the Premises in a habitable condition and comply with applicable Arkansas habitability standards (Ark. Code Ann. § 18-17-601 et seq.). Landlord shall maintain structural components, roof, plumbing, heating, electrical systems, and supplied appliances, except where damage is caused by Tenant's misuse, negligence, or failure to report issues.</p>
+
+    <h3 class="clause-title">5.2 Tenant's Responsibilities</h3>
+    <p>Tenant shall:</p>
+    <ol class="sub-clauses">
+      <li>Keep the Premises clean and sanitary;</li>
+      <li>Properly dispose of trash in provided containers on scheduled collection days;</li>
+      <li>Replace batteries in smoke detectors as needed and test detectors monthly;</li>
+      <li>Promptly report maintenance issues through approved channels (see Handbook);</li>
+      <li>Be responsible for damage caused by Tenant, occupants, guests, or pets beyond normal wear and tear;</li>
+      <li>Maintain yard areas as agreed, including keeping the enclosed porch area tidy;</li>
+      <li>Not make alterations without written consent.</li>
+    </ol>
+
+    <footer class="page-footer">
+      <div class="initials-block">
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+      </div>
+      <span class="page-num" data-page="Page 7"></span>
+    </footer>
+  </div>
+
+  <!-- LEASE PAGE 4 -->
+  <div class="page">
+    <header class="page-header">
+      <img src="../image/ppm-group-logo.svg" alt="PPM">
+      <div class="page-header-meta"><strong>Residential Lease Agreement</strong> · 608 Apple St</div>
+    </header>
+
+    <h3 class="clause-title">5.3 Repair Requests</h3>
+    <p>Non-emergency maintenance requests shall be submitted in writing to the Property Manager at support@property-management.group or riordankatherine0@gmail.com. Emergency conditions (gas leak, fire, flooding, no heat in winter, security breach) require immediate phone contact to the Property Manager and, if applicable, 911.</p>
+
+    <h3 class="clause-title">5.4 Alterations</h3>
+    <p>Tenant shall not paint, wallpaper, install fixtures, or make any alterations to the Premises without Landlord's prior written consent. All approved alterations become Landlord's property unless otherwise agreed.</p>
+
+    <h2 class="section-title">Article 6 — Pets</h2>
+
+    <h3 class="clause-title">6.1 Approved Pets</h3>
+    <p>Landlord expressly approves the following household cats for the Premises:</p>
+    <table class="data-table avoid-break">
+      <thead>
+        <tr><th>Pet Name</th><th>Species</th><th>Sex</th><th>Age / Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Sophie</td><td>Cat</td><td>Female</td><td>Approx. 14 years · White &amp; Black American Longhair</td></tr>
+        <tr><td>Basket</td><td>Cat</td><td>Female</td><td>Approx. 3 years · Grey Tabby</td></tr>
+      </tbody>
+    </table>
+    <p>No additional pets shall be kept on the Premises without Landlord's prior written consent. Unauthorized pets may result in fees, required removal, or lease termination.</p>
+
+    <h3 class="clause-title">6.2 Pet Responsibilities</h3>
+    <ol class="sub-clauses">
+      <li>Tenant shall comply with all local animal ordinances and licensing requirements;</li>
+      <li>Pets shall not cause damage, odor, noise, or nuisance to neighbors;</li>
+      <li>Tenant is responsible for all pet-related damage, cleaning, flea treatment, and odor remediation;</li>
+      <li>Pet waste shall be disposed of properly and not left on the property or neighboring areas;</li>
+      <li>Tenant shall not allow pets on countertops, dining surfaces, or appliances used for food preparation.</li>
+    </ol>
+
+    <h2 class="section-title">Article 7 — Entry, Inspection &amp; Access</h2>
+
+    <h3 class="clause-title">7.1 Landlord Entry</h3>
+    <p>Landlord or authorized agents may enter the Premises upon reasonable notice (generally twenty-four (24) hours) for inspection, repairs, showing to prospective tenants or purchasers, or other lawful purposes, in accordance with Arkansas law. No notice is required in emergencies or when Tenant has abandoned the Premises.</p>
+
+    <h3 class="clause-title">7.2 Move-In / Move-Out Inspections</h3>
+    <p>Landlord and Tenant shall conduct a move-in inspection within forty-eight (48) hours of occupancy and a move-out inspection upon surrender. Both parties shall document the condition of the Premises using the checklist in the Resident Handbook.</p>
+
+    <h2 class="section-title">Article 8 — Insurance &amp; Liability</h2>
+
+    <h3 class="clause-title">8.1 Renter's Insurance</h3>
+    <p>Tenant is strongly encouraged and may be required to maintain renter's insurance covering personal property and personal liability with minimum liability coverage of $100,000.00. Landlord's insurance does not cover Tenant's personal belongings.</p>
+
+    <h3 class="clause-title">8.2 Indemnification</h3>
+    <p>Tenant shall indemnify and hold Landlord harmless from claims arising from Tenant's use of the Premises, except to the extent caused by Landlord's gross negligence or willful misconduct.</p>
+
+    <footer class="page-footer">
+      <div class="initials-block">
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+      </div>
+      <span class="page-num" data-page="Page 8"></span>
+    </footer>
+  </div>
+
+  <!-- LEASE PAGE 5 -->
+  <div class="page">
+    <header class="page-header">
+      <img src="../image/ppm-group-logo.svg" alt="PPM">
+      <div class="page-header-meta"><strong>Residential Lease Agreement</strong> · 608 Apple St</div>
+    </header>
+
+    <h2 class="section-title">Article 9 — Default &amp; Remedies</h2>
+
+    <h3 class="clause-title">9.1 Events of Default</h3>
+    <p>Tenant shall be in default if any of the following occur:</p>
+    <ol class="sub-clauses">
+      <li>Failure to pay rent or other charges when due;</li>
+      <li>Violation of any material term of this Lease or the Handbook;</li>
+      <li>Abandonment of the Premises;</li>
+      <li>Providing false information on the rental application;</li>
+      <li>Illegal activity on the Premises;</li>
+      <li>Unauthorized pets or occupants;</li>
+      <li>Failure to pay the security deposit prior to move-in.</li>
+    </ol>
+
+    <h3 class="clause-title">9.2 Remedies</h3>
+    <p>Upon default, Landlord may pursue all remedies available under Arkansas law, including but not limited to: (a) termination of this Lease; (b) eviction proceedings; (c) recovery of unpaid rent and charges; (d) recovery of damages; (e) collection costs and attorney's fees where permitted by law. Landlord may remove abandoned property in accordance with Arkansas statutes.</p>
+
+    <h3 class="clause-title">9.3 Holdover</h3>
+    <p>If Tenant remains in possession after the Expiration Date without a written renewal, tenancy shall become month-to-month upon the same terms, except rent may increase upon thirty (30) days' written notice. Holdover rent may be charged at 150% of the monthly rent until Tenant vacates.</p>
+
+    <h3 class="clause-title">9.4 Early Termination</h3>
+    <p>Early termination by Tenant before the Expiration Date requires Landlord's written consent and may require payment of an early termination fee, forfeiture of deposit, and continued liability for rent until the Premises are re-rented, to the extent permitted by law.</p>
+
+    <h2 class="section-title">Article 10 — Disclosures &amp; Addenda</h2>
+
+    <h3 class="clause-title">10.1 Lead-Based Paint Disclosure</h3>
+    <p><strong>Housing built before 1978 may contain lead-based paint.</strong> The Premises was built in 1970. Landlord has no knowledge of lead-based paint hazards unless otherwise noted. Tenant acknowledges receipt of the EPA pamphlet "Protect Your Family from Lead in Your Home" and certifies that Landlord has disclosed all known lead-based paint and hazards in the Premises.</p>
+
+    <div class="info-grid avoid-break" style="margin-top:12px;">
+      <div class="info-item"><label>Known lead-based paint present?</label><span>☐ Known &nbsp; ☑ Not known to Landlord</span></div>
+      <div class="info-item"><label>Records/reports provided?</label><span>☐ Yes &nbsp; ☑ No</span></div>
+    </div>
+
+    <h3 class="clause-title">10.2 Mold Disclosure</h3>
+    <p>Tenant acknowledges that mold can grow in any building where moisture is present. Tenant agrees to promptly report water leaks, condensation, or mold growth and to maintain reasonable ventilation and cleanliness to prevent mold conditions.</p>
+
+    <h3 class="clause-title">10.3 As-Is Condition Acknowledgment</h3>
+    <p>Tenant has inspected or waived inspection of the Premises and accepts it in its current condition, subject to Landlord's habitability obligations. Recent updates include fresh paint, new countertops, and cabinets as described in the property listing.</p>
+
+    <h3 class="clause-title">10.4 Incorporation of Handbook</h3>
+    <p>The Resident Move-In Handbook attached as Document 4 is incorporated into this Lease by reference. Tenant agrees to comply with all policies therein.</p>
+
+    <footer class="page-footer">
+      <div class="initials-block">
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+      </div>
+      <span class="page-num" data-page="Page 9"></span>
+    </footer>
+  </div>
+
+  <!-- LEASE PAGE 6 -->
+  <div class="page">
+    <header class="page-header">
+      <img src="../image/ppm-group-logo.svg" alt="PPM">
+      <div class="page-header-meta"><strong>Residential Lease Agreement</strong> · 608 Apple St</div>
+    </header>
+
+    <h2 class="section-title">Article 11 — General Provisions</h2>
+
+    <h3 class="clause-title">11.1 Entire Agreement</h3>
+    <p>This Lease, together with the Approval Letter, Payment Receipt, and Resident Move-In Handbook, constitutes the entire agreement between the parties and supersedes all prior negotiations and agreements.</p>
+
+    <h3 class="clause-title">11.2 Amendments</h3>
+    <p>No modification of this Lease shall be valid unless in writing and signed by Landlord and all Tenants.</p>
+
+    <h3 class="clause-title">11.3 Assignment &amp; Subletting</h3>
+    <p>Tenant shall not assign this Lease or sublet the Premises, in whole or in part, without Landlord's prior written consent. Any approved assignment shall not release original Tenants unless Landlord agrees in writing.</p>
+
+    <h3 class="clause-title">11.4 Notices</h3>
+    <p>Notices to Landlord shall be sent to: Property Manager, Katherine Riordan, Private Property Management, support@property-management.group, riordankatherine0@gmail.com. Notices to Tenant shall be sent to the Premises or the email addresses listed in Section 1.2. Primary contact for tenant communications: Shelby Elaine Carpenter.</p>
+
+    <h3 class="clause-title">11.5 Governing Law</h3>
+    <p>This Lease shall be governed by the laws of the State of Arkansas. Venue for any dispute shall lie in Carroll County, Arkansas, unless otherwise required by law.</p>
+
+    <h3 class="clause-title">11.6 Severability</h3>
+    <p>If any provision is held invalid, the remaining provisions shall remain in full force and effect.</p>
+
+    <h3 class="clause-title">11.7 Waiver</h3>
+    <p>Landlord's failure to enforce any provision shall not constitute a waiver of that provision or any other provision.</p>
+
+    <h3 class="clause-title">11.8 Force Majeure</h3>
+    <p>Neither party shall be liable for delays caused by events beyond reasonable control, including natural disasters, acts of government, or utility failures not caused by the party.</p>
+
+    <h3 class="clause-title">11.9 Attorney's Fees</h3>
+    <p>In any legal action arising from this Lease, the prevailing party may recover reasonable attorney's fees and costs to the extent permitted by Arkansas law.</p>
+
+    <h3 class="clause-title">11.10 Counterparts &amp; Electronic Signatures</h3>
+    <p>This Lease may be executed in counterparts and by electronic signature, each of which shall be deemed an original.</p>
+
+    <div class="highlight-box avoid-break" style="margin-top: 20px;">
+      <strong>ACKNOWLEDGMENT:</strong> By signing below, each Tenant acknowledges that they have read, understand, and agree to all terms of this Lease; that they have received the Lead-Based Paint Disclosure; that all five (5) tenants are jointly and severally liable; and that the security deposit of $800.00 must be paid before move-in.
+    </div>
+
+    <footer class="page-footer">
+      <div class="initials-block">
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+        <span>Initials<span class="initials-line"></span></span>
+      </div>
+      <span class="page-num" data-page="Page 10"></span>
+    </footer>
+  </div>
+
+  <!-- LEASE SIGNATURE PAGE -->
+  <div class="page">
+    <header class="page-header">
+      <img src="../image/ppm-group-logo.svg" alt="PPM">
+      <div class="page-header-meta"><strong>Residential Lease Agreement</strong> · Signature Page</div>
+    </header>
+
+    <h1 class="doc-title">Signature Page</h1>
+    <p class="doc-subtitle">608 Apple St, Green Forest, AR 72638 · Lease Term: August 1, 2026 – July 31, 2027</p>
+
+    <p>IN WITNESS WHEREOF, the parties have executed this Residential Lease Agreement as of the dates written below.</p>
+
+    <h2 class="section-title">Landlord / Owner Representation</h2>
+    <div class="signature-grid">
+      <div class="sig-block">
+        <div class="sig-line"></div>
+        <div class="sig-label"><strong>Jeff Fuell</strong>, Owner<br>Date: _______________</div>
+      </div>
+      <div class="sig-block">
+        <div class="sig-line"></div>
+        <div class="sig-label"><strong>Katherine Riordan</strong>, Property Manager<br>Private Property Management<br>Date: _______________</div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Tenants — Joint &amp; Several</h2>
+    <div class="signature-grid">
+      <div class="sig-block">
+        <div class="sig-line"></div>
+        <div class="sig-label"><strong>Shelby Elaine Carpenter</strong> · Primary Contact<br>Date: _______________</div>
+      </div>
+      <div class="sig-block">
+        <div class="sig-line"></div>
+        <div class="sig-label"><strong>Jasmine Rose Maxwell</strong><br>Date: _______________</div>
+      </div>
+      <div class="sig-block">
+        <div class="sig-line"></div>
+        <div class="sig-label"><strong>Kyler David Ginn</strong><br>Date: _______________</div>
+      </div>
+      <div class="sig-block">
+        <div class="sig-line"></div>
+        <div class="sig-label"><strong>Gabriel Ryan Griggs</strong><br>Date: _______________</div>
+      </div>
+      <div class="sig-block" style="grid-column: 1;">
+        <div class="sig-line"></div>
+        <div class="sig-label"><strong>Lukkas McLain Flores</strong><br>Date: _______________</div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Lead-Based Paint Disclosure Certification</h2>
+    <p style="font-size:9.5pt;">Tenant certifies receipt of lead-based paint disclosures and the EPA pamphlet. Tenant acknowledges the Premises was built in 1970.</p>
+    <div class="signature-grid" style="margin-top:16px;">
+      <div class="sig-block"><div class="sig-line"></div><div class="sig-label">Tenant Signature</div></div>
+      <div class="sig-block"><div class="sig-line"></div><div class="sig-label">Date</div></div>
+    </div>
+
+    <footer class="page-footer">
+      <span>Lease Agreement · PPM-608-APPLE-2026-001 · All signatures required before move-in</span>
+      <span class="page-num" data-page="Page 11"></span>
+    </footer>
+  </div>
+
+  <!-- ═══════════════════ DOCUMENT 4: HANDBOOK ═══════════════════ -->
+  <div class="page">
+    <header class="page-header">
+      <img src="../image/ppm-group-logo.svg" alt="PPM">
+      <div class="page-header-meta">
+        <strong>Document 4 of 4</strong>
+        Resident Move-In Handbook
+      </div>
+    </header>
+
+    <h1 class="doc-title">Resident Move-In Handbook</h1>
+    <p class="doc-subtitle">608 Apple St, Green Forest, AR 72638 · Effective August 1, 2026</p>
+
+    <p class="lead">Welcome to your new home. This handbook supplements your Lease Agreement and provides practical guidance for a smooth move-in experience. Please read carefully, retain for reference, and sign the acknowledgments on the final page.</p>
+
+    <h2 class="section-title">1. Rent Payment Instructions</h2>
+    <ul class="checklist">
+      <li>Monthly rent: <strong>$1,050.00</strong>, due on the <strong>1st of each month</strong></li>
+      <li>Late fee applies after the 5th day of the month ($50.00 + $10.00/day)</li>
+      <li>Payment methods and account details will be provided by Property Manager Katherine Riordan</li>
+      <li>Contact: <strong>support@property-management.group</strong> · riordankatherine0@gmail.com</li>
+      <li>Always include property address and tenant name(s) with payment</li>
+      <li>Keep confirmation receipts for all payments</li>
+    </ul>
+
+    <div class="highlight-box urgent">
+      <strong>Security Deposit — Due Before Move-In:</strong> $800.00 must be paid and confirmed before keys are released. Contact Katherine Riordan for payment instructions.
+    </div>
+
+    <h2 class="section-title">2. Maintenance Request Procedures</h2>
+    <p><strong>Non-Emergency:</strong> Email support@property-management.group or riordankatherine0@gmail.com with:</p>
+    <ol class="sub-clauses">
+      <li>Property address (608 Apple St)</li>
+      <li>Description of the issue</li>
+      <li>Photos if applicable</li>
+      <li>Best contact phone number</li>
+      <li>Permission to enter (yes/no) and preferred times</li>
+    </ol>
+    <p><strong>Emergency</strong> (gas leak, fire, flooding, no heat in winter, break-in): Call 911 if needed, then contact Property Manager immediately. Owner Jeff Fuell: (315) 272-3641.</p>
+
+    <h2 class="section-title">3. Emergency Contact Information</h2>
+    <table class="data-table avoid-break">
+      <thead><tr><th>Contact</th><th>Role</th><th>Phone / Email</th></tr></thead>
+      <tbody>
+        <tr><td>Katherine Riordan</td><td>Property Manager</td><td>riordankatherine0@gmail.com</td></tr>
+        <tr><td>Private Property Management</td><td>Company Office</td><td>support@property-management.group</td></tr>
+        <tr><td>Jeff Fuell</td><td>Property Owner</td><td>(315) 272-3641</td></tr>
+        <tr><td>Emergency Services</td><td>Police / Fire / Medical</td><td>911</td></tr>
+        <tr><td>Carroll Electric Cooperative</td><td>Electric Utility</td><td>Check bill / local directory</td></tr>
+      </tbody>
+    </table>
+
+    <h2 class="section-title">4. Trash Collection Guidelines</h2>
+    <ul class="checklist">
+      <li>Trash service is included in rent (Water, Trash, Sewer bundle)</li>
+      <li>Place trash in approved containers on scheduled collection day</li>
+      <li>Return containers to storage area after pickup</li>
+      <li>Do not leave loose garbage, furniture, or bulk items at curb without scheduling pickup</li>
+      <li>Recycling: follow local Green Forest guidelines if applicable</li>
+    </ul>
+
+    <footer class="page-footer">
+      <span>Resident Move-In Handbook · Private Property Management</span>
+      <span class="page-num" data-page="Page 12"></span>
+    </footer>
+  </div>
+
+  <!-- HANDBOOK PAGE 2 -->
+  <div class="page">
+    <header class="page-header">
+      <img src="../image/ppm-group-logo.svg" alt="PPM">
+      <div class="page-header-meta"><strong>Resident Move-In Handbook</strong> · 608 Apple St</div>
+    </header>
+
+    <h2 class="section-title">5. Parking Rules</h2>
+    <ul class="checklist">
+      <li>Passenger vehicles may park in the concrete driveway</li>
+      <li>Known tenant vehicles: White 2014 Chevy Malibu (AYH-88K); White Pontiac G6 (AIT-85X); others as registered at move-in</li>
+      <li>No inoperable, unlicensed, or commercial vehicle storage without approval</li>
+      <li>Do not block sidewalk, mailbox, or neighbor access</li>
+      <li>Roommates should coordinate parking assignments in writing among themselves</li>
+    </ul>
+
+    <h2 class="section-title">6. Pet Responsibilities</h2>
+    <p><strong>Approved cats:</strong> Sophie (American Longhair) and Basket (Grey Tabby).</p>
+    <ul class="checklist">
+      <li>Maintain litter boxes in sanitary condition — scoop daily, full change weekly minimum</li>
+      <li>Prevent scratching damage to floors, doors, and cabinets; provide approved scratching posts</li>
+      <li>Keep cats indoors or in enclosed porch areas only — do not allow roaming</li>
+      <li>Ensure cats are current on vaccinations and licensed per local ordinance</li>
+      <li>Notify Property Manager immediately of any pet-related damage or odor complaints</li>
+      <li>No additional pets without written approval</li>
+    </ul>
+
+    <h2 class="section-title">7. Utility Transfer Instructions</h2>
+    <table class="data-table avoid-break">
+      <thead><tr><th>Utility</th><th>Included in Rent?</th><th>Action Required</th></tr></thead>
+      <tbody>
+        <tr><td>Water</td><td>Yes</td><td>No transfer needed — included</td></tr>
+        <tr><td>Sewer</td><td>Yes</td><td>No transfer needed — included</td></tr>
+        <tr><td>Trash</td><td>Yes</td><td>No transfer needed — included</td></tr>
+        <tr><td>Electricity</td><td>No — Tenant pays</td><td>Transfer to tenant name before Aug 1, 2026</td></tr>
+        <tr><td>Natural Gas</td><td>No — Tenant pays</td><td>Transfer to tenant name before Aug 1, 2026</td></tr>
+      </tbody>
+    </table>
+    <p>Provide utility account confirmation numbers to the Property Manager within seven (7) days of move-in.</p>
+
+    <h2 class="section-title">8. Move-In Inspection Checklist</h2>
+    <p>Complete within 48 hours of move-in. Note any existing damage. Photograph all rooms.</p>
+    <table class="data-table">
+      <thead><tr><th>Area</th><th>Condition OK?</th><th>Notes / Photos Taken?</th></tr></thead>
+      <tbody>
+        <tr><td>Living Room / Common Areas</td><td>☐ Yes ☐ No</td><td></td></tr>
+        <tr><td>Kitchen — Counters, Cabinets, Appliances</td><td>☐ Yes ☐ No</td><td></td></tr>
+        <tr><td>Bedroom 1</td><td>☐ Yes ☐ No</td><td></td></tr>
+        <tr><td>Bedroom 2</td><td>☐ Yes ☐ No</td><td></td></tr>
+        <tr><td>Bedroom 3</td><td>☐ Yes ☐ No</td><td></td></tr>
+        <tr><td>Bedroom 4</td><td>☐ Yes ☐ No</td><td></td></tr>
+        <tr><td>Bathroom 1</td><td>☐ Yes ☐ No</td><td></td></tr>
+        <tr><td>Bathroom 2</td><td>☐ Yes ☐ No</td><td></td></tr>
+        <tr><td>Laundry Hookups</td><td>☐ Yes ☐ No</td><td></td></tr>
+        <tr><td>Enclosed Porch</td><td>☐ Yes ☐ No</td><td></td></tr>
+        <tr><td>Exterior / Driveway / Backyard Fence</td><td>☐ Yes ☐ No</td><td></td></tr>
+        <tr><td>Smoke Detectors Tested</td><td>☐ Yes ☐ No</td><td></td></tr>
+        <tr><td>Keys Received (qty: ___)</td><td>☐ Yes ☐ No</td><td></td></tr>
+      </tbody>
+    </table>
+
+    <footer class="page-footer">
+      <span>Resident Move-In Handbook · Private Property Management</span>
+      <span class="page-num" data-page="Page 13"></span>
+    </footer>
+  </div>
+
+  <!-- HANDBOOK ACKNOWLEDGMENTS -->
+  <div class="page">
+    <header class="page-header">
+      <img src="../image/ppm-group-logo.svg" alt="PPM">
+      <div class="page-header-meta"><strong>Resident Move-In Handbook</strong> · Acknowledgments</div>
+    </header>
+
+    <h2 class="section-title">9. Resident Acknowledgments</h2>
+    <p>By signing below, each tenant acknowledges receipt of this Resident Move-In Handbook and agrees to comply with all policies herein, which are incorporated into the Lease Agreement.</p>
+
+    <ul class="checklist" style="margin: 20px 0;">
+      <li style="list-style:none; padding-left:0;">☐ I have received and read the complete Resident Onboarding Package</li>
+      <li style="list-style:none; padding-left:0;">☐ I understand rent is $1,050.00/month due on the 1st</li>
+      <li style="list-style:none; padding-left:0;">☐ I understand the $800.00 security deposit is due before move-in</li>
+      <li style="list-style:none; padding-left:0;">☐ I understand water, trash, and sewer are included; electric and gas are my responsibility</li>
+      <li style="list-style:none; padding-left:0;">☐ I understand Sophie and Basket are the only approved pets unless otherwise authorized</li>
+      <li style="list-style:none; padding-left:0;">☐ I understand all five tenants are jointly and severally liable under the lease</li>
+      <li style="list-style:none; padding-left:0;">☐ I will complete the move-in inspection within 48 hours</li>
+    </ul>
+
+    <h2 class="section-title">Tenant Acknowledgment Signatures</h2>
+    <div class="signature-grid">
+      <div class="sig-block">
+        <div class="sig-line"></div>
+        <div class="sig-label"><strong>Shelby Elaine Carpenter</strong><br>Date: _______________</div>
+      </div>
+      <div class="sig-block">
+        <div class="sig-line"></div>
+        <div class="sig-label"><strong>Jasmine Rose Maxwell</strong><br>Date: _______________</div>
+      </div>
+      <div class="sig-block">
+        <div class="sig-line"></div>
+        <div class="sig-label"><strong>Kyler David Ginn</strong><br>Date: _______________</div>
+      </div>
+      <div class="sig-block">
+        <div class="sig-line"></div>
+        <div class="sig-label"><strong>Gabriel Ryan Griggs</strong><br>Date: _______________</div>
+      </div>
+      <div class="sig-block">
+        <div class="sig-line"></div>
+        <div class="sig-label"><strong>Lukkas McLain Flores</strong><br>Date: _______________</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 40px; padding: 20px; background: var(--navy); color: white; border-radius: 4px; text-align: center;">
+      <img src="../image/ppm-group-logo.svg" alt="PPM" style="height:36px; margin-bottom:10px;">
+      <p style="font-size:9pt; opacity:0.9; margin:0;"><strong>Private Property Management</strong> · Property Management Group<br>
+      support@property-management.group · Package Ref: PPM-608-APPLE-2026-001<br>
+      © 2026 Private Property Management. All rights reserved.</p>
+    </div>
+
+    <footer class="page-footer">
+      <span>End of Resident Onboarding Package</span>
+      <span class="page-num" data-page="Page 14"></span>
+    </footer>
+  </div>
+
+</div>
+
+</body>
+</html>
