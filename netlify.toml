@@ -31,6 +31,18 @@
   status = 301
   force = true
 
+[[redirects]]
+  from = "https://www.privatepropmanagement.com/*"
+  to = "https://privatepropmanagement.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.privatepropmanagement.com"
+  to = "https://privatepropmanagement.com/"
+  status = 301
+  force = true
+
 [[headers]]
   for = "/*"
   [headers.values]
@@ -46,6 +58,11 @@
 
 [[headers]]
   for = "/og-private-property-management-v2.png"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/og-private-property-management-v3.jpg"
   [headers.values]
     Cache-Control = "public, max-age=86400"
 
