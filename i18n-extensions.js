@@ -250,11 +250,11 @@
       fr: "Saisissez l’adresse e-mail de paiement indiquée ci-dessus.",
       ar: "أدخل عنوان البريد الإلكتروني للدفع الموضح أعلاه."
     },
-    "Enter the chime tag shown above.": {
-      es: "Ingrese la etiqueta de Chime que se muestra arriba.",
-      zh: "输入上方显示的 Chime 标签。",
-      fr: "Saisissez le tag Chime affiché ci-dessus.",
-      ar: "أدخل وسم Chime المعروض أعلاه."
+    "Enter the chime tag or email address shown above.": {
+      es: "Ingrese la etiqueta de Chime o la dirección de correo electrónico que se muestra arriba.",
+      zh: "输入上方显示的 Chime 标签或邮箱地址。",
+      fr: "Saisissez le tag Chime ou l’adresse e-mail affiché(e) ci-dessus.",
+      ar: "أدخل وسم Chime أو عنوان البريد الإلكتروني المعروض أعلاه."
     },
     "Enter the payment number or email address shown above.": {
       es: "Ingrese el número de pago o la dirección de correo electrónico que se muestra arriba.",
