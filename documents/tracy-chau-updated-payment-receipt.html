@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Updated Payment Receipt — Tracy Chau</title>
+  <style>
+    :root {
+      --navy: #0f2744;
+      --navy-mid: #1e4d8c;
+      --gray-900: #1a2332;
+      --gray-700: #4a5568;
+      --gray-500: #718096;
+      --gray-300: #cbd5e0;
+      --gray-100: #f4f6f9;
+      --gold: #c9a962;
+      --white: #ffffff;
+      --font-serif: Georgia, "Times New Roman", serif;
+      --font-sans: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    @page { size: letter; margin: 0.65in 0.75in; }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 10.5pt;
+      line-height: 1.55;
+      color: var(--gray-900);
+      background: #e8ecf1;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      max-width: 8.5in;
+      min-height: 10in;
+      margin: 0 auto;
+      background: white;
+      padding: 0.55in 0.75in;
+      box-shadow: 0 4px 24px rgba(15, 39, 68, 0.12);
+    }
+
+    @media print {
+      body { background: white; }
+      .page { box-shadow: none; max-width: none; }
+      .no-print { display: none !important; }
+      .avoid-break { break-inside: avoid; }
+    }
+
+    .print-btn {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      background: var(--navy);
+      color: white;
+      border: none;
+      padding: 12px 22px;
+      font-size: 10pt;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      z-index: 10;
+    }
+
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2.5px solid var(--navy);
+      padding-bottom: 10px;
+      margin-bottom: 22px;
+    }
+
+    .page-header img { height: 42px; }
+
+    .page-header-meta {
+      text-align: right;
+      font-size: 8pt;
+      color: var(--gray-500);
+      line-height: 1.4;
+    }
+
+    .page-header-meta strong {
+      display: block;
+      color: var(--navy);
+      font-size: 8.5pt;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h1.doc-title {
+      font-family: var(--font-serif);
+      font-size: 20pt;
+      color: var(--navy);
+      margin-bottom: 6px;
+      font-weight: 400;
+    }
+
+    .doc-subtitle {
+      font-size: 10pt;
+      color: var(--gray-500);
+      margin-bottom: 22px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--gray-300);
+    }
+
+    h2.section-title {
+      font-size: 11pt;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 22px 0 10px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid var(--gold);
+      font-weight: 700;
+    }
+
+    .receipt-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      color: white;
+      padding: 20px 24px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+
+    .receipt-banner h2 {
+      font-family: var(--font-serif);
+      font-size: 18pt;
+      font-weight: 400;
+    }
+
+    .receipt-no strong { font-size: 11pt; }
+
+    .paid-stamp {
+      display: inline-block;
+      border: 3px solid #276749;
+      color: #276749;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      padding: 8px 18px;
+      transform: rotate(-4deg);
+      margin-bottom: 16px;
+      font-size: 13pt;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 18px;
+      margin: 14px 0;
+    }
+
+    .info-item label {
+      display: block;
+      font-size: 7.5pt;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      margin-bottom: 2px;
+    }
+
+    .info-item span {
+      display: block;
+      font-size: 10pt;
+      color: var(--gray-900);
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 9.5pt;
+    }
+
+    .data-table th, .data-table td {
+      border: 1px solid var(--gray-300);
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .data-table th {
+      background: var(--navy);
+      color: white;
+      font-size: 8.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .data-table .amount { text-align: right; white-space: nowrap; }
+
+    .badge {
+      display: inline-block;
+      background: var(--navy);
+      color: white;
+      font-size: 7.5pt;
+      padding: 3px 8px;
+      border-radius: 3px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .highlight-box {
+      background: var(--gray-100);
+      border-left: 4px solid var(--navy-mid);
+      padding: 14px 18px;
+      margin: 16px 0;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .highlight-box.success {
+      background: #f0fff4;
+      border-left-color: #276749;
+    }
+
+    .signature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 36px;
+    }
+
+    .sig-line {
+      border-bottom: 1px solid var(--gray-900);
+      height: 28px;
+      margin-bottom: 6px;
+    }
+
+    .sig-label {
+      font-size: 8pt;
+      color: var(--gray-500);
+    }
+
+    .page-footer {
+      margin-top: 40px;
+      padding-top: 8px;
+      border-top: 1px solid var(--gray-300);
+      font-size: 7.5pt;
+      color: var(--gray-500);
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+  <button class="print-btn no-print" type="button" onclick="window.print()">Print / Save as PDF</button>
+
+  <div class="page">
+    <header class="page-header">
+      <img src="../image/ppm-group-logo.svg" alt="Property Management Group">
+      <div class="page-header-meta">
+        <strong>Private Property Management</strong>
+        Updated Payment Receipt<br>
+        Package Ref: PPM-4612-SMOKEY-2026-001
+      </div>
+    </header>
+
+    <h1 class="doc-title">Updated Payment Receipt</h1>
+    <p class="doc-subtitle">Security Deposit Payment Confirmation — 4612 Smokey Quartz Ln, Arlington, TX 76005</p>
+
+    <div class="receipt-banner avoid-break">
+      <div>
+        <h2>Payment Receipt</h2>
+        <p style="opacity:0.85; margin-top:4px; font-size:9pt;">Private Property Management · Property Management Group</p>
+      </div>
+      <div class="receipt-no">
+        Receipt No.<br>
+        <strong>RCPT-4612-20260714-900</strong>
+        <div style="margin-top:8px; font-size:8pt;">Date Issued: July 14, 2026</div>
+      </div>
+    </div>
+
+    <div class="paid-stamp">SECURITY DEPOSIT PAID IN FULL</div>
+
+    <div class="info-grid avoid-break">
+      <div class="info-item"><label>Received From</label><span>Tracy Chau</span></div>
+      <div class="info-item"><label>Application ID</label><span>APP-20260710-918341</span></div>
+      <div class="info-item"><label>Final Deposit Payment Date</label><span>July 14, 2026</span></div>
+      <div class="info-item"><label>Payment Method</label><span>Chime Transfer</span></div>
+      <div class="info-item"><label>Property Reference</label><span>4612 Smokey Quartz Ln, Arlington, TX 76005</span></div>
+      <div class="info-item"><label>Property Owner</label><span>Katherine Riordan · (315) 272-3641</span></div>
+      <div class="info-item"><label>Package Reference</label><span>PPM-4612-SMOKEY-2026-001</span></div>
+      <div class="info-item"><label>Processed By</label><span>Chrisanto Danao, Property Manager</span></div>
+    </div>
+
+    <h2 class="section-title">Complete Payment History</h2>
+    <table class="data-table avoid-break">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Reference</th>
+          <th class="amount">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>July 10, 2026</td>
+          <td>Non-Refundable Application Fee</td>
+          <td>RCPT-4612-20260710-075</td>
+          <td class="amount">$75.00</td>
+        </tr>
+        <tr>
+          <td>July 10, 2026</td>
+          <td>Security Deposit — Initial Payment</td>
+          <td>PPM-4612-SMOKEY-2026-001</td>
+          <td class="amount">$400.00</td>
+        </tr>
+        <tr>
+          <td>July 14, 2026</td>
+          <td>Security Deposit — Final Balance</td>
+          <td>RCPT-4612-20260714-900</td>
+          <td class="amount">$500.00</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" style="text-align:right; font-weight:700; padding:12px 10px; background:var(--gray-100); border-top:2px solid var(--navy);">Total Application Fee Paid</td>
+          <td class="amount" style="font-weight:700; padding:12px 10px; background:var(--gray-100); border-top:2px solid var(--navy);">$75.00</td>
+        </tr>
+        <tr>
+          <td colspan="3" style="text-align:right; font-weight:700; padding:12px 10px; background:var(--gray-100);">Total Security Deposit Paid</td>
+          <td class="amount" style="font-size:12pt; font-weight:700; padding:12px 10px; background:var(--gray-100);">$900.00</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <h2 class="section-title">Account Status</h2>
+    <table class="data-table avoid-break">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Status</th>
+          <th class="amount">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Application Fee</td>
+          <td><span class="badge" style="background:#276749;">PAID IN FULL</span></td>
+          <td class="amount">$75.00</td>
+        </tr>
+        <tr>
+          <td>Security Deposit</td>
+          <td><span class="badge" style="background:#276749;">PAID IN FULL</span></td>
+          <td class="amount">$900.00</td>
+        </tr>
+        <tr>
+          <td>First Month's Rent (September 2026)</td>
+          <td><span class="badge" style="background:var(--gray-500);">Due September 4, 2026</span></td>
+          <td class="amount">$1,200.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="highlight-box success avoid-break">
+      <strong>Payment Confirmation:</strong> This updated receipt confirms that Tracy Chau has paid the full security deposit of <strong>$900.00</strong> for 4612 Smokey Quartz Ln, Arlington, TX 76005. The initial deposit payment of $400.00 and the final balance of $500.00 have both been received and applied. Your move-in date remains scheduled for <strong>September 4, 2026</strong>, subject to execution of the lease agreement and satisfaction of all remaining approval conditions.
+    </div>
+
+    <div class="highlight-box avoid-break">
+      <strong>Reminder:</strong> First month's rent of <strong>$1,200.00</strong> is due on or before September 4, 2026. Please contact <strong>support@property-management.group</strong> with any questions regarding move-in scheduling or lease signing.
+    </div>
+
+    <div class="signature-grid avoid-break">
+      <div>
+        <div class="sig-line"></div>
+        <div class="sig-label">Authorized Signature — Private Property Management</div>
+      </div>
+      <div>
+        <div class="sig-line"></div>
+        <div class="sig-label">Date — July 14, 2026</div>
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      <span>Private Property Management · support@property-management.group</span>
+      <span>Receipt RCPT-4612-20260714-900</span>
+    </footer>
+  </div>
+</body>
+</html>
