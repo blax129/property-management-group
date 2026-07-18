@@ -467,7 +467,7 @@
         <div class="field-group">
           <h2>Management</h2>
           <label for="managerName">Property manager</label>
-          <input id="managerName" name="managerName" value="Chrisanto Danao">
+          <input id="managerName" name="managerName" value="Larry Artherton">
           <label for="managerEmail">Manager email</label>
           <input id="managerEmail" name="managerEmail" value="">
           <label for="companyEmail">Company email</label>
@@ -848,13 +848,60 @@
           '',
           'Why this is required now: This is a move-in-ready townhome in the high-demand Viridian community. The owner requires the full security deposit before lease execution and before we can stop marketing the unit or release keys. Comparable homes at this price point receive multiple inquiries daily; we cannot hold your approved placement without this payment.',
           '',
-          'Contact Chrisanto Danao at support@property-management.group for payment instructions.',
+          'Contact Larry Artherton at support@property-management.group for payment instructions.',
           '',
           'First month\'s rent of $1,200.00 is due on or before September 4, 2026, unless otherwise agreed in writing.'
         ].join('\n'),
-        managerName: 'Chrisanto Danao',
+        managerName: 'Larry Artherton',
         managerEmail: '',
         companyEmail: 'support@property-management.group'
+      };
+
+      const MADILYN_BROWN_PREFILL = {
+        packageDate: '2026-07-18',
+        packageRef: 'PPM-45-DAVIS-2026-001',
+        receiptNo: 'RCPT-45-DAVIS-20260711-075',
+        primaryName: 'Madilyn Brown',
+        primaryAddress: '12207 Big Hill Rd\nShawneetown, IL',
+        primaryEmail: 'brownmadilyn1@gmail.com',
+        primaryAppId: 'APP-20260711-914938',
+        additionalTenants: 'Maddi Kain',
+        propertyAddress: '45 Davis Ridge Rd',
+        propertyCityState: 'Eldorado, IL 62930',
+        propertyDetails: '3 Beds · 2 Baths · 1,870 sq ft · Single Family · Built 2014 · Detached Garage',
+        propertyOwner: 'John Hallinan',
+        propertyOwnerPhone: '(315) 272-3641',
+        propertyOwnerEmail: '',
+        monthlyRent: '750',
+        securityDeposit: '600',
+        leaseStart: '2026-07-31',
+        leaseEnd: '2027-07-30',
+        utilitiesIncluded: 'Tenant responsible (septic on site)',
+        paymentDate: '2026-07-11',
+        paymentMethod: 'Chime Transfer',
+        applicationFee: '75',
+        depositPaid: '300',
+        depositDueNow: '300',
+        petPolicy: 'Pet-friendly property — approved pets permitted subject to lease terms',
+        customUrgencyNote: [
+          'Application fee received: $75.00. Security deposit received to date: $300.00 of $600.00.',
+          '',
+          'The remaining $300.00 security deposit balance must be submitted and confirmed IMMEDIATELY — within 48 hours of this letter — to finalize your approval and secure your July 31, 2026 move-in date.',
+          '',
+          'Why this is required now: This move-in-ready single-family home in Eldorado requires the full security deposit before we can execute your lease and stop active marketing of the property. Your requested move-in date is approaching quickly, and the owner cannot reserve the home or coordinate move-in until the deposit is paid in full.',
+          '',
+          'Contact Larry Artherton at support@property-management.group for payment instructions.',
+          '',
+          'First month\'s rent of $750.00 is due on or before July 31, 2026, unless otherwise agreed in writing.'
+        ].join('\n'),
+        managerName: 'Larry Artherton',
+        managerEmail: '',
+        companyEmail: 'support@property-management.group'
+      };
+
+      const PACKAGE_PREFILLS = {
+        tracy: TRACY_CHAU_PREFILL,
+        madilyn: MADILYN_BROWN_PREFILL
       };
 
       const applyPrefill = (values) => {
@@ -892,7 +939,9 @@
         renderDocuments(readForm());
       });
 
-      applyPrefill(TRACY_CHAU_PREFILL);
+      const caseKey = new URLSearchParams(window.location.search).get('case') || 'madilyn';
+      const activePrefill = PACKAGE_PREFILLS[caseKey] || MADILYN_BROWN_PREFILL;
+      applyPrefill(activePrefill);
       renderDocuments(readForm());
     })();
   </script>
