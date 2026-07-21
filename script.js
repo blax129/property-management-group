@@ -3343,8 +3343,8 @@
   const FORMSPREE_APPLICATION_ENDPOINT = "https://formspree.io/f/xbdnkprv";
   const APPLICATION_NOTIFICATION_EMAIL = "support@privatepropmanagement.com";
   const EMAILJS_PUBLIC_KEY = "qgu2V41l8Rp9A3ejZ";
-  const EMAILJS_CONFIRMATION_SERVICE = "service_931i15m";
-  const EMAILJS_CONFIRMATION_TEMPLATE = "template_8uscd9q";
+  const EMAILJS_CONFIRMATION_SERVICE = "service_6f9hfc4";
+  const EMAILJS_CONFIRMATION_TEMPLATE = "template_vqnekgj";
   const EMAILJS_ADMIN_PUBLIC_KEY = "5DMw1roXD7XmNjRqk";
   const EMAILJS_ADMIN_SERVICE = "service_mjphomm";
   const EMAILJS_ADMIN_TEMPLATE = "template_7fluizl";
@@ -3484,7 +3484,7 @@
     }
 
     if (status === 422) {
-      return `EmailJS 422: ${text || "Invalid template or recipient — confirm To Email is {{email}} in template_8uscd9q."}`;
+      return `EmailJS 422: ${text || "Invalid template or recipient — confirm To Email is {{email}} in template_vqnekgj."}`;
     }
 
     return status ? `EmailJS ${status}: ${text}` : text;
