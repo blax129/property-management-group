@@ -252,9 +252,12 @@
           const confirmationParagraph = document.querySelector('.confirmation-card p:nth-of-type(2)');
 
           if (emailStatus.applicant !== 'sent' && confirmationParagraph) {
+            const errorDetail = Array.isArray(emailStatus.errors) && emailStatus.errors.length
+              ? ` (${emailStatus.errors.join(' ')})`
+              : '';
             confirmationParagraph.insertAdjacentHTML(
               'afterend',
-              '<p class="form-status is-error" role="status">We saved your application, but the confirmation email could not be sent automatically. Please contact support@privatepropmanagement.com if you do not receive it soon.</p>'
+              `<p class="form-status is-error" role="status">We saved your application, but the confirmation email could not be sent automatically. Please contact support@privatepropmanagement.com if you do not receive it soon.${errorDetail}</p>`
             );
           }
 

@@ -3418,6 +3418,14 @@
     return (form.dataset.recipientEmail || APPLICATION_NOTIFICATION_EMAIL).trim();
   }
 
+  function resolveConfirmationEmailConfig(form) {
+    return {
+      publicKey: (form?.dataset?.emailjsPublicKey || EMAILJS_PUBLIC_KEY).trim(),
+      service: (form?.dataset?.emailjsService || EMAILJS_CONFIRMATION_SERVICE).trim(),
+      template: (form?.dataset?.emailjsTemplate || EMAILJS_CONFIRMATION_TEMPLATE).trim()
+    };
+  }
+
   function resolveAdminEmailConfig(form) {
     return {
       publicKey: (form?.dataset?.emailjsAdminPublicKey || EMAILJS_ADMIN_PUBLIC_KEY).trim(),
@@ -3613,7 +3621,9 @@
     });
 
     try {
-      const result = await emailjs.send(adminConfig.service, adminConfig.template, templateParams);
+      const result = await emailjs.send(adminConfig.service, adminConfig.template, templateParams, {
+        publicKey: adminConfig.publicKey
+      });
       logEmailJsDebug("Admin notification sent successfully", {
         status: result?.status,
         text: result?.text,
@@ -3679,19 +3689,17 @@
   async function sendApplicationConfirmationEmail(form, applicationId) {
     assertEmailJsCompatibleOrigin();
 
+    const confirmationConfig = resolveConfirmationEmailConfig(form);
+
     logEmailJsDebug("Confirmation send starting", {
       applicationId,
       formId: form.id,
       origin: window.location.origin,
-      serviceId: EMAILJS_CONFIRMATION_SERVICE,
-      templateId: EMAILJS_CONFIRMATION_TEMPLATE
+      serviceId: confirmationConfig.service,
+      templateId: confirmationConfig.template
     });
 
     const emailjs = await prepareEmailJs();
-    emailjs.init({
-      publicKey: EMAILJS_PUBLIC_KEY,
-      blockHeadless: false
-    });
     const applicantEmail = prepareApplicationFormForEmailJs(form, applicationId);
     const templateParams = collectEmailJsTemplateParams(form, applicationId);
 
@@ -3721,9 +3729,12 @@
 
     try {
       const result = await emailjs.send(
-        EMAILJS_CONFIRMATION_SERVICE,
-        EMAILJS_CONFIRMATION_TEMPLATE,
-        templateParams
+        confirmationConfig.service,
+        confirmationConfig.template,
+        templateParams,
+        {
+          publicKey: confirmationConfig.publicKey
+        }
       );
       console.log("[Application] EmailJS send success", {
         status: result?.status,
@@ -3951,6 +3962,25 @@
 
     let adminEmailStatus = "skipped";
     const adminEmailErrors = [];
+    let applicantEmailStatus = "failed";
+    const applicantEmailErrors = [];
+
+    if (statusMessage) {
+      statusMessage.textContent = translateText("Sending confirmation email...", currentLanguage());
+    }
+
+    try {
+      await withServiceTimeout(
+        sendApplicationConfirmationEmail(form, applicationId),
+        45000,
+        "EmailJS notification timed out."
+      );
+      applicantEmailStatus = "sent";
+      console.log("[Application] EmailJS confirmation email completed");
+    } catch (error) {
+      applicantEmailErrors.push(formatEmailJsError(error));
+      logEmailJsError("Confirmation email failed (application will continue)", error);
+    }
 
     try {
       await withServiceTimeout(
@@ -3966,27 +3996,10 @@
       logEmailJsError("Admin notification failed (application will continue)", error);
     }
 
-    if (statusMessage) {
-      statusMessage.textContent = translateText("Sending confirmation email...", currentLanguage());
-    }
-
-    let applicantEmailStatus = "failed";
-    try {
-      await withServiceTimeout(
-        sendApplicationConfirmationEmail(form, applicationId),
-        45000,
-        "EmailJS notification timed out."
-      );
-      applicantEmailStatus = "sent";
-      console.log("[Application] EmailJS confirmation email completed");
-    } catch (error) {
-      logEmailJsError("Confirmation email failed (application will continue)", error);
-    }
-
     recordApplicationEmailStatus({
       applicant: applicantEmailStatus,
       admin: adminEmailStatus,
-      errors: adminEmailErrors
+      errors: [...adminEmailErrors, ...applicantEmailErrors]
     });
 
     if (statusMessage) {
