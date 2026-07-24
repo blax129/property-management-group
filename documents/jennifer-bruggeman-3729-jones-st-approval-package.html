@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Approval Package — Jennifer Jo Bruggeman | 3729 Jones St</title>
+  <style>
+    :root {
+      --navy: #0f2744;
+      --navy-mid: #1e4d8c;
+      --gray-900: #1a2332;
+      --gray-700: #4a5568;
+      --gray-500: #718096;
+      --gray-300: #cbd5e0;
+      --gray-100: #f4f6f9;
+      --gold: #c9a962;
+      --font-serif: Georgia, "Times New Roman", serif;
+      --font-sans: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    @page { size: letter; margin: 0.65in 0.75in 0.85in 0.75in; }
+    body {
+      font-family: var(--font-sans);
+      font-size: 10.5pt;
+      line-height: 1.55;
+      color: var(--gray-900);
+      background: #e8ecf1;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .package { max-width: 8.5in; margin: 0 auto; background: white; }
+    @media print {
+      body { background: white; }
+      .no-print { display: none !important; }
+      .package { max-width: none; }
+      .page { page-break-after: always; }
+      .page:last-child { page-break-after: auto; }
+      .avoid-break { break-inside: avoid; }
+    }
+    .print-btn {
+      position: fixed; top: 16px; right: 16px; z-index: 10;
+      background: var(--navy); color: white; border: none;
+      padding: 12px 22px; font-size: 10pt; border-radius: 6px;
+      cursor: pointer; font-weight: 600;
+    }
+    .page {
+      position: relative; min-height: 10in;
+      padding: 0.55in 0.75in 0.9in;
+    }
+    .page-header {
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 2.5px solid var(--navy); padding-bottom: 10px; margin-bottom: 22px;
+    }
+    .page-header img { height: 42px; }
+    .page-header-meta { text-align: right; font-size: 8pt; color: var(--gray-500); line-height: 1.4; }
+    .page-header-meta strong {
+      display: block; color: var(--navy); font-size: 8.5pt;
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .page-footer {
+      position: absolute; bottom: 0.35in; left: 0.75in; right: 0.75in;
+      display: flex; justify-content: space-between;
+      border-top: 1px solid var(--gray-300); padding-top: 8px;
+      font-size: 7.5pt; color: var(--gray-500);
+    }
+    h1.doc-title {
+      font-family: var(--font-serif); font-size: 20pt; color: var(--navy);
+      margin-bottom: 6px; font-weight: 400;
+    }
+    .doc-subtitle {
+      font-size: 10pt; color: var(--gray-500); margin-bottom: 22px;
+      padding-bottom: 14px; border-bottom: 1px solid var(--gray-300);
+    }
+    h2.section-title {
+      font-size: 11pt; color: var(--navy); text-transform: uppercase;
+      letter-spacing: 0.08em; margin: 22px 0 10px; padding-bottom: 5px;
+      border-bottom: 2px solid var(--gold); font-weight: 700;
+    }
+    p { margin-bottom: 10px; }
+    .lead { font-size: 11pt; color: var(--gray-700); line-height: 1.65; }
+    .highlight-box {
+      background: var(--gray-100); border-left: 4px solid var(--navy-mid);
+      padding: 14px 18px; margin: 16px 0; border-radius: 0 4px 4px 0;
+    }
+    .highlight-box.urgent { background: #fef9ee; border-left-color: var(--gold); }
+    .info-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 10px 18px; margin: 14px 0;
+    }
+    .info-item label {
+      display: block; font-size: 7.5pt; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--gray-500); margin-bottom: 2px;
+    }
+    .info-item span { display: block; font-size: 10pt; color: var(--gray-900); }
+    .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 9.5pt; }
+    .data-table th, .data-table td { border: 1px solid var(--gray-300); padding: 8px 10px; text-align: left; }
+    .data-table th {
+      background: var(--navy); color: white; font-size: 8.5pt;
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .data-table .amount { text-align: right; white-space: nowrap; }
+    .badge {
+      display: inline-block; background: var(--navy); color: white;
+      font-size: 7.5pt; padding: 3px 8px; border-radius: 3px;
+      letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600;
+    }
+    .receipt-banner {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      color: white; padding: 20px 24px; border-radius: 6px; margin-bottom: 20px;
+    }
+    .receipt-banner h2 { font-family: var(--font-serif); font-size: 18pt; font-weight: 400; }
+    .receipt-no strong { font-size: 11pt; }
+    .paid-stamp {
+      display: inline-block; border: 3px solid #276749; color: #276749;
+      font-weight: 800; letter-spacing: 0.12em; padding: 8px 18px;
+      transform: rotate(-4deg); margin-bottom: 16px; font-size: 13pt;
+    }
+    .clauses { margin: 10px 0 10px 20px; }
+    .clauses li { margin-bottom: 8px; }
+    .signature-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 36px;
+    }
+    .sig-line { border-bottom: 1px solid var(--gray-900); height: 28px; margin-bottom: 6px; }
+    .sig-label { font-size: 8pt; color: var(--gray-500); }
+    .cover {
+      min-height: 10in; display: flex; flex-direction: column;
+      background: linear-gradient(165deg, var(--navy) 0%, #07111f 55%, var(--navy-mid) 100%);
+      color: white; padding: 0.85in 0.9in;
+    }
+    .cover-top { display: flex; align-items: center; gap: 16px; }
+    .cover-top img { height: 64px; width: auto; }
+    .cover-brand { font-size: 11pt; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; }
+    .cover-brand span { display: block; font-size: 8.5pt; letter-spacing: 0.18em; opacity: 0.65; margin-top: 2px; }
+    .cover-main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 40px 0; }
+    .cover-label { font-size: 9pt; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; font-weight: 600; }
+    .cover-title { font-family: var(--font-serif); font-size: 28pt; line-height: 1.15; margin-bottom: 18px; }
+    .cover-subtitle { font-size: 12pt; opacity: 0.88; max-width: 5.5in; line-height: 1.5; }
+    .cover-property {
+      margin-top: 28px; padding: 20px 24px;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(201,169,98,0.25); border-radius: 6px;
+    }
+    .cover-property h2 { font-size: 9pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .cover-bottom {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+      padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.15);
+      font-size: 9pt; opacity: 0.85;
+    }
+    .cover-bottom dt { font-size: 7.5pt; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.65; margin-bottom: 3px; }
+    .cover-bottom dd { margin: 0 0 12px; font-size: 9.5pt; }
+  </style>
+</head>
+<body>
+  <button class="print-btn no-print" type="button" onclick="window.print()">Print / Save as PDF</button>
+
+  <div class="package">
+    <section class="cover page">
+      <div class="cover-top">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJQcm9wZXJ0eSBNYW5hZ2VtZW50IEdyb3VwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0icHBtLWJnIiB4MT0iMzIiIHkxPSI0IiB4Mj0iMzIiIHkyPSI2MCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMxZTRkOGMiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIwLjUiIHN0b3AtY29sb3I9IiMwZjI3NDQiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDcxMTFmIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJwcG0tZ29sZCIgeDE9IjMyIiB5MT0iMTAiIHgyPSIzMiIgeTI9IjI4IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2YwZTJjMCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjAuNSIgc3RvcC1jb2xvcj0iI2M5YTk2MiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM3YTYyMzUiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9InBwbS1tYXJrIiB4MT0iMzIiIHkxPSIyNCIgeDI9IjMyIiB5Mj0iNTAiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmZmZmZmIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2M4ZDRlNCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxmaWx0ZXIgaWQ9InBwbS1nbG93IiB4PSItMzAlIiB5PSItMzAlIiB3aWR0aD0iMTYwJSIgaGVpZ2h0PSIxNjAlIj4KICAgICAgPGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjEiIHN0ZERldmlhdGlvbj0iMS4yIiBmbG9vZC1jb2xvcj0iIzAwMCIgZmxvb2Qtb3BhY2l0eT0iMC4zNSIvPgogICAgPC9maWx0ZXI+CiAgPC9kZWZzPgoKICA8cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iNTgiIGhlaWdodD0iNTgiIHJ4PSIxNSIgZmlsbD0idXJsKCNwcG0tYmcpIi8+CiAgPHJlY3QgeD0iNC41IiB5PSI0LjUiIHdpZHRoPSI1NSIgaGVpZ2h0PSI1NSIgcng9IjEzLjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M5YTk2MiIgc3Ryb2tlLW9wYWNpdHk9IjAuMTgiIHN0cm9rZS13aWR0aD0iMC44Ii8+CgogIDwhLS0gUm9vZiBjcm93biAtLT4KICA8cGF0aCBkPSJNMzIgMTEgNDggMjQuNUgxNloiIGZpbGw9InVybCgjcHBtLWdvbGQpIiBmaWx0ZXI9InVybCgjcHBtLWdsb3cpIi8+CiAgPHBhdGggZD0iTTMyIDExIDQ4IDI0LjVIMTZaIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmY4ZWEiIHN0cm9rZS1vcGFjaXR5PSIwLjI1IiBzdHJva2Utd2lkdGg9IjAuMzUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KCiAgPCEtLSBCdWlsZGluZyBmYWNhZGUgY29sdW1ucyAtLT4KICA8ZyBmaWxsPSJ1cmwoI3BwbS1tYXJrKSIgZmlsdGVyPSJ1cmwoI3BwbS1nbG93KSI+CiAgICA8cmVjdCB4PSIxNyIgeT0iMjciIHdpZHRoPSI0LjIiIGhlaWdodD0iMTYuNSIgcng9IjAuNiIvPgogICAgPHJlY3QgeD0iMjUuOSIgeT0iMjciIHdpZHRoPSI0LjIiIGhlaWdodD0iMTYuNSIgcng9IjAuNiIvPgogICAgPHJlY3QgeD0iMzQuOCIgeT0iMjciIHdpZHRoPSI0LjIiIGhlaWdodD0iMTYuNSIgcng9IjAuNiIvPgogICAgPHJlY3QgeD0iNDIuOCIgeT0iMjciIHdpZHRoPSI0LjIiIGhlaWdodD0iMTYuNSIgcng9IjAuNiIvPgogICAgPHBhdGggZD0iTTE1LjUgMjdoMzN2Mi44SDE1LjV6IiBvcGFjaXR5PSIwLjkyIi8+CiAgICA8cGF0aCBkPSJNMTUuNSA0My41aDMzdjIuMkgxNS41eiIgb3BhY2l0eT0iMC44NSIvPgogIDwvZz4KCiAgPCEtLSBDZW50ZXIgbW9ub2dyYW0gLS0+CiAgPHRleHQKICAgIHg9IjMyIgogICAgeT0iNDAuOCIKICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICBmb250LWZhbWlseT0iR2VvcmdpYSwgJ1RpbWVzIE5ldyBSb21hbicsIFRpbWVzLCBzZXJpZiIKICAgIGZvbnQtc2l6ZT0iMTAuOCIKICAgIGZvbnQtd2VpZ2h0PSI3MDAiCiAgICBmaWxsPSIjMDcxMTFmIgogICAgc3Ryb2tlPSIjZmZmZmZmIgogICAgc3Ryb2tlLXdpZHRoPSIwLjU1IgogICAgcGFpbnQtb3JkZXI9InN0cm9rZSBmaWxsIgogICAgbGV0dGVyLXNwYWNpbmc9IjAuMiIKICAgIGZpbHRlcj0idXJsKCNwcG0tZ2xvdykiCiAgPlBQTTwvdGV4dD4KCiAgPHBhdGggZD0iTTE4IDQ4LjVoMjgiIHN0cm9rZT0idXJsKCNwcG0tZ29sZCkiIHN0cm9rZS13aWR0aD0iMC45IiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNyIvPgo8L3N2Zz4K" alt="Private Property Management">
+        <div class="cover-brand">
+          Private Property Management
+          <span>Property Management Group</span>
+        </div>
+      </div>
+      <div class="cover-main">
+        <div class="cover-label">Official Approval Package</div>
+        <h1 class="cover-title">Approval Letter, Payment Receipt<br>&amp; Lease Agreement</h1>
+        <p class="cover-subtitle">Prepared for approved applicant. Contains conditional approval letter, application fee payment receipt, and residential lease agreement.</p>
+        <div class="cover-property">
+          <h2>Subject Property</h2>
+          <p><strong>3729 Jones St</strong><br>Sioux City, IA 51104<br>2 Beds · 2 Baths · 1,566 sq ft · Single Family · Built 1952 · Moderately Furnished · Pet-Friendly</p>
+        </div>
+      </div>
+      <dl class="cover-bottom">
+        <div>
+          <dt>Primary Contact / Applicant</dt><dd>Jennifer Jo Bruggeman</dd>
+          <dt>Approved Tenants (1)</dt><dd>Jennifer Jo Bruggeman</dd>
+          <dt>Lease Commencement</dt><dd>August 15, 2026</dd>
+        </div>
+        <div>
+          <dt>Property Owner</dt><dd>Rebel Walker Voss</dd>
+          <dt>Property Manager</dt><dd>Larry Artherton</dd>
+          <dt>Package Date</dt><dd>July 22, 2026</dd>
+          <dt>Reference No.</dt><dd>PPM-3729-JONES-2026-001</dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- Document 1: Approval Letter -->
+    <div class="page">
+      <header class="page-header">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJQcm9wZXJ0eSBNYW5hZ2VtZW50IEdyb3VwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0icHBtLWJnIiB4MT0iMzIiIHkxPSI0IiB4Mj0iMzIiIHkyPSI2MCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMxZTRkOGMiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIwLjUiIHN0b3AtY29sb3I9IiMwZjI3NDQiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDcxMTFmIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJwcG0tZ29sZCIgeDE9IjMyIiB5MT0iMTAiIHgyPSIzMiIgeTI9IjI4IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2YwZTJjMCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjAuNSIgc3RvcC1jb2xvcj0iI2M5YTk2MiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM3YTYyMzUiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9InBwbS1tYXJrIiB4MT0iMzIiIHkxPSIyNCIgeDI9IjMyIiB5Mj0iNTAiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmZmZmZmIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2M4ZDRlNCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxmaWx0ZXIgaWQ9InBwbS1nbG93IiB4PSItMzAlIiB5PSItMzAlIiB3aWR0aD0iMTYwJSIgaGVpZ2h0PSIxNjAlIj4KICAgICAgPGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjEiIHN0ZERldmlhdGlvbj0iMS4yIiBmbG9vZC1jb2xvcj0iIzAwMCIgZmxvb2Qtb3BhY2l0eT0iMC4zNSIvPgogICAgPC9maWx0ZXI+CiAgPC9kZWZzPgoKICA8cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iNTgiIGhlaWdodD0iNTgiIHJ4PSIxNSIgZmlsbD0idXJsKCNwcG0tYmcpIi8+CiAgPHJlY3QgeD0iNC41IiB5PSI0LjUiIHdpZHRoPSI1NSIgaGVpZ2h0PSI1NSIgcng9IjEzLjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M5YTk2MiIgc3Ryb2tlLW9wYWNpdHk9IjAuMTgiIHN0cm9rZS13aWR0aD0iMC44Ii8+CgogIDwhLS0gUm9vZiBjcm93biAtLT4KICA8cGF0aCBkPSJNMzIgMTEgNDggMjQuNUgxNloiIGZpbGw9InVybCgjcHBtLWdvbGQpIiBmaWx0ZXI9InVybCgjcHBtLWdsb3cpIi8+CiAgPHBhdGggZD0iTTMyIDExIDQ4IDI0LjVIMTZaIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmY4ZWEiIHN0cm9rZS1vcGFjaXR5PSIwLjI1IiBzdHJva2Utd2lkdGg9IjAuMzUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KCiAgPCEtLSBCdWlsZGluZyBmYWNhZGUgY29sdW1ucyAtLT4KICA8ZyBmaWxsPSJ1cmwoI3BwbS1tYXJrKSIgZmlsdGVyPSJ1cmwoI3BwbS1nbG93KSI+CiAgICA8cmVjdCB4PSIxNyIgeT0iMjciIHdpZHRoPSI0LjIiIGhlaWdodD0iMTYuNSIgcng9IjAuNiIvPgogICAgPHJlY3QgeD0iMjUuOSIgeT0iMjciIHdpZHRoPSI0LjIiIGhlaWdodD0iMTYuNSIgcng9IjAuNiIvPgogICAgPHJlY3QgeD0iMzQuOCIgeT0iMjciIHdpZHRoPSI0LjIiIGhlaWdodD0iMTYuNSIgcng9IjAuNiIvPgogICAgPHJlY3QgeD0iNDIuOCIgeT0iMjciIHdpZHRoPSI0LjIiIGhlaWdodD0iMTYuNSIgcng9IjAuNiIvPgogICAgPHBhdGggZD0iTTE1LjUgMjdoMzN2Mi44SDE1LjV6IiBvcGFjaXR5PSIwLjkyIi8+CiAgICA8cGF0aCBkPSJNMTUuNSA0My41aDMzdjIuMkgxNS41eiIgb3BhY2l0eT0iMC44NSIvPgogIDwvZz4KCiAgPCEtLSBDZW50ZXIgbW9ub2dyYW0gLS0+CiAgPHRleHQKICAgIHg9IjMyIgogICAgeT0iNDAuOCIKICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICBmb250LWZhbWlseT0iR2VvcmdpYSwgJ1RpbWVzIE5ldyBSb21hbicsIFRpbWVzLCBzZXJpZiIKICAgIGZvbnQtc2l6ZT0iMTAuOCIKICAgIGZvbnQtd2VpZ2h0PSI3MDAiCiAgICBmaWxsPSIjMDcxMTFmIgogICAgc3Ryb2tlPSIjZmZmZmZmIgogICAgc3Ryb2tlLXdpZHRoPSIwLjU1IgogICAgcGFpbnQtb3JkZXI9InN0cm9rZSBmaWxsIgogICAgbGV0dGVyLXNwYWNpbmc9IjAuMiIKICAgIGZpbHRlcj0idXJsKCNwcG0tZ2xvdykiCiAgPlBQTTwvdGV4dD4KCiAgPHBhdGggZD0iTTE4IDQ4LjVoMjgiIHN0cm9rZT0idXJsKCNwcG0tZ29sZCkiIHN0cm9rZS13aWR0aD0iMC45IiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNyIvPgo8L3N2Zz4K" alt="PPM">
+        <div class="page-header-meta">
+          <strong>Document 1 of 3</strong>
+          3729 Jones St, Sioux City, IA 51104
+        </div>
+      </header>
+
+      <h1 class="doc-title">Conditional Approval Letter</h1>
+      <p class="doc-subtitle">Rental Application Approval — 3729 Jones St, Sioux City, IA 51104</p>
+      <p><strong>Date:</strong> July 22, 2026 &nbsp;&nbsp;|&nbsp;&nbsp; <strong>Reference:</strong> PPM-3729-JONES-2026-001</p>
+      <p><strong>Jennifer Jo Bruggeman</strong><br>3800 Glen Oaks Blvd, Apt 142<br>Sioux City, IA</p>
+
+      <p class="lead" style="margin-top: 22px;">Dear Jennifer,</p>
+      <p class="lead">On behalf of <strong>Private Property Management</strong> (Property Management Group), we are pleased to inform you that your rental application for the property located at <strong>3729 Jones St, Sioux City, IA 51104</strong> has been <strong>conditionally approved</strong>, subject to the terms outlined in this letter and the enclosed Residential Lease Agreement.</p>
+
+      <table class="data-table avoid-break">
+        <thead><tr><th>#</th><th>Full Legal Name</th><th>Application ID</th><th>Email</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><strong>Jennifer Jo Bruggeman</strong> <span class="badge">Primary Contact</span></td>
+            <td>APP-20260720-199539</td>
+            <td>jenniferbruggeman31@gmail.com</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 class="section-title">Approved Lease Terms</h2>
+      <div class="info-grid avoid-break">
+        <div class="info-item"><label>Property Address</label><span>3729 Jones St, Sioux City, IA 51104</span></div>
+        <div class="info-item"><label>Property Details</label><span>2 Beds · 2 Baths · 1,566 sq ft · Single Family · Built 1952 · Forced Air / Central Air · Attached Garage · Deck · Vinyl Siding · Shingle Roof · Moderately Furnished</span></div>
+        <div class="info-item"><label>Monthly Rent</label><span>$900.00 per month</span></div>
+        <div class="info-item"><label>Security Deposit</label><span>$700.00</span></div>
+        <div class="info-item"><label>Lease Term</label><span>August 15, 2026 through August 14, 2027</span></div>
+        <div class="info-item"><label>Utilities</label><span>City water · Public sewer · Tenant responsible for remaining utilities</span></div>
+        <div class="info-item"><label>Property Owner</label><span>Rebel Walker Voss · (315) 272-3641</span></div>
+        <div class="info-item"><label>Property Manager</label><span>Larry Artherton · (859) 324-4736</span></div>
+      </div>
+
+      <h2 class="section-title">Conditions of Approval</h2>
+      <ol class="clauses">
+        <li><strong>Execution of Lease:</strong> Tenant must sign the enclosed Residential Lease Agreement.</li>
+        <li><strong>Security Deposit:</strong> Payment of the full security deposit of <strong>$700.00</strong> in accordance with the payment schedule outlined below.</li>
+        <li><strong>Proof of Insurance:</strong> Renter's insurance may be required within fourteen (14) days of move-in.</li>
+        <li><strong>Utility Transfer:</strong> Applicable utilities must be transferred into tenant name prior to move-in.</li>
+        <li><strong>Approved Pet:</strong> Hazel — 4-year-old female orange cat (approved; pet-friendly property). Tenant must comply with lease pet rules.</li>
+      </ol>
+
+      <div class="highlight-box urgent avoid-break">
+        <strong>▸ NEXT STEP — SECURITY DEPOSIT PAYMENT REQUIRED</strong><br><br>
+        Application fee received: <strong>$75.00</strong>. Security deposit received to date: <strong>$300.00</strong> of <strong>$700.00</strong>.<br><br>
+        The remaining <strong>$400.00</strong> security deposit balance must be submitted and confirmed <strong>IMMEDIATELY</strong> — within 48 hours of this letter — to finalize your approval and secure your <strong>August 15, 2026</strong> move-in date.<br><br>
+        <strong>Why this is required now:</strong> This moderately furnished, move-in-ready home in Sioux City continues to receive active rental inquiries. The owner requires this deposit payment now so we can execute your lease, take the property off the market, and begin coordinating your move-in schedule. We cannot reserve your approved placement or prepare the home for occupancy without this payment.<br><br>
+        Contact <strong>Larry Artherton</strong> at <strong>support@privatepropmanagement.com</strong> or <strong>(859) 324-4736</strong> for payment instructions.<br><br>
+        <em>First month's rent of $900.00 is due on or before August 15, 2026, unless otherwise agreed in writing.</em>
+      </div>
+
+      <p>We congratulate you on your approval and look forward to welcoming you to your new home.</p>
+      <p style="margin-top: 24px;">Sincerely,</p>
+      <p><strong>Larry Artherton</strong><br>Property Manager<br>Private Property Management</p>
+
+      <footer class="page-footer">
+        <span>support@privatepropmanagement.com</span>
+        <span>Page 2</span>
+      </footer>
+    </div>
+
+    <!-- Document 2: Payment Receipt -->
+    <div class="page">
+      <header class="page-header">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJQcm9wZXJ0eSBNYW5hZ2VtZW50IEdyb3VwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0icHBtLWJnIiB4MT0iMzIiIHkxPSI0IiB4Mj0iMzIiIHkyPSI2MCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMxZTRkOGMiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIwLjUiIHN0b3AtY29sb3I9IiMwZjI3NDQiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDcxMTFmIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJwcG0tZ29sZCIgeDE9IjMyIiB5MT0iMTAiIHgyPSIzMiIgeTI9IjI4IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2YwZTJjMCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjAuNSIgc3RvcC1jb2xvcj0iI2M5YTk2MiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM3YTYyMzUiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9InBwbS1tYXJrIiB4MT0iMzIiIHkxPSIyNCIgeDI9IjMyIiB5Mj0iNTAiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmZmZmZmIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2M4ZDRlNCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxmaWx0ZXIgaWQ9InBwbS1nbG93IiB4PSItMzAlIiB5PSItMzAlIiB3aWR0aD0iMTYwJSIgaGVpZ2h0PSIxNjAlIj4KICAgICAgPGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjEiIHN0ZERldmlhdGlvbj0iMS4yIiBmbG9vZC1jb2xvcj0iIzAwMCIgZmxvb2Qtb3BhY2l0eT0iMC4zNSIvPgogICAgPC9maWx0ZXI+CiAgPC9kZWZzPgoKICA8cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iNTgiIGhlaWdodD0iNTgiIHJ4PSIxNSIgZmlsbD0idXJsKCNwcG0tYmcpIi8+CiAgPHJlY3QgeD0iNC41IiB5PSI0LjUiIHdpZHRoPSI1NSIgaGVpZ2h0PSI1NSIgcng9IjEzLjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M5YTk2MiIgc3Ryb2tlLW9wYWNpdHk9IjAuMTgiIHN0cm9rZS13aWR0aD0iMC44Ii8+CgogIDwhLS0gUm9vZiBjcm93biAtLT4KICA8cGF0aCBkPSJNMzIgMTEgNDggMjQuNUgxNloiIGZpbGw9InVybCgjcHBtLWdvbGQpIiBmaWx0ZXI9InVybCgjcHBtLWdsb3cpIi8+CiAgPHBhdGggZD0iTTMyIDExIDQ4IDI0LjVIMTZaIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmY4ZWEiIHN0cm9rZS1vcGFjaXR5PSIwLjI1IiBzdHJva2Utd2lkdGg9IjAuMzUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KCiAgPCEtLSBCdWlsZGluZyBmYWNhZGUgY29sdW1ucyAtLT4KICA8ZyBmaWxsPSJ1cmwoI3BwbS1tYXJrKSIgZmlsdGVyPSJ1cmwoI3BwbS1nbG93KSI+CiAgICA8cmVjdCB4PSIxNyIgeT0iMjciIHdpZHRoPSI0LjIiIGhlaWdodD0iMTYuNSIgcng9IjAuNiIvPgogICAgPHJlY3QgeD0iMjUuOSIgeT0iMjciIHdpZHRoPSI0LjIiIGhlaWdodD0iMTYuNSIgcng9IjAuNiIvPgogICAgPHJlY3QgeD0iMzQuOCIgeT0iMjciIHdpZHRoPSI0LjIiIGhlaWdodD0iMTYuNSIgcng9IjAuNiIvPgogICAgPHJlY3QgeD0iNDIuOCIgeT0iMjciIHdpZHRoPSI0LjIiIGhlaWdodD0iMTYuNSIgcng9IjAuNiIvPgogICAgPHBhdGggZD0iTTE1LjUgMjdoMzN2Mi44SDE1LjV6IiBvcGFjaXR5PSIwLjkyIi8+CiAgICA8cGF0aCBkPSJNMTUuNSA0My41aDMzdjIuMkgxNS41eiIgb3BhY2l0eT0iMC44NSIvPgogIDwvZz4KCiAgPCEtLSBDZW50ZXIgbW9ub2dyYW0gLS0+CiAgPHRleHQKICAgIHg9IjMyIgogICAgeT0iNDAuOCIKICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICBmb250LWZhbWlseT0iR2VvcmdpYSwgJ1RpbWVzIE5ldyBSb21hbicsIFRpbWVzLCBzZXJpZiIKICAgIGZvbnQtc2l6ZT0iMTAuOCIKICAgIGZvbnQtd2VpZ2h0PSI3MDAiCiAgICBmaWxsPSIjMDcxMTFmIgogICAgc3Ryb2tlPSIjZmZmZmZmIgogICAgc3Ryb2tlLXdpZHRoPSIwLjU1IgogICAgcGFpbnQtb3JkZXI9InN0cm9rZSBmaWxsIgogICAgbGV0dGVyLXNwYWNpbmc9IjAuMiIKICAgIGZpbHRlcj0idXJsKCNwcG0tZ2xvdykiCiAgPlBQTTwvdGV4dD4KCiAgPHBhdGggZD0iTTE4IDQ4LjVoMjgiIHN0cm9rZT0idXJsKCNwcG0tZ29sZCkiIHN0cm9rZS13aWR0aD0iMC45IiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNyIvPgo8L3N2Zz4K" alt="PPM">
+        <div class="page-header-meta">
+          <strong>Document 2 of 3</strong>
+          3729 Jones St, Sioux City, IA 51104
+        </div>
+      </header>
+
+      <div class="receipt-banner avoid-break">
+        <div>
+          <h2>Payment Receipt</h2>
+          <p style="opacity:0.85; margin-top:4px; font-size:9pt;">Private Property Management · Property Management Group</p>
+        </div>
+        <div class="receipt-no">
+          Receipt No.<br><strong>RCPT-3729-JONES-20260720-075</strong>
+          <div style="margin-top:8px; font-size:8pt;">Date Issued: July 22, 2026</div>
+        </div>
+      </div>
+
+      <div class="paid-stamp">PAID IN FULL</div>
+
+      <div class="info-grid avoid-break">
+        <div class="info-item"><label>Received From</label><span>Jennifer Jo Bruggeman</span></div>
+        <div class="info-item"><label>Payment Date</label><span>July 20, 2026</span></div>
+        <div class="info-item"><label>Payment Method</label><span>Chime Transfer</span></div>
+        <div class="info-item"><label>Property Reference</label><span>3729 Jones St, Sioux City, IA 51104</span></div>
+        <div class="info-item"><label>Application ID</label><span>APP-20260720-199539</span></div>
+        <div class="info-item"><label>Processed By</label><span>Larry Artherton, Property Manager</span></div>
+      </div>
+
+      <h2 class="section-title">Transaction Summary — Application Fees &amp; Deposit</h2>
+      <table class="data-table avoid-break">
+        <thead><tr><th>Description</th><th>Reference</th><th>Qty</th><th class="amount">Unit Price</th><th class="amount">Amount</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Non-Refundable Application Fee</td>
+            <td>Jennifer Jo Bruggeman</td>
+            <td>1</td>
+            <td class="amount">$75.00</td>
+            <td class="amount">$75.00</td>
+          </tr>
+          <tr>
+            <td>Security Deposit — Partial Payment</td>
+            <td>3729 Jones St</td>
+            <td>1</td>
+            <td class="amount">$300.00</td>
+            <td class="amount">$300.00</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4" style="text-align:right; font-weight:700; padding:12px 10px; background:var(--gray-100); border-top:2px solid var(--navy);">Total Paid to Date</td>
+            <td class="amount" style="font-size:12pt; font-weight:700; padding:12px 10px; background:var(--gray-100); border-top:2px solid var(--navy);">$375.00</td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <h2 class="section-title">Outstanding Balances</h2>
+      <table class="data-table avoid-break">
+        <thead><tr><th>Item</th><th>Status</th><th class="amount">Amount Due</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Security Deposit — Remaining Balance</td>
+            <td><span class="badge" style="background:#c53030;">DUE IMMEDIATELY</span></td>
+            <td class="amount">$400.00</td>
+          </tr>
+          <tr>
+            <td>First Month's Rent</td>
+            <td><span class="badge" style="background:var(--gray-500);">Due August 15, 2026</span></td>
+            <td class="amount">$900.00</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="highlight-box avoid-break">
+        <strong>Payment Acknowledgment:</strong> This receipt confirms receipt of the non-refundable application fee and partial security deposit only. This receipt does not constitute a lease agreement or guarantee of occupancy until the remaining deposit balance is paid, the lease is fully executed by all parties, and all conditions of approval are satisfied.
+      </div>
+
+      <div class="signature-grid avoid-break">
+        <div><div class="sig-line"></div><div class="sig-label">Authorized Signature — Private Property Management</div></div>
+        <div><div class="sig-line"></div><div class="sig-label">Date</div></div>
+      </div>
+
+      <footer class="page-footer">
+        <span>support@privatepropmanagement.com</span>
+        <span>Page 3</span>
+      </footer>
+    </div>
+
+    <!-- Document 3: Lease Agreement -->
+    <div class="page">
+      <header class="page-header">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJQcm9wZXJ0eSBNYW5hZ2VtZW50IEdyb3VwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0icHBtLWJnIiB4MT0iMzIiIHkxPSI0IiB4Mj0iMzIiIHkyPSI2MCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMxZTRkOGMiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIwLjUiIHN0b3AtY29sb3I9IiMwZjI3NDQiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDcxMTFmIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJwcG0tZ29sZCIgeDE9IjMyIiB5MT0iMTAiIHgyPSIzMiIgeTI9IjI4IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2YwZTJjMCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjAuNSIgc3RvcC1jb2xvcj0iI2M5YTk2MiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM3YTYyMzUiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9InBwbS1tYXJrIiB4MT0iMzIiIHkxPSIyNCIgeDI9IjMyIiB5Mj0iNTAiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmZmZmZmIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2M4ZDRlNCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxmaWx0ZXIgaWQ9InBwbS1nbG93IiB4PSItMzAlIiB5PSItMzAlIiB3aWR0aD0iMTYwJSIgaGVpZ2h0PSIxNjAlIj4KICAgICAgPGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjEiIHN0ZERldmlhdGlvbj0iMS4yIiBmbG9vZC1jb2xvcj0iIzAwMCIgZmxvb2Qtb3BhY2l0eT0iMC4zNSIvPgogICAgPC9maWx0ZXI+CiAgPC9kZWZzPgoKICA8cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iNTgiIGhlaWdodD0iNTgiIHJ4PSIxNSIgZmlsbD0idXJsKCNwcG0tYmcpIi8+CiAgPHJlY3QgeD0iNC41IiB5PSI0LjUiIHdpZHRoPSI1NSIgaGVpZ2h0PSI1NSIgcng9IjEzLjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M5YTk2MiIgc3Ryb2tlLW9wYWNpdHk9IjAuMTgiIHN0cm9rZS13aWR0aD0iMC44Ii8+CgogIDwhLS0gUm9vZiBjcm93biAtLT4KICA8cGF0aCBkPSJNMzIgMTEgNDggMjQuNUgxNloiIGZpbGw9InVybCgjcHBtLWdvbGQpIiBmaWx0ZXI9InVybCgjcHBtLWdsb3cpIi8+CiAgPHBhdGggZD0iTTMyIDExIDQ4IDI0LjVIMTZaIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmY4ZWEiIHN0cm9rZS1vcGFjaXR5PSIwLjI1IiBzdHJva2Utd2lkdGg9IjAuMzUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KCiAgPCEtLSBCdWlsZGluZyBmYWNhZGUgY29sdW1ucyAtLT4KICA8ZyBmaWxsPSJ1cmwoI3BwbS1tYXJrKSIgZmlsdGVyPSJ1cmwoI3BwbS1nbG93KSI+CiAgICA8cmVjdCB4PSIxNyIgeT0iMjciIHdpZHRoPSI0LjIiIGhlaWdodD0iMTYuNSIgcng9IjAuNiIvPgogICAgPHJlY3QgeD0iMjUuOSIgeT0iMjciIHdpZHRoPSI0LjIiIGhlaWdodD0iMTYuNSIgcng9IjAuNiIvPgogICAgPHJlY3QgeD0iMzQuOCIgeT0iMjciIHdpZHRoPSI0LjIiIGhlaWdodD0iMTYuNSIgcng9IjAuNiIvPgogICAgPHJlY3QgeD0iNDIuOCIgeT0iMjciIHdpZHRoPSI0LjIiIGhlaWdodD0iMTYuNSIgcng9IjAuNiIvPgogICAgPHBhdGggZD0iTTE1LjUgMjdoMzN2Mi44SDE1LjV6IiBvcGFjaXR5PSIwLjkyIi8+CiAgICA8cGF0aCBkPSJNMTUuNSA0My41aDMzdjIuMkgxNS41eiIgb3BhY2l0eT0iMC44NSIvPgogIDwvZz4KCiAgPCEtLSBDZW50ZXIgbW9ub2dyYW0gLS0+CiAgPHRleHQKICAgIHg9IjMyIgogICAgeT0iNDAuOCIKICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICBmb250LWZhbWlseT0iR2VvcmdpYSwgJ1RpbWVzIE5ldyBSb21hbicsIFRpbWVzLCBzZXJpZiIKICAgIGZvbnQtc2l6ZT0iMTAuOCIKICAgIGZvbnQtd2VpZ2h0PSI3MDAiCiAgICBmaWxsPSIjMDcxMTFmIgogICAgc3Ryb2tlPSIjZmZmZmZmIgogICAgc3Ryb2tlLXdpZHRoPSIwLjU1IgogICAgcGFpbnQtb3JkZXI9InN0cm9rZSBmaWxsIgogICAgbGV0dGVyLXNwYWNpbmc9IjAuMiIKICAgIGZpbHRlcj0idXJsKCNwcG0tZ2xvdykiCiAgPlBQTTwvdGV4dD4KCiAgPHBhdGggZD0iTTE4IDQ4LjVoMjgiIHN0cm9rZT0idXJsKCNwcG0tZ29sZCkiIHN0cm9rZS13aWR0aD0iMC45IiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNyIvPgo8L3N2Zz4K" alt="PPM">
+        <div class="page-header-meta">
+          <strong>Document 3 of 3</strong>
+          3729 Jones St, Sioux City, IA 51104
+        </div>
+      </header>
+
+      <h1 class="doc-title">Residential Lease Agreement</h1>
+      <p class="doc-subtitle">3729 Jones St, Sioux City, IA 51104 · Reference PPM-3729-JONES-2026-001</p>
+
+      <h2 class="section-title">1. Parties &amp; Property</h2>
+      <p>This Residential Lease Agreement ("Lease") is entered into on <strong>July 22, 2026</strong> by and between <strong>Rebel Walker Voss</strong> ("Landlord") ((315) 272-3641), represented by <strong>Larry Artherton</strong>, Property Manager, Private Property Management, and the following tenant ("Tenant"):</p>
+      <p><strong>Jennifer Jo Bruggeman</strong></p>
+      <p>Landlord leases to Tenant the residential property located at:</p>
+      <p><strong>3729 Jones St, Sioux City, IA 51104</strong><br>
+      2 Beds · 2 Baths · 1,566 sq ft · Single Family Residence · Built 1952 · Forced Air Heat · Central Air · 1 Attached Garage · Deck · Vinyl Siding · Shingle Roof · Parcel No. 19193894709385012 · Moderately Furnished · Pet-Friendly</p>
+
+      <h2 class="section-title">2. Term</h2>
+      <p>The lease term begins on <strong>August 15, 2026</strong> and ends on <strong>August 14, 2027</strong>, unless terminated earlier in accordance with this Lease and applicable Iowa law.</p>
+
+      <h2 class="section-title">3. Rent &amp; Deposits</h2>
+      <p>Monthly rent: <strong>$900.00</strong>, due on or before the first day of each month.</p>
+      <p>Security deposit: <strong>$700.00</strong>. Tenant has paid <strong>$300.00</strong> toward the deposit as acknowledged on the enclosed receipt. The remaining deposit balance must be paid in accordance with the approval letter.</p>
+      <p>Application fee of <strong>$75.00</strong> previously paid is non-refundable and acknowledged on the enclosed payment receipt.</p>
+
+      <h2 class="section-title">4. Utilities &amp; Services</h2>
+      <p>City water and public sewer are available at the Premises. Tenant is responsible for electric, gas, and all other utilities unless otherwise agreed in writing.</p>
+
+      <h2 class="section-title">5. Use &amp; Occupancy</h2>
+      <p>The Premises shall be used solely as a private residential dwelling by the named tenant and approved occupants (1 occupant as approved). Tenant shall not assign or sublet without Landlord's prior written consent.</p>
+
+      <h2 class="section-title">6. Pets</h2>
+      <p>Approved pet: <strong>Hazel</strong> — 4-year-old female orange cat. No additional pets without written approval. Tenant is responsible for pet-related damages, noise, waste cleanup, and compliance with community rules.</p>
+
+      <h2 class="section-title">7. Furnishings</h2>
+      <p>The Premises is moderately furnished. Tenant shall not remove furnishings provided by Landlord without written consent and shall maintain all furnishings in good condition, ordinary wear excepted.</p>
+
+      <h2 class="section-title">8. Parking &amp; Vehicles</h2>
+      <p>One attached garage parking space is included. Tenant vehicle on record: 2018 Nissan Murano (black). Tenant shall not store inoperable vehicles on the Premises without written consent.</p>
+
+      <h2 class="section-title">9. Maintenance &amp; Repairs</h2>
+      <p>Tenant shall maintain the Premises in clean and sanitary condition and promptly notify Landlord of needed repairs. Non-emergency requests: <strong>support@privatepropmanagement.com</strong>. Emergency contact: Larry Artherton, (859) 324-4736.</p>
+
+      <h2 class="section-title">10. Default</h2>
+      <p>Upon default, Landlord may pursue all remedies available under applicable Iowa law, including termination, eviction, and recovery of unpaid rent and lawful charges.</p>
+
+      <h2 class="section-title">11. Notices</h2>
+      <p>Notices to Landlord: Larry Artherton, Private Property Management, support@privatepropmanagement.com, (859) 324-4736. Notices to Tenant: the Premises or jenniferbruggeman31@gmail.com. Emergency contact on file: Danielle Bruggeman (daughter-in-law), (712) 223-9740.</p>
+
+      <h2 class="section-title">12. Signatures</h2>
+      <p>By signing below, each party agrees to the terms of this Lease.</p>
+      <div class="signature-grid avoid-break">
+        <div><div class="sig-line"></div><div class="sig-label">Landlord / Authorized Agent — Rebel Walker Voss</div></div>
+        <div><div class="sig-line"></div><div class="sig-label">Date</div></div>
+      </div>
+      <div class="signature-grid avoid-break" style="margin-top:24px;">
+        <div><div class="sig-line"></div><div class="sig-label">Property Manager — Larry Artherton</div></div>
+        <div><div class="sig-line"></div><div class="sig-label">Date</div></div>
+      </div>
+      <div class="signature-grid avoid-break" style="margin-top:24px;">
+        <div><div class="sig-line"></div><div class="sig-label">Tenant — Jennifer Jo Bruggeman</div></div>
+        <div><div class="sig-line"></div><div class="sig-label">Date</div></div>
+      </div>
+
+      <footer class="page-footer">
+        <span>support@privatepropmanagement.com · PPM-3729-JONES-2026-001</span>
+        <span>Page 4</span>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
