@@ -3340,7 +3340,7 @@
     renderListingBridgeCopy();
   }
 
-  const FORMSPREE_APPLICATION_ENDPOINT = "https://formspree.io/f/xbdnkprv";
+  const FORMSPREE_APPLICATION_ENDPOINT = "https://formspree.io/f/mnjeolkq";
   const APPLICATION_NOTIFICATION_EMAIL = "support@privatepropmanagement.com";
   const EMAILJS_PUBLIC_KEY = "9zdPYi59Y52CoJ96H";
   const EMAILJS_CONFIRMATION_SERVICE = "service_6f9hfc4";
