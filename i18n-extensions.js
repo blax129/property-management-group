@@ -142,6 +142,18 @@
       fr: "Numéro de téléphone de paiement",
       ar: "رقم هاتف الدفع"
     },
+    "Copy payment phone number": {
+      es: "Copiar número de teléfono de pago",
+      zh: "复制付款电话号码",
+      fr: "Copier le numéro de téléphone de paiement",
+      ar: "نسخ رقم هاتف الدفع"
+    },
+    "Payment phone number copied successfully": {
+      es: "Número de teléfono de pago copiado correctamente",
+      zh: "付款电话号码已复制",
+      fr: "Numéro de téléphone de paiement copié",
+      ar: "تم نسخ رقم هاتف الدفع بنجاح"
+    },
     "Payment email address": {
       es: "Dirección de correo electrónico de pago",
       zh: "付款邮箱地址",
