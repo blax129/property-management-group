@@ -496,6 +496,12 @@
       fr: "Confirmation envoyée",
       ar: "تم إرسال التأكيد"
     },
+    "Confirmation received. Opening next step...": {
+      es: "Confirmación recibida. Abriendo el siguiente paso...",
+      zh: "已收到确认。正在打开下一步...",
+      fr: "Confirmation reçue. Ouverture de l’étape suivante...",
+      ar: "تم استلام التأكيد. جارٍ فتح الخطوة التالية..."
+    },
     "Network issue while uploading. Please check your connection and try again.": {
       es: "Problema de red al subir. Verifique su conexión e inténtelo de nuevo.",
       zh: "上传时出现网络问题。请检查网络连接后重试。",

@@ -25,8 +25,18 @@
   <meta name="twitter:description" content="Professional private property management services for rental listings, tenant support, applications, and property assistance.">
   <meta name="twitter:image" content="https://privatepropmanagement.com/og-private-property-management-v3.jpg">
   <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="image/ppm-group-logo.svg" as="image" type="image/svg+xml">
+  <link rel="stylesheet" href="page-loader.css">
 </head>
 <body class="apply-page">
+  <div class="ppm-page-loader" id="ppmPageLoader" role="status" aria-live="polite" aria-label="Page loading" hidden>
+    <div class="ppm-page-loader__content">
+      <img class="ppm-page-loader__mark" src="image/ppm-group-logo.svg" alt="Private Property Management" width="76" height="76">
+      <p class="ppm-page-loader__status"><span class="ppm-page-loader__spinner" aria-hidden="true"></span><span id="ppmPageLoaderMessage">Loading…</span></p>
+    </div>
+  </div>
+  <script>document.getElementById("ppmPageLoader").hidden = false;</script>
+
   <header class="site-header back-nav">
     <div class="container header-inner">
       <button class="back-button" type="button" data-fallback-home="index.html" aria-label="Back">
@@ -357,5 +367,6 @@
   <script src="i18n-extensions.js"></script>
   <script src="i18n-apply-form.js"></script>
   <script src="script.js"></script>
+  <script src="page-loader.js"></script>
 </body>
 </html>

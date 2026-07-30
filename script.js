@@ -2456,6 +2456,7 @@
       currentUrl.search !== targetUrl.search
     ) {
       persistLanguageChoice(lang);
+      window.PPMPageLoader?.show("Loading page…");
       logI18n("routing", {
         switchTarget: lang,
         currentUrl: currentUrl.href,
@@ -3078,6 +3079,8 @@
 
       const referrer = document.referrer ? new URL(document.referrer, window.location.href) : null;
       const canUseHistory = window.history.length > 1 && referrer && referrer.origin === window.location.origin;
+
+      window.PPMPageLoader?.show("Loading previous page…");
 
       if (canUseHistory) {
         window.history.back();
@@ -4433,11 +4436,13 @@
       }
 
       if (!usesApplicationServices) {
+        window.PPMPageLoader?.show("Opening confirmation…");
         window.location.href = form.dataset.confirmation || "application-received.html";
         return;
       }
 
       isSubmitting = true;
+      window.PPMPageLoader?.show("Submitting application…");
 
       if (submitButton) {
         submitButton.disabled = true;
@@ -4454,6 +4459,7 @@
         await submitMainApplication(form, submitButton, statusMessage);
       } catch (error) {
         isSubmitting = false;
+        window.PPMPageLoader?.hide();
         logEmailJsError("Application submission failed", error);
 
         if (submitButton) {

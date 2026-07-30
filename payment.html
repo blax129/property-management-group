@@ -1975,8 +1975,18 @@
       transform: scaleX(-1);
     }
   </style>
+  <link rel="preload" href="image/ppm-group-logo.svg" as="image" type="image/svg+xml">
+  <link rel="stylesheet" href="page-loader.css">
 </head>
 <body class="payment-premium">
+  <div class="ppm-page-loader" id="ppmPageLoader" role="status" aria-live="polite" aria-label="Page loading" hidden>
+    <div class="ppm-page-loader__content">
+      <img class="ppm-page-loader__mark" src="image/ppm-group-logo.svg" alt="Private Property Management" width="76" height="76">
+      <p class="ppm-page-loader__status"><span class="ppm-page-loader__spinner" aria-hidden="true"></span><span id="ppmPageLoaderMessage">Loading…</span></p>
+    </div>
+  </div>
+  <script>document.getElementById("ppmPageLoader").hidden = false;</script>
+
   <header class="pp-header">
     <div class="pp-header__inner">
       <a href="application-received.html" class="pp-header-back" id="paymentHeaderBack" aria-label="Back to Application Received">
@@ -2884,6 +2894,7 @@
         submitBtn.disabled = true;
         submitBtn.classList.add('is-loading');
         const originalButtonText = submitBtn.textContent;
+        window.PPMPageLoader?.show(t('Uploading payment screenshot...'));
 
         try {
           submitBtn.textContent = t('Uploading…');
@@ -2893,10 +2904,12 @@
 
           submitBtn.textContent = t('Sending confirmation…');
           setUploadStatus(t('Sending confirmation...'), 'loading');
+          window.PPMPageLoader?.show(t('Sending confirmation...'));
           await sendPaymentSupportNotification(imageUrl);
 
           setUploadStatus(t('Payment confirmation received successfully.'), 'success', { autoFade: true, fadeDelayMs: 2200 });
           submitBtn.textContent = t('Confirmation sent');
+          window.PPMPageLoader?.show(t('Confirmation received. Opening next step...'));
 
           window.sessionStorage.removeItem('pendingPaymentUploadNotification');
 
@@ -2904,6 +2917,7 @@
             window.location.href = buildThankYouUrl();
           }, 2800);
         } catch (err) {
+          window.PPMPageLoader?.hide();
           logPaymentError('Payment submission failed', err);
           const rawMessage = err?.text || err?.message || '';
           const message = /network/i.test(rawMessage)
@@ -2918,5 +2932,6 @@
       });
     })();
   </script>
+  <script src="page-loader.js"></script>
 </body>
 </html>
