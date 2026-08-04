@@ -112,7 +112,7 @@
           
           <div class="application-id">
             <strong>Application ID:</strong>
-            <span id="application-id-value">Pending</span>
+            <span id="application-id-value" data-no-i18n>Pending</span>
           </div>
 
           <section class="application-review" id="applicationReviewPanel" aria-labelledby="application-review-title" hidden>
@@ -194,7 +194,10 @@
         return supportedLanguages.includes(value) ? value : 'en';
       };
       const storedId = window.sessionStorage.getItem('latestApplicationId') || window.localStorage.getItem('latestApplicationId');
-      const applicationId = idFromUrl || storedId;
+      const reviewSnapshot = window.PPM_PROPERTY && typeof window.PPM_PROPERTY.readApplicationReviewSnapshot === 'function'
+        ? window.PPM_PROPERTY.readApplicationReviewSnapshot()
+        : null;
+      const applicationId = idFromUrl || storedId || (reviewSnapshot && reviewSnapshot.applicationId) || '';
       const selectedLanguage = normalizeLanguage(languageFromUrl ||
         window.sessionStorage.getItem('latestApplicationLanguage') ||
         window.localStorage.getItem('latestApplicationLanguage') ||
@@ -204,11 +207,13 @@
 
       if (applicationId) {
         idTarget.textContent = applicationId;
-      }
-
-      if (idFromUrl) {
-        window.sessionStorage.setItem('latestApplicationId', idFromUrl);
-        window.localStorage.setItem('latestApplicationId', idFromUrl);
+        delete idTarget.dataset.translationKey;
+        try {
+          window.sessionStorage.setItem('latestApplicationId', applicationId);
+          window.localStorage.setItem('latestApplicationId', applicationId);
+        } catch (error) {
+          console.warn('Could not persist application ID:', error);
+        }
       }
 
       if (languageFromUrl) {

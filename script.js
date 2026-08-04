@@ -2621,7 +2621,12 @@
 
   function shouldSkipTextNode(node) {
     const parent = node.parentElement;
-    return !parent || parent.closest("script, style, .language-select, .language-bar");
+    return (
+      !parent ||
+      parent.closest(
+        "script, style, .language-select, .language-bar, [data-no-i18n], #application-id-value, [data-property-context-value], [data-listing-bridge-property]"
+      )
+    );
   }
 
   function translateTextNodes(language) {
