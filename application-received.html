@@ -115,6 +115,18 @@
             <span id="application-id-value">Pending</span>
           </div>
 
+          <section class="application-review" id="applicationReviewPanel" aria-labelledby="application-review-title" hidden>
+            <header class="application-review__header">
+              <div class="application-review__heading">
+                <p class="application-review__eyebrow">Quick check</p>
+                <h2 class="application-review__title" id="application-review-title">Review your details</h2>
+              </div>
+              <a class="application-review__edit" id="applicationReviewEditLink" href="apply.html">Edit</a>
+            </header>
+            <p class="application-review__lead">Confirm everything looks right before continuing. You can edit now if something needs to change.</p>
+            <div class="application-review__body" id="applicationReviewBody"></div>
+          </section>
+
           <div class="received-payment-ready">
             <div class="received-actions">
               <a
@@ -122,6 +134,7 @@
                 class="button button-primary button-full"
                 href="payment.html"
               >Continue to Payment Instructions</a>
+              <a class="received-edit-link" id="applicationReviewEditLinkSecondary" href="apply.html">Go back and edit application</a>
             </div>
           </div>
         </div>
@@ -223,6 +236,14 @@
         backButton.dataset.fallbackHome = backButton.href;
       }
 
+      const editLinks = [
+        document.getElementById('applicationReviewEditLink'),
+        document.getElementById('applicationReviewEditLinkSecondary')
+      ].filter(Boolean);
+      editLinks.forEach((link) => {
+        link.href = backButton ? backButton.href : (selectedLanguage === 'en' ? 'apply.html' : `apply.html?lang=${encodeURIComponent(selectedLanguage)}`);
+      });
+
       const paymentLink = document.getElementById('payment-next-steps-link');
       const storedProperty = window.PPM_PROPERTY && typeof window.PPM_PROPERTY.storedProperty === 'function'
         ? window.PPM_PROPERTY.storedProperty()
@@ -253,6 +274,11 @@
 
       if (paymentLink) {
         paymentLink.href = buildPaymentUrl();
+        paymentLink.addEventListener('click', function () {
+          if (window.PPM_PROPERTY && typeof window.PPM_PROPERTY.prepareApplicationForNextApplicant === 'function') {
+            window.PPM_PROPERTY.prepareApplicationForNextApplicant();
+          }
+        });
       }
 
       try {
@@ -279,6 +305,10 @@
 
       if (window.PPM_I18N && typeof window.PPM_I18N.applyLanguage === 'function') {
         window.PPM_I18N.applyLanguage(selectedLanguage);
+      }
+
+      if (window.PPM_PROPERTY && typeof window.PPM_PROPERTY.initApplicationReviewPanel === 'function') {
+        window.PPM_PROPERTY.initApplicationReviewPanel();
       }
     })();
   </script>

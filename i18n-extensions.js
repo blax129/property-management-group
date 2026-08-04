@@ -10,6 +10,78 @@
       fr: "Retour à la demande reçue",
       ar: "العودة إلى تأكيد استلام الطلب"
     },
+    "Quick check": {
+      es: "Revisión rápida",
+      zh: "快速核对",
+      fr: "Vérification rapide",
+      ar: "مراجعة سريعة"
+    },
+    "Review your details": {
+      es: "Revise sus datos",
+      zh: "核对您的信息",
+      fr: "Vérifiez vos informations",
+      ar: "راجع بياناتك"
+    },
+    "Confirm everything looks right before continuing. You can edit now if something needs to change.": {
+      es: "Confirme que todo esté correcto antes de continuar. Puede editar ahora si algo necesita cambiar.",
+      zh: "继续前请确认信息无误。如需修改，现在就可以编辑。",
+      fr: "Confirmez que tout est correct avant de continuer. Vous pouvez modifier maintenant si quelque chose doit changer.",
+      ar: "تأكد من صحة كل شيء قبل المتابعة. يمكنك التعديل الآن إذا كان هناك شيء يحتاج إلى تغيير."
+    },
+    "Edit": {
+      es: "Editar",
+      zh: "编辑",
+      fr: "Modifier",
+      ar: "تعديل"
+    },
+    "Go back and edit application": {
+      es: "Volver y editar la solicitud",
+      zh: "返回并编辑申请",
+      fr: "Revenir et modifier la demande",
+      ar: "العودة وتعديل الطلب"
+    },
+    "Full legal name": {
+      es: "Nombre legal completo",
+      zh: "法定全名",
+      fr: "Nom légal complet",
+      ar: "الاسم القانوني الكامل"
+    },
+    "Lease duration": {
+      es: "Duración del contrato",
+      zh: "租期",
+      fr: "Durée du bail",
+      ar: "مدة الإيجار"
+    },
+    "Current Address": {
+      es: "Dirección actual",
+      zh: "当前地址",
+      fr: "Adresse actuelle",
+      ar: "العنوان الحالي"
+    },
+    "Previous Address": {
+      es: "Dirección anterior",
+      zh: "以前的地址",
+      fr: "Adresse précédente",
+      ar: "العنوان السابق"
+    },
+    "Pet Information": {
+      es: "Información de mascotas",
+      zh: "宠物信息",
+      fr: "Informations sur les animaux",
+      ar: "معلومات الحيوانات الأليفة"
+    },
+    "Vehicle Information": {
+      es: "Información del vehículo",
+      zh: "车辆信息",
+      fr: "Informations sur le véhicule",
+      ar: "معلومات المركبة"
+    },
+    "Emergency Contact": {
+      es: "Contacto de emergencia",
+      zh: "紧急联系人",
+      fr: "Contact d’urgence",
+      ar: "جهة اتصال الطوارئ"
+    },
     "Complete Your Application": {
       es: "Complete su solicitud",
       zh: "完成您的申请",

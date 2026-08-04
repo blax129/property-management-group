@@ -3186,7 +3186,10 @@
     storedProperty,
     persistProperty,
     renderPropertyContextBanner,
-    clearStoredProperty
+    clearStoredProperty,
+    prepareApplicationForNextApplicant,
+    readApplicationReviewSnapshot,
+    initApplicationReviewPanel
   };
 
   document.querySelectorAll(".accordion-item").forEach((item) => {
@@ -3236,6 +3239,7 @@
   }
 
   const APPLICATION_DRAFT_KEY = "ppm-application-draft";
+  const APPLICATION_REVIEW_KEY = "ppm-application-review";
   const APPLICATION_NEXT_APPLICANT_FLAG = "ppm-application-next-applicant";
   const APPLICATION_SHARED_FIELD_NAMES = new Set([
     "property",
@@ -3248,12 +3252,283 @@
     "vehicle-information",
     "reason-moving"
   ]);
+  const APPLICATION_REVIEW_SECTIONS = [
+    {
+      title: "Property Information",
+      fields: [
+        { name: "property", label: "Property applying for" },
+        { name: "application-date", label: "Date of Application", type: "date" },
+        { name: "move-date", label: "Desired move-in date", type: "date" },
+        { name: "lease-term", label: "Lease duration" }
+      ]
+    },
+    {
+      title: "Applicant Information",
+      fields: [
+        { name: "name", label: "Full legal name" },
+        { name: "email", label: "Email address" },
+        { name: "phone", label: "Mobile number" },
+        { name: "dob", label: "Date of birth", type: "date" },
+        { name: "residency-status", label: "Citizenship/Residency Status" }
+      ]
+    },
+    {
+      title: "Residency History",
+      fields: [
+        { name: "current-address", label: "Current Address" },
+        { name: "previous-address", label: "Previous Address" }
+      ]
+    },
+    {
+      title: "Employment & Income",
+      fields: [
+        { name: "employer", label: "Current Employer" },
+        { name: "monthly-income", label: "Monthly Gross Income" },
+        { name: "other-income-source", label: "Other Sources Of Income" }
+      ]
+    },
+    {
+      title: "Financial and Background",
+      fields: [
+        { name: "credit-score", label: "Credit Score" },
+        { name: "evicted", label: "Have You Ever Been Evicted" },
+        { name: "eviction-explanation", label: "If Yes, Explain" },
+        { name: "convicted", label: "Have You Ever Been Convicted Of A Crime" },
+        { name: "convicted-explanation", label: "If Yes, Explain" }
+      ]
+    },
+    {
+      title: "Additional Information",
+      fields: [
+        { name: "reason-moving", label: "Reason For Moving" },
+        { name: "number-applicants", label: "Number Of Applicants Or Adults" },
+        { name: "applicant-names", label: "Name Of Applicants" },
+        { name: "number-occupants", label: "Number Of Occupants" },
+        { name: "pets", label: "Pet Information" },
+        { name: "vehicle-information", label: "Vehicle Information" },
+        { name: "references", label: "References" }
+      ]
+    },
+    {
+      title: "Emergency Contact",
+      fields: [
+        { name: "emergency-contact-full", label: "Emergency Contact" }
+      ]
+    }
+  ];
+  const APPLICATION_REVIEW_VALUE_LABELS = {
+    "previous-landlord": "Previous landlord",
+    employer: "Employer",
+    "personal-reference": "Personal reference",
+    "family-member": "Family member",
+    "co-worker": "Co-worker"
+  };
+
+  function serializeApplicationForm(form) {
+    const data = {};
+    if (!form) {
+      return data;
+    }
+
+    form.querySelectorAll("input, select, textarea").forEach((field) => {
+      if (!field.name || field.type === "file") {
+        return;
+      }
+
+      if (field.type === "checkbox") {
+        data[field.name] = field.checked;
+        return;
+      }
+
+      if (field.type === "radio") {
+        if (field.checked) {
+          data[field.name] = field.value;
+        }
+        return;
+      }
+
+      data[field.name] = field.value;
+    });
+
+    return data;
+  }
+
+  function saveApplicationDraftData(data) {
+    try {
+      window.localStorage.setItem(APPLICATION_DRAFT_KEY, JSON.stringify({
+        savedAt: Date.now(),
+        data: data || {}
+      }));
+    } catch (error) {
+      console.warn("Could not save application draft:", error);
+    }
+  }
+
+  function clearApplicationDraft() {
+    try {
+      window.localStorage.removeItem(APPLICATION_DRAFT_KEY);
+    } catch (error) {
+      console.warn("Could not clear application draft:", error);
+    }
+  }
+
+  function saveApplicationReviewSnapshot(applicationId, formData) {
+    try {
+      window.sessionStorage.setItem(APPLICATION_REVIEW_KEY, JSON.stringify({
+        savedAt: Date.now(),
+        applicationId: applicationId || "",
+        data: formData || {}
+      }));
+    } catch (error) {
+      console.warn("Could not save application review snapshot:", error);
+    }
+  }
+
+  function readApplicationReviewSnapshot() {
+    try {
+      const raw = window.sessionStorage.getItem(APPLICATION_REVIEW_KEY);
+      if (!raw) {
+        return null;
+      }
+      const parsed = JSON.parse(raw);
+      if (!parsed || typeof parsed !== "object" || !parsed.data || typeof parsed.data !== "object") {
+        return null;
+      }
+      return parsed;
+    } catch (error) {
+      console.warn("Could not read application review snapshot:", error);
+      return null;
+    }
+  }
+
+  function clearApplicationReviewSnapshot() {
+    try {
+      window.sessionStorage.removeItem(APPLICATION_REVIEW_KEY);
+    } catch (error) {
+      console.warn("Could not clear application review snapshot:", error);
+    }
+  }
 
   function markApplicationReadyForNextApplicant() {
     try {
       window.sessionStorage.setItem(APPLICATION_NEXT_APPLICANT_FLAG, "1");
     } catch (error) {
       console.warn("Could not mark application ready for next applicant:", error);
+    }
+  }
+
+  function prepareApplicationForNextApplicant() {
+    markApplicationReadyForNextApplicant();
+    clearApplicationDraft();
+    clearApplicationReviewSnapshot();
+  }
+
+  function formatApplicationReviewValue(rawValue, field) {
+    if (rawValue == null) {
+      return "";
+    }
+
+    if (typeof rawValue === "boolean") {
+      return rawValue ? "Yes" : "No";
+    }
+
+    const value = String(rawValue).trim();
+    if (!value) {
+      return "";
+    }
+
+    if (APPLICATION_REVIEW_VALUE_LABELS[value]) {
+      return APPLICATION_REVIEW_VALUE_LABELS[value];
+    }
+
+    if (field?.type === "date" && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+      const date = new Date(`${value}T12:00:00`);
+      if (!Number.isNaN(date.getTime())) {
+        return date.toLocaleDateString(undefined, {
+          year: "numeric",
+          month: "short",
+          day: "numeric"
+        });
+      }
+    }
+
+    return value;
+  }
+
+  function buildApplicationReviewMarkup(snapshot, language) {
+    const data = snapshot?.data || {};
+    const sections = APPLICATION_REVIEW_SECTIONS.map((section) => {
+      const rows = section.fields
+        .map((field) => {
+          const display = formatApplicationReviewValue(data[field.name], field);
+          if (!display) {
+            return "";
+          }
+
+          return `
+            <div class="application-review__row">
+              <dt>${translateText(field.label, language)}</dt>
+              <dd>${escapeHtml(display)}</dd>
+            </div>
+          `;
+        })
+        .filter(Boolean)
+        .join("");
+
+      if (!rows) {
+        return "";
+      }
+
+      return `
+        <section class="application-review__group">
+          <h3 class="application-review__group-title">${translateText(section.title, language)}</h3>
+          <dl class="application-review__list">${rows}</dl>
+        </section>
+      `;
+    }).filter(Boolean).join("");
+
+    return sections;
+  }
+
+  function escapeHtml(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function initApplicationReviewPanel() {
+    const panel = document.getElementById("applicationReviewPanel");
+    if (!panel) {
+      return;
+    }
+
+    const body = document.getElementById("applicationReviewBody");
+    const snapshot = readApplicationReviewSnapshot();
+    const language = currentLanguage();
+
+    if (!snapshot || !body) {
+      panel.hidden = true;
+      return;
+    }
+
+    const markup = buildApplicationReviewMarkup(snapshot, language);
+    if (!markup) {
+      panel.hidden = true;
+      return;
+    }
+
+    body.innerHTML = markup;
+    panel.hidden = false;
+
+    const editLink = document.getElementById("applicationReviewEditLink");
+    if (editLink && window.PPM_PROPERTY?.buildApplicationFlowHref) {
+      editLink.href = window.PPM_PROPERTY.buildApplicationFlowHref("apply.html", {
+        language,
+        property: window.PPM_PROPERTY.storedProperty ? window.PPM_PROPERTY.storedProperty() : ""
+      });
     }
   }
 
@@ -3925,7 +4200,6 @@
     });
 
     safePersistApplicationSession(applicationId, selectedLanguage, {}, propertyName || storedProperty());
-    markApplicationReadyForNextApplicant();
     console.log("Application redirect triggered:", redirectUrl);
     window.location.replace(redirectUrl);
   }
@@ -4014,6 +4288,10 @@
     if (submitButton) {
       submitButton.textContent = translateText("Application received...", currentLanguage());
     }
+
+    const reviewData = serializeApplicationForm(form);
+    saveApplicationReviewSnapshot(applicationId, reviewData);
+    saveApplicationDraftData(reviewData);
 
     window.setTimeout(() => {
       redirectToApplicationConfirmation(form, applicationId, selectedLanguage, propertyName);
@@ -4179,30 +4457,7 @@
     let saveTimer = null;
 
     function serializeForm() {
-      const data = {};
-      const elements = form.querySelectorAll("input, select, textarea");
-
-      elements.forEach((field) => {
-        if (!field.name || field.type === "file") {
-          return;
-        }
-
-        if (field.type === "checkbox") {
-          data[field.name] = field.checked;
-          return;
-        }
-
-        if (field.type === "radio") {
-          if (field.checked) {
-            data[field.name] = field.value;
-          }
-          return;
-        }
-
-        data[field.name] = field.value;
-      });
-
-      return data;
+      return serializeApplicationForm(form);
     }
 
     function restoreForm(data) {
@@ -4241,14 +4496,7 @@
     }
 
     function saveDraft() {
-      try {
-        window.localStorage.setItem(APPLICATION_DRAFT_KEY, JSON.stringify({
-          savedAt: Date.now(),
-          data: serializeForm()
-        }));
-      } catch (error) {
-        console.warn("Could not save application draft:", error);
-      }
+      saveApplicationDraftData(serializeForm());
     }
 
     function scheduleSave() {
@@ -4270,14 +4518,6 @@
 
     form.addEventListener("input", scheduleSave);
     form.addEventListener("change", scheduleSave);
-
-    form.addEventListener("submit", function () {
-      try {
-        window.localStorage.removeItem(APPLICATION_DRAFT_KEY);
-      } catch (error) {
-        console.warn("Could not clear application draft:", error);
-      }
-    }, true);
   }
 
   function getTestimonialInitials(name) {
@@ -4402,6 +4642,7 @@
 
   initApplicationRepeatApplicant();
   initApplicationDraft();
+  initApplicationReviewPanel();
   initTestimonialAvatars();
   initSectionSeeMore("teamSeeMore", "team-more");
   initSectionSeeMore("testimonialsSeeMore", "testimonials-more");
