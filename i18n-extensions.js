@@ -874,41 +874,77 @@
       fr: "Répond aux questions des candidats, assure le suivi et la communication tout au long du processus.",
       ar: "يدعم أسئلة المتقدمين والمتابعة والتواصل طوال العملية."
     },
-    "Applied on a Sunday and got a reply Monday morning. Straightforward process.": {
-      es: "Solicité un domingo y recibí respuesta el lunes por la mañana. Proceso sencillo.",
-      zh: "周日提交申请，周一早上就收到了回复。流程很顺畅。",
-      fr: "J’ai postulé un dimanche et j’ai reçu une réponse lundi matin. Processus simple.",
-      ar: "قدّمتُ الطلب يوم الأحد وتلقيتُ ردًا صباح الاثنين. عملية مباشرة."
+    "Leasing Specialist": {
+      es: "Especialista en arrendamientos",
+      zh: "租赁专员",
+      fr: "Spécialiste en location",
+      ar: "أخصائي التأجير"
     },
-    "They walked me through the fee and refund policy upfront. No surprises.": {
-      es: "Me explicaron la tarifa y la política de reembolso desde el principio. Sin sorpresas.",
-      zh: "他们事先说明了申请费和退款政策。没有意外。",
-      fr: "Ils m’ont expliqué les frais et la politique de remboursement dès le départ. Aucune surprise.",
-      ar: "شرحوا لي الرسوم وسياسة الاسترداد مسبقًا. دون مفاجآت."
+    "Screening Coordinator": {
+      es: "Coordinadora de evaluación",
+      zh: "筛选协调员",
+      fr: "Coordinatrice de sélection",
+      ar: "منسقة الفحص"
     },
-    "Quick responses and clear next steps after I submitted.": {
-      es: "Respuestas rápidas y pasos claros después de enviar.",
-      zh: "提交后回复迅速，后续步骤也很清楚。",
-      fr: "Réponses rapides et prochaines étapes claires après ma soumission.",
-      ar: "ردود سريعة وخطوات واضحة بعد تقديم الطلب."
+    "Owner Relations Coordinator": {
+      es: "Coordinador de relaciones con propietarios",
+      zh: "业主关系协调员",
+      fr: "Coordinateur des relations propriétaires",
+      ar: "منسق علاقات الملاك"
     },
-    "Professional from start to finish. Felt like a real leasing office.": {
-      es: "Profesional de principio a fin. Pareció una oficina de arrendamiento real.",
-      zh: "从头到尾都很专业。感觉像真正的租赁办公室。",
-      fr: "Professionnel du début à la fin. On se croirait dans un vrai bureau de location.",
-      ar: "احترافية من البداية إلى النهاية. شعرت وكأنها مكتب تأجير حقيقي."
+    "Guides applicants through listing details, tours, and lease readiness.": {
+      es: "Guía a los solicitantes en los detalles del anuncio, visitas y preparación del contrato.",
+      zh: "指导申请人了解房源详情、看房安排及签约准备。",
+      fr: "Accompagne les candidats sur les détails des annonces, les visites et la préparation du bail.",
+      ar: "يرشد المتقدمين عبر تفاصيل الإدراج والجولات واستعداد عقد الإيجار."
     },
-    "Payment instructions were clear and the review moved fast.": {
-      es: "Las instrucciones de pago fueron claras y la revisión fue rápida.",
-      zh: "付款说明很清楚，审核也很快。",
-      fr: "Les instructions de paiement étaient claires et l’examen a été rapide.",
-      ar: "كانت تعليمات الدفع واضحة وتمت المراجعة بسرعة."
+    "Handles application verification, documentation checks, and screening follow-up.": {
+      es: "Gestiona la verificación de solicitudes, revisión de documentos y seguimiento de evaluación.",
+      zh: "负责申请核验、文件审核及筛选跟进。",
+      fr: "Gère la vérification des candidatures, le contrôle des documents et le suivi de sélection.",
+      ar: "يتولى التحقق من الطلبات ومراجعة المستندات ومتابعة الفحص."
     },
-    "Appreciated how direct everything was. No runaround.": {
-      es: "Agradecí lo directo que fue todo. Sin rodeos.",
-      zh: "感谢一切都很直接。没有推诿扯皮。",
-      fr: "J’ai apprécié la clarté de tout le processus. Pas de détours.",
-      ar: "قدّرتُ وضوح كل شيء. دون لفّ ودوران."
+    "Coordinates with property owners on approvals, updates, and placement decisions.": {
+      es: "Coordina con los propietarios las aprobaciones, actualizaciones y decisiones de colocación.",
+      zh: "与业主协调审批、进度更新及安置决定。",
+      fr: "Coordonne avec les propriétaires les validations, mises à jour et décisions de placement.",
+      ar: "ينسق مع مالكي العقارات بشأن الموافقات والتحديثات وقرارات التسكين."
+    },
+    "I applied on a Sunday and heard back Monday morning. The process was pretty straightforward.": {
+      es: "Solicité un domingo y me respondieron el lunes por la mañana. El proceso fue bastante sencillo.",
+      zh: "我周日提交了申请，周一早上就收到回复。整个过程挺直接的。",
+      fr: "J’ai postulé un dimanche et j’ai eu une réponse lundi matin. Le processus était assez simple.",
+      ar: "قدّمتُ يوم الأحد وتلقيتُ ردًا صباح الاثنين. كانت العملية مباشرة إلى حد كبير."
+    },
+    "They explained the fee and refund policy up front, so there weren't any surprises later.": {
+      es: "Explicaron la tarifa y la política de reembolso desde el principio, así que no hubo sorpresas después.",
+      zh: "他们一开始就把费用和退款政策讲清楚了，后来也没有任何意外。",
+      fr: "Ils ont expliqué les frais et la politique de remboursement dès le début, donc aucune surprise ensuite.",
+      ar: "شرحوا الرسوم وسياسة الاسترداد منذ البداية، فلم تكن هناك مفاجآت لاحقًا."
+    },
+    "They responded quickly and made the next steps really clear after I submitted.": {
+      es: "Respondieron rápido y dejaron muy claros los siguientes pasos después de enviar.",
+      zh: "他们回复很快，提交后也把接下来的步骤讲得很清楚。",
+      fr: "Ils ont répondu vite et clarifié vraiment les prochaines étapes après ma soumission.",
+      ar: "ردّوا بسرعة وجعلوا الخطوات التالية واضحة جدًا بعد التقديم."
+    },
+    "Super professional from start to finish. Honestly felt like dealing with a real leasing office.": {
+      es: "Muy profesional de principio a fin. De verdad se sintió como tratar con una oficina de arrendamiento real.",
+      zh: "从头到尾都很专业。说实话，感觉就像在和真正的租赁办公室打交道。",
+      fr: "Très professionnel du début à la fin. Honnêtement, on se croirait dans un vrai bureau de location.",
+      ar: "احترافية عالية من البداية إلى النهاية. بصراحة شعرت وكأنني أتعامل مع مكتب تأجير حقيقي."
+    },
+    "The payment instructions were clear, and the review didn't take long at all.": {
+      es: "Las instrucciones de pago fueron claras, y la revisión no tardó nada.",
+      zh: "付款说明很清楚，审核也一点都不慢。",
+      fr: "Les instructions de paiement étaient claires, et l’examen n’a pas pris longtemps du tout.",
+      ar: "كانت تعليمات الدفع واضحة، ولم تستغرق المراجعة وقتًا طويلاً على الإطلاق."
+    },
+    "I appreciated how direct they were. No runaround, just straight answers.": {
+      es: "Agradecí lo directos que fueron. Sin rodeos, solo respuestas claras.",
+      zh: "我很感谢他们这么直接。没有绕弯子，就是直接给答案。",
+      fr: "J’ai apprécié leur franchise. Pas de détours, juste des réponses claires.",
+      ar: "قدّرتُ مدى مباشرتهم. دون لفّ ودوران، فقط إجابات واضحة."
     },
     "Featured applicant testimonials": {
       es: "Testimonios destacados de solicitantes",
@@ -921,6 +957,102 @@
       zh: "更多申请人评价",
       fr: "Plus de témoignages de candidats",
       ar: "المزيد من شهادات المتقدمين"
+    },
+    "More team members": {
+      es: "Más miembros del equipo",
+      zh: "更多团队成员",
+      fr: "Plus de membres de l’équipe",
+      ar: "المزيد من أعضاء الفريق"
+    },
+    "See more": {
+      es: "Ver más",
+      zh: "查看更多",
+      fr: "Voir plus",
+      ar: "عرض المزيد"
+    },
+    "I got answers the same day I applied. Honestly, everything felt really organized.": {
+      es: "Recibí respuestas el mismo día que solicité. La verdad, todo se sintió muy organizado.",
+      zh: "我申请当天就收到了答复。说实话，一切都很有条理。",
+      fr: "J’ai reçu des réponses le jour même. Honnêtement, tout semblait vraiment organisé.",
+      ar: "حصلت على إجابات في نفس يوم التقديم. بصراحة، بدا كل شيء منظمًا جدًا."
+    },
+    "They were clear about the property and what would happen next. That helped a lot.": {
+      es: "Fueron claros sobre la propiedad y lo que vendría después. Eso ayudó mucho.",
+      zh: "他们对房源和接下来会发生的事说得很清楚。这帮了大忙。",
+      fr: "Ils ont été clairs sur le bien et sur la suite. Ça a beaucoup aidé.",
+      ar: "كانوا واضحين بشأن العقار وما سيحدث بعد ذلك. ذلك ساعد كثيرًا."
+    },
+    "The application went smoothly, and they followed up right after I sent the payment.": {
+      es: "La solicitud fue fluida, y me dieron seguimiento justo después de enviar el pago.",
+      zh: "申请很顺利，我付款后他们马上就跟进了。",
+      fr: "La candidature s’est bien passée, et ils ont fait un suivi juste après mon paiement.",
+      ar: "سارت عملية التقديم بسلاسة، وتابعوا معي مباشرة بعد إرسال الدفع."
+    },
+    "They explained each step in plain English. I never had to guess what was coming next.": {
+      es: "Explicaron cada paso en términos sencillos. Nunca tuve que adivinar qué seguía.",
+      zh: "他们把每一步都讲得很明白。我从来不用猜下一步是什么。",
+      fr: "Ils ont expliqué chaque étape clairement. Je n’ai jamais eu à deviner la suite.",
+      ar: "شرحوا كل خطوة بلغة واضحة. لم أضطر أبدًا لتخمين ما سيأتي بعد ذلك."
+    },
+    "I got a confirmation pretty fast after applying, and the team was easy to get ahold of.": {
+      es: "Recibí la confirmación bastante rápido después de aplicar, y el equipo fue fácil de contactar.",
+      zh: "申请后很快就收到了确认，而且团队很容易联系到。",
+      fr: "J’ai reçu une confirmation assez vite après avoir postulé, et l’équipe était facile à joindre.",
+      ar: "حصلت على تأكيد بسرعة بعد التقديم، وكان من السهل التواصل مع الفريق."
+    },
+    "They were honest about the timing and what I'd need. That alone made everything simpler.": {
+      es: "Fueron honestos sobre los tiempos y lo que necesitaría. Solo eso hizo todo más simple.",
+      zh: "他们对时间和需要准备的材料都很坦诚。光这一点就让事情简单很多。",
+      fr: "Ils ont été honnêtes sur les délais et ce dont j’aurais besoin. Ça a tout simplifié à lui seul.",
+      ar: "كانوا صادقين بشأن التوقيت وما سأحتاج إليه. هذا وحده جعل كل شيء أبسط."
+    },
+    "Filling out the application was actually pretty easy, and when I had a question someone got back to me fast.": {
+      es: "Completar la solicitud fue bastante fácil, y cuando tuve una pregunta me respondieron rápido.",
+      zh: "填写申请其实挺容易的，有问题时也很快就有人回复我。",
+      fr: "Remplir la candidature a été plutôt facile, et quand j’ai eu une question, on m’a répondu rapidement.",
+      ar: "تعبئة الطلب كانت سهلة إلى حد كبير، وعندما كان لدي سؤال ردّوا عليّ بسرعة."
+    },
+    "It felt private and professional the entire time — not pushy at all.": {
+      es: "Se sintió privado y profesional todo el tiempo — nada insistente.",
+      zh: "整个过程都很私密、专业——一点也不催促。",
+      fr: "Ça a été privé et professionnel du début à la fin — sans aucune pression.",
+      ar: "شعر الأمر بخصوصية واحترافية طوال الوقت — دون أي إلحاح."
+    },
+    "They shared the move-in details early, so there was no last-minute scramble.": {
+      es: "Compartieron los detalles de mudanza con tiempo, así que no hubo apuros de último minuto.",
+      zh: "他们很早就告知了入住细节，所以没有临时慌乱。",
+      fr: "Ils ont partagé les détails d’emménagement tôt, donc pas de course de dernière minute.",
+      ar: "شاركوا تفاصيل الانتقال مبكرًا، فلم يكن هناك ارتباك في اللحظة الأخيرة."
+    },
+    "They answered my questions right away, which made me feel a lot more confident applying.": {
+      es: "Respondieron mis preguntas de inmediato, y eso me dio mucha más confianza para aplicar.",
+      zh: "他们马上回答了我的问题，这让我对申请更有信心。",
+      fr: "Ils ont répondu à mes questions tout de suite, ce qui m’a donné bien plus confiance pour postuler.",
+      ar: "أجابوا عن أسئلتي فورًا، وهذا جعلني أكثر ثقة عند التقديم."
+    },
+    "The steps were simple, and they kept me updated once I submitted.": {
+      es: "Los pasos fueron simples, y me mantuvieron al tanto después de enviar.",
+      zh: "步骤很简单，提交后他们也会及时更新进度。",
+      fr: "Les étapes étaient simples, et ils m’ont tenu informé après l’envoi.",
+      ar: "كانت الخطوات بسيطة، وظلوا يحدّثونني بعد الإرسال."
+    },
+    "I really liked how organized the timeline felt — nothing felt rushed or messy.": {
+      es: "Me gustó mucho lo organizado del cronograma — nada se sintió apresurado ni desordenado.",
+      zh: "我很喜欢时间安排的条理——一点也不赶，也不乱。",
+      fr: "J’ai vraiment aimé à quel point le calendrier était organisé — rien ne semblait précipité ou confus.",
+      ar: "أعجبني حقًا مدى تنظيم الجدول الزمني — لم يشعرني بأي استعجال أو فوضى."
+    },
+    "They replied quickly, and the whole thing felt clean from the first email to the last.": {
+      es: "Respondieron rápido, y todo se sintió ordenado desde el primer correo hasta el último.",
+      zh: "他们回复很快，从第一封邮件到最后都感觉很顺畅。",
+      fr: "Ils ont répondu vite, et tout a paru fluide du premier e-mail au dernier.",
+      ar: "ردّوا بسرعة، وبدا كل شيء منظمًا من أول رسالة إلى آخرها."
+    },
+    "I liked that they walked me through everything before I paid a dime.": {
+      es: "Me gustó que me explicaran todo antes de pagar nada.",
+      zh: "我喜欢他们在我付任何钱之前就把一切都讲清楚了。",
+      fr: "J’ai aimé qu’ils m’expliquent tout avant que je paie quoi que ce soit.",
+      ar: "أعجبني أنهم شرحوا لي كل شيء قبل أن أدفع أي شيء."
     }
   };
 

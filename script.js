@@ -4328,6 +4328,26 @@
     });
   }
 
+  function initSectionSeeMore(buttonId, moreId) {
+    const button = document.getElementById(buttonId);
+    const more = document.getElementById(moreId);
+    const actions = button ? button.closest(".section-see-more-actions") : null;
+
+    if (!button || !more) {
+      return;
+    }
+
+    button.addEventListener("click", function () {
+      more.hidden = false;
+      button.setAttribute("aria-expanded", "true");
+      if (actions) {
+        actions.hidden = true;
+      } else {
+        button.hidden = true;
+      }
+    });
+  }
+
   function initTestimonialsComments() {
     const form = document.getElementById("testimonialsCommentForm");
     const status = document.getElementById("testimonialsCommentStatus");
@@ -4383,6 +4403,8 @@
   initApplicationRepeatApplicant();
   initApplicationDraft();
   initTestimonialAvatars();
+  initSectionSeeMore("teamSeeMore", "team-more");
+  initSectionSeeMore("testimonialsSeeMore", "testimonials-more");
   initTestimonialsComments();
 
   function initApplicationFormSubmission() {
