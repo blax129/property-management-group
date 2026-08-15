@@ -322,6 +322,12 @@
       fr: "Appuyez sur « Send Money to Anyone » et utilisez l’adresse e-mail de paiement indiquée ci-dessus.",
       ar: "اضغط على \"Send Money to Anyone\" واستخدم عنوان البريد الإلكتروني للدفع الموجود أعلاه."
     },
+    "Enter the Chime tag shown above.": {
+      es: "Ingrese la etiqueta de Chime que aparece arriba.",
+      zh: "输入上方显示的 Chime 标签。",
+      fr: "Saisissez le tag Chime indiqué ci-dessus.",
+      ar: "أدخل وسم Chime الظاهر أعلاه."
+    },
     "Enter the payment phone number shown above.": {
       es: "Ingrese el número de teléfono de pago que se muestra arriba.",
       zh: "输入上方显示的付款电话号码。",
