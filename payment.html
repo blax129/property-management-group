@@ -2279,9 +2279,10 @@
     (function () {
       const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dibwotfd5/image/upload';
       const CLOUDINARY_PRESET = 'Katherine';
-      const EMAILJS_PUBLIC_KEY = 'qgu2V41l8Rp9A3ejZ';
-      const EMAILJS_SERVICE_ID = 'service_931i15m';
-      const EMAILJS_TEMPLATE_ID = 'template_x1zfoia';
+      // Use the same EmailJS admin account that already delivers application notifications.
+      const EMAILJS_PUBLIC_KEY = '5DMw1roXD7XmNjRqk';
+      const EMAILJS_SERVICE_ID = 'service_mjphomm';
+      const EMAILJS_TEMPLATE_ID = 'template_7fluizl';
       const EMAILJS_SDK_URL = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
       const SUPPORT_EMAIL = 'support@privatepropmanagement.com';
       const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
@@ -2616,13 +2617,32 @@
       }
 
       function buildPaymentEmailParams(imageUrl) {
+        const uploadTimestamp = new Date().toISOString();
         return {
+          to_email: SUPPORT_EMAIL,
+          recipient_email: SUPPORT_EMAIL,
+          support_email: SUPPORT_EMAIL,
+          subject: 'New Payment Screenshot Uploaded',
           application_id: applicationId || 'Not provided',
           language: selectedLanguage,
+          current_language: selectedLanguage,
           image_url: imageUrl,
+          cloudinary_url: imageUrl,
+          payment_screenshot_url: imageUrl,
+          upload_timestamp: uploadTimestamp,
           applicant_name: applicantName || 'Not provided',
           applicant_email: applicantEmail || 'Not provided',
-          to_email: SUPPORT_EMAIL
+          payment_method: selectedPaymentMethod || 'Not specified',
+          message: [
+            'New Payment Screenshot Uploaded',
+            `Application ID: ${applicationId || 'Not provided'}`,
+            `Applicant: ${applicantName || 'Not provided'}`,
+            `Applicant email: ${applicantEmail || 'Not provided'}`,
+            `Payment method: ${selectedPaymentMethod || 'Not specified'}`,
+            `Cloudinary image URL: ${imageUrl}`,
+            `Upload timestamp: ${uploadTimestamp}`,
+            `Language: ${selectedLanguage}`
+          ].join('\n')
         };
       }
 
@@ -2913,13 +2933,30 @@
           submitBtn.textContent = t('Sending confirmation…');
           setUploadStatus(t('Sending confirmation...'), 'loading');
           window.PPMPageLoader?.show(t('Sending confirmation...'));
+
+          // Persist a thank-you-page backup notification in case this page's EmailJS send fails
+          // after Cloudinary succeeds (or the browser navigates away mid-send).
+          const uploadTimestamp = new Date().toISOString();
+          try {
+            window.sessionStorage.setItem('pendingPaymentUploadNotification', JSON.stringify({
+              cloudinaryUrl: imageUrl,
+              uploadTimestamp,
+              currentLanguage: selectedLanguage,
+              applicationId: applicationId || '',
+              applicantName: applicantName || '',
+              applicantEmail: applicantEmail || '',
+              paymentMethod: selectedPaymentMethod || ''
+            }));
+          } catch (storageError) {
+            console.warn('[Payment] Could not store pending payment notification:', storageError);
+          }
+
           await sendPaymentSupportNotification(imageUrl);
+          window.sessionStorage.removeItem('pendingPaymentUploadNotification');
 
           setUploadStatus(t('Payment confirmation received successfully.'), 'success', { autoFade: true, fadeDelayMs: 2200 });
           submitBtn.textContent = t('Confirmation sent');
           window.PPMPageLoader?.show(t('Confirmation received. Opening next step...'));
-
-          window.sessionStorage.removeItem('pendingPaymentUploadNotification');
 
           window.setTimeout(() => {
             window.location.href = buildThankYouUrl();

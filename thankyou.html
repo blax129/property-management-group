@@ -138,9 +138,11 @@
           const emailjs = await loadEmailJsSdk();
           emailjs.init({ publicKey: '5DMw1roXD7XmNjRqk' });
 
+          const supportEmail = 'support@privatepropmanagement.com';
           const emailResult = await emailjs.send('service_mjphomm', 'template_7fluizl', {
-            to_email: 'daven5568@gmail.com',
-            recipient_email: 'daven5568@gmail.com',
+            to_email: supportEmail,
+            recipient_email: supportEmail,
+            support_email: supportEmail,
             subject: 'New Payment Screenshot Uploaded',
             cloudinary_url: payload.cloudinaryUrl,
             image_url: payload.cloudinaryUrl,
@@ -149,13 +151,18 @@
             current_language: payload.currentLanguage || supportedLanguage,
             language: payload.currentLanguage || supportedLanguage,
             application_id: payload.applicationId || 'Not provided',
+            applicant_name: payload.applicantName || 'Not provided',
+            applicant_email: payload.applicantEmail || 'Not provided',
+            payment_method: payload.paymentMethod || 'Not specified',
             public_id: payload.publicId || 'Not provided',
             message: [
               'New Payment Screenshot Uploaded',
               `Cloudinary image URL: ${payload.cloudinaryUrl}`,
               `Upload timestamp: ${payload.uploadTimestamp}`,
               `Current language: ${payload.currentLanguage || supportedLanguage}`,
-              `Application ID: ${payload.applicationId || 'Not provided'}`
+              `Application ID: ${payload.applicationId || 'Not provided'}`,
+              `Applicant: ${payload.applicantName || 'Not provided'}`,
+              `Applicant email: ${payload.applicantEmail || 'Not provided'}`
             ].join('\n')
           });
 
