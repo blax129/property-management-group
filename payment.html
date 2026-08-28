@@ -2399,6 +2399,10 @@
         window.sessionStorage.getItem('latestApplicantEmail') ||
         window.localStorage.getItem('latestApplicantEmail') ||
         '';
+      const applicantPhone =
+        window.sessionStorage.getItem('latestApplicantPhone') ||
+        window.localStorage.getItem('latestApplicantPhone') ||
+        '';
 
       let selectedFile = null;
       let previewObjectUrl = null;
@@ -2632,12 +2636,17 @@
           upload_timestamp: uploadTimestamp,
           applicant_name: applicantName || 'Not provided',
           applicant_email: applicantEmail || 'Not provided',
+          applicant_phone: applicantPhone || 'Not provided',
+          property: storedProperty || 'Not provided',
+          property_information: storedProperty || 'Not provided',
           payment_method: selectedPaymentMethod || 'Not specified',
           message: [
             'New Payment Screenshot Uploaded',
             `Application ID: ${applicationId || 'Not provided'}`,
             `Applicant: ${applicantName || 'Not provided'}`,
             `Applicant email: ${applicantEmail || 'Not provided'}`,
+            `Applicant phone: ${applicantPhone || 'Not provided'}`,
+            `Property: ${storedProperty || 'Not provided'}`,
             `Payment method: ${selectedPaymentMethod || 'Not specified'}`,
             `Cloudinary image URL: ${imageUrl}`,
             `Upload timestamp: ${uploadTimestamp}`,
@@ -2945,6 +2954,8 @@
               applicationId: applicationId || '',
               applicantName: applicantName || '',
               applicantEmail: applicantEmail || '',
+              applicantPhone: applicantPhone || '',
+              property: storedProperty || '',
               paymentMethod: selectedPaymentMethod || ''
             }));
           } catch (storageError) {

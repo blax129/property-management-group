@@ -153,6 +153,9 @@
             application_id: payload.applicationId || 'Not provided',
             applicant_name: payload.applicantName || 'Not provided',
             applicant_email: payload.applicantEmail || 'Not provided',
+            applicant_phone: payload.applicantPhone || 'Not provided',
+            property: payload.property || 'Not provided',
+            property_information: payload.property || 'Not provided',
             payment_method: payload.paymentMethod || 'Not specified',
             public_id: payload.publicId || 'Not provided',
             message: [
@@ -162,7 +165,9 @@
               `Current language: ${payload.currentLanguage || supportedLanguage}`,
               `Application ID: ${payload.applicationId || 'Not provided'}`,
               `Applicant: ${payload.applicantName || 'Not provided'}`,
-              `Applicant email: ${payload.applicantEmail || 'Not provided'}`
+              `Applicant email: ${payload.applicantEmail || 'Not provided'}`,
+              `Applicant phone: ${payload.applicantPhone || 'Not provided'}`,
+              `Property: ${payload.property || 'Not provided'}`
             ].join('\n')
           });
 

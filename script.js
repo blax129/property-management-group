@@ -4106,6 +4106,7 @@
 
       const applicantName = String(applicantProfile?.name || "").trim();
       const applicantEmail = String(applicantProfile?.email || "").trim();
+      const applicantPhone = String(applicantProfile?.phone || "").trim();
       const property = String(propertyName || "").trim();
 
       if (applicantName) {
@@ -4116,6 +4117,11 @@
       if (applicantEmail) {
         window.sessionStorage.setItem("latestApplicantEmail", applicantEmail);
         window.localStorage.setItem("latestApplicantEmail", applicantEmail);
+      }
+
+      if (applicantPhone) {
+        window.sessionStorage.setItem("latestApplicantPhone", applicantPhone);
+        window.localStorage.setItem("latestApplicantPhone", applicantPhone);
       }
 
       if (property) {
@@ -4223,11 +4229,13 @@
 
     const { formData, applicantEmail } = buildApplicationPayload(form, applicationId);
     const applicantName = String(formData.get("name") || "").trim();
+    const applicantPhone = String(formData.get("phone") || "").trim();
     const propertyName = String(formData.get("property") || "").trim();
 
     safePersistApplicationSession(applicationId, selectedLanguage, {
       name: applicantName,
-      email: applicantEmail
+      email: applicantEmail,
+      phone: applicantPhone
     }, propertyName);
 
     if (statusMessage) {
