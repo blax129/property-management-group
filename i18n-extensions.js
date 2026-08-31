@@ -442,11 +442,11 @@
       fr: "Google Play",
       ar: "Google Play"
     },
-    "After payment, upload a screenshot or receipt confirmation.": {
-      es: "Después del pago, suba una captura de pantalla o comprobante de confirmación.",
-      zh: "付款后，请上传截图或收据确认。",
-      fr: "Après le paiement, téléversez une capture d’écran ou un reçu de confirmation.",
-      ar: "بعد الدفع، ارفع لقطة شاشة أو إثبات تأكيد."
+    "After payment, upload a screenshot of your payment confirmation.": {
+      es: "Después del pago, suba una captura de pantalla de su confirmación de pago.",
+      zh: "付款后，请上传付款确认截图。",
+      fr: "Après le paiement, téléversez une capture d’écran de votre confirmation de paiement.",
+      ar: "بعد الدفع، ارفع لقطة شاشة لتأكيد الدفع."
     },
     "Drag & drop or tap to upload": {
       es: "Arrastre y suelte o toque para subir",
