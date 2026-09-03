@@ -1121,6 +1121,13 @@
       word-break: break-word;
     }
 
+    .pp-pay-line--person .pp-chime-account__phone {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: #111827;
+    }
+
     @media (max-width: 380px) {
       .pp-chime-account__email {
         font-size: 15px;
@@ -2271,7 +2278,7 @@
           </div>
           <div>
             <h2 class="pp-card__title" id="chime-title">Chime Pay Anyone</h2>
-            <p class="pp-card__desc">Send $75 in the Chime app to the person below. New to Chime? Follow the numbered steps.</p>
+            <p class="pp-card__desc">Send $75 in the Chime app using Pay Anyone and the phone number below. New to Chime? Follow the numbered steps.</p>
           </div>
         </div>
 
@@ -2287,19 +2294,18 @@
             <div class="pp-pay-line pp-pay-line--person">
               <div class="pp-pay-line__copy">
                 <span class="pp-pay-line__label">Send to</span>
-                <p class="pp-chime-account__name" data-no-i18n>Dalten Steele</p>
                 <div class="pp-pay-tag">
-                  <span class="pp-chime-account__phone" id="chimeTag" data-copy="$Dalten-Steele" data-no-i18n>$Dalten-Steele</span>
+                  <span class="pp-chime-account__phone" id="chimeTag" data-copy="6156810693" data-no-i18n>615 681 0693</span>
                   <button
                     type="button"
                     class="pp-copy-btn"
                     data-copy-target="chimeTag"
                     data-payment-method="Chime"
-                    data-copy-toast="Chime tag copied successfully"
-                    aria-label="Copy Chime tag"
+                    data-copy-toast="Payment phone number copied successfully"
+                    aria-label="Copy payment phone number"
                   >Copy</button>
                 </div>
-                <p class="pp-pay-help">This is a Chime $username. Copy it, then paste it in the Chime app.</p>
+                <p class="pp-pay-help">This is a phone number for Chime Pay Anyone. Copy it, then paste it in the Chime app. There is no recipient name.</p>
               </div>
             </div>
           </div>
@@ -2308,12 +2314,12 @@
         <div class="pp-chime-instructions" aria-label="How to send payment with Chime Pay Anyone">
           <h3 class="pp-howto-title">How to pay</h3>
           <ol class="pp-pay-path" aria-label="Payment overview">
-            <li><span>1</span> Copy the tag</li>
+            <li><span>1</span> Copy the number</li>
             <li><span>2</span> Send $75 in Chime</li>
             <li><span>3</span> Upload a screenshot</li>
           </ol>
           <ol class="pp-steps">
-            <li><span aria-hidden="true">1</span><span>Tap Copy next to the $username above.</span></li>
+            <li><span aria-hidden="true">1</span><span>Tap Copy next to the phone number above.</span></li>
             <li><span aria-hidden="true">2</span><span>Open the Chime app. If you do not have Chime yet, create an account in the section below first.</span></li>
             <li>
               <span aria-hidden="true">3</span>
@@ -2335,7 +2341,7 @@
                 </figure>
               </div>
             </li>
-            <li><span aria-hidden="true">4</span><span>Paste the tag, confirm the name matches, and send $75.00.</span></li>
+            <li><span aria-hidden="true">4</span><span>Paste the phone number and send $75.00. There is no name to confirm.</span></li>
             <li><span aria-hidden="true">5</span><span>Come back to this page and upload a screenshot of the payment below.</span></li>
           </ol>
         </div>
