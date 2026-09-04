@@ -184,11 +184,11 @@
       fr: "Chime Pay Anyone",
       ar: "Chime Pay Anyone"
     },
-    "Send $75 in the Chime app using Pay Anyone and the phone number below. New to Chime? Follow the numbered steps.": {
-      es: "Envíe $75 en la app de Chime con Pay Anyone y el número de teléfono de abajo. ¿Es nuevo en Chime? Siga los pasos numerados.",
-      zh: "请在 Chime 应用中使用 Pay Anyone 和下方电话号码发送 75 美元。如果您是第一次使用 Chime，请按编号步骤操作。",
-      fr: "Envoyez 75 $ dans l’application Chime via Pay Anyone et le numéro de téléphone ci-dessous. Nouveau sur Chime ? Suivez les étapes numérotées.",
-      ar: "أرسل 75 دولارًا في تطبيق Chime باستخدام Pay Anyone ورقم الهاتف أدناه. جديد على Chime؟ اتبع الخطوات المرقمة."
+    "Send $75 in the Chime app to the person below. New to Chime? Follow the numbered steps.": {
+      es: "Envíe $75 en la app de Chime a la persona de abajo. ¿Es nuevo en Chime? Siga los pasos numerados.",
+      zh: "请在 Chime 应用中向下方收款人发送 75 美元。如果您是第一次使用 Chime，请按编号步骤操作。",
+      fr: "Envoyez 75 $ dans l’application Chime à la personne ci-dessous. Nouveau sur Chime ? Suivez les étapes numérotées.",
+      ar: "أرسل 75 دولارًا في تطبيق Chime إلى الشخص أدناه. جديد على Chime؟ اتبع الخطوات المرقمة."
     },
     "Amount to send": {
       es: "Monto a enviar",
@@ -202,17 +202,17 @@
       fr: "Envoyer à",
       ar: "أرسل إلى"
     },
-    "This is a phone number for Chime Pay Anyone. Copy it, then paste it in the Chime app. There is no recipient name.": {
-      es: "Este es un número de teléfono para Chime Pay Anyone. Cópielo y péguelo en la app de Chime. No hay nombre de destinatario.",
-      zh: "这是用于 Chime Pay Anyone 的电话号码。请先复制，再粘贴到 Chime 应用中。没有收款人姓名。",
-      fr: "C’est un numéro de téléphone pour Chime Pay Anyone. Copiez-le, puis collez-le dans l’application Chime. Il n’y a pas de nom de destinataire.",
-      ar: "هذا رقم هاتف لـ Chime Pay Anyone. انسخه ثم الصقه في تطبيق Chime. لا يوجد اسم مستلم."
+    "This is a Chime $username. Copy it, then paste it in the Chime app.": {
+      es: "Esta es un $usuario de Chime. Cópielo y péguelo en la app de Chime.",
+      zh: "这是 Chime 的 $用户名。请先复制，再粘贴到 Chime 应用中。",
+      fr: "C’est un $identifiant Chime. Copiez-le, puis collez-le dans l’application Chime.",
+      ar: "هذا $اسم مستخدم في Chime. انسخه ثم الصقه في تطبيق Chime."
     },
-    "Copy the number": {
-      es: "Copie el número",
-      zh: "复制号码",
-      fr: "Copiez le numéro",
-      ar: "انسخ الرقم"
+    "Copy the tag": {
+      es: "Copie la etiqueta",
+      zh: "复制标签",
+      fr: "Copiez le tag",
+      ar: "انسخ الوسم"
     },
     "Send $75 in Chime": {
       es: "Envíe $75 en Chime",
@@ -226,11 +226,11 @@
       fr: "Téléversez une capture",
       ar: "ارفع لقطة شاشة"
     },
-    "Tap Copy next to the phone number above.": {
-      es: "Toque Copiar junto al número de teléfono de arriba.",
-      zh: "点击上方电话号码旁边的“复制”。",
-      fr: "Appuyez sur Copier à côté du numéro de téléphone ci-dessus.",
-      ar: "اضغط نسخ بجانب رقم الهاتف أعلاه."
+    "Tap Copy next to the $username above.": {
+      es: "Toque Copiar junto al $usuario de arriba.",
+      zh: "点击上方 $用户名旁边的“复制”。",
+      fr: "Appuyez sur Copier à côté du $identifiant ci-dessus.",
+      ar: "اضغط نسخ بجانب $اسم المستخدم أعلاه."
     },
     "Open the Chime app. If you do not have Chime yet, create an account in the section below first.": {
       es: "Abra la app de Chime. Si aún no tiene Chime, cree una cuenta en la sección de abajo primero.",
@@ -238,11 +238,11 @@
       fr: "Ouvrez l’application Chime. Si vous n’avez pas encore Chime, créez d’abord un compte dans la section ci-dessous.",
       ar: "افتح تطبيق Chime. إذا لم يكن لديك Chime بعد، أنشئ حسابًا في القسم أدناه أولًا."
     },
-    "Paste the phone number and send $75.00. There is no name to confirm.": {
-      es: "Pegue el número de teléfono y envíe $75.00. No hay nombre que confirmar.",
-      zh: "粘贴电话号码并发送 75.00 美元。无需核对姓名。",
-      fr: "Collez le numéro de téléphone et envoyez 75,00 $. Il n’y a pas de nom à confirmer.",
-      ar: "الصق رقم الهاتف وأرسل 75.00 دولارًا. لا يوجد اسم للتأكيد."
+    "Paste the tag, confirm the name matches, and send $75.00.": {
+      es: "Pegue la etiqueta, confirme que el nombre coincida y envíe $75.00.",
+      zh: "粘贴标签，确认姓名一致，然后发送 75.00 美元。",
+      fr: "Collez le tag, confirmez que le nom correspond, puis envoyez 75,00 $.",
+      ar: "الصق الوسم، وتأكد من تطابق الاسم، ثم أرسل 75.00 دولارًا."
     },
     "Come back to this page and upload a screenshot of the payment below.": {
       es: "Regrese a esta página y suba abajo una captura de pantalla del pago.",
