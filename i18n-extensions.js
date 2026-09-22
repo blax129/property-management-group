@@ -184,11 +184,11 @@
       fr: "Chime Pay Anyone",
       ar: "Chime Pay Anyone"
     },
-    "Send $75 in the Chime app to the person below. New to Chime? Follow the numbered steps.": {
-      es: "Envíe $75 en la app de Chime a la persona de abajo. ¿Es nuevo en Chime? Siga los pasos numerados.",
-      zh: "请在 Chime 应用中向下方收款人发送 75 美元。如果您是第一次使用 Chime，请按编号步骤操作。",
-      fr: "Envoyez 75 $ dans l’application Chime à la personne ci-dessous. Nouveau sur Chime ? Suivez les étapes numérotées.",
-      ar: "أرسل 75 دولارًا في تطبيق Chime إلى الشخص أدناه. جديد على Chime؟ اتبع الخطوات المرقمة."
+    "Send $75 in the Chime app using Pay Anyone and the details shown below. New to Chime? Follow the numbered steps.": {
+      es: "Envíe $75 en la app de Chime con Pay Anyone y los datos que se muestran abajo. ¿Es nuevo en Chime? Siga los pasos numerados.",
+      zh: "请在 Chime 应用中使用 Pay Anyone 和下方显示的信息发送 75 美元。如果您是第一次使用 Chime，请按编号步骤操作。",
+      fr: "Envoyez 75 $ dans l’application Chime via Pay Anyone et les informations affichées ci-dessous. Nouveau sur Chime ? Suivez les étapes numérotées.",
+      ar: "أرسل 75 دولارًا في تطبيق Chime باستخدام Pay Anyone والتفاصيل الظاهرة أدناه. جديد على Chime؟ اتبع الخطوات المرقمة."
     },
     "Amount to send": {
       es: "Monto a enviar",
@@ -202,17 +202,65 @@
       fr: "Envoyer à",
       ar: "أرسل إلى"
     },
-    "This is a Chime $username. Copy it, then paste it in the Chime app.": {
-      es: "Esta es un $usuario de Chime. Cópielo y péguelo en la app de Chime.",
-      zh: "这是 Chime 的 $用户名。请先复制，再粘贴到 Chime 应用中。",
-      fr: "C’est un $identifiant Chime. Copiez-le, puis collez-le dans l’application Chime.",
-      ar: "هذا $اسم مستخدم في Chime. انسخه ثم الصقه في تطبيق Chime."
+    "This is a phone number for Chime Pay Anyone. Copy it, then paste it in the Chime app. Do not use an email with this number.": {
+      es: "Este es un número de teléfono para Chime Pay Anyone. Cópielo y péguelo en la app de Chime. No use un correo junto con este número.",
+      zh: "这是用于 Chime Pay Anyone 的电话号码。请先复制，再粘贴到 Chime 应用中。请勿同时使用邮箱。",
+      fr: "C’est un numéro de téléphone pour Chime Pay Anyone. Copiez-le, puis collez-le dans l’application Chime. N’utilisez pas d’e-mail avec ce numéro.",
+      ar: "هذا رقم هاتف لـ Chime Pay Anyone. انسخه ثم الصقه في تطبيق Chime. لا تستخدم بريدًا إلكترونيًا مع هذا الرقم."
     },
-    "Copy the tag": {
-      es: "Copie la etiqueta",
-      zh: "复制标签",
-      fr: "Copiez le tag",
-      ar: "انسخ الوسم"
+    "This is an email for Chime Pay Anyone. Copy it, then paste it in the Chime app. Do not use a phone number with this email.": {
+      es: "Este es un correo electrónico para Chime Pay Anyone. Cópielo y péguelo en la app de Chime. No use un número de teléfono junto con este correo.",
+      zh: "这是用于 Chime Pay Anyone 的邮箱。请先复制，再粘贴到 Chime 应用中。请勿同时使用电话号码。",
+      fr: "C’est une adresse e-mail pour Chime Pay Anyone. Copiez-la, puis collez-la dans l’application Chime. N’utilisez pas de numéro de téléphone avec cet e-mail.",
+      ar: "هذا بريد إلكتروني لـ Chime Pay Anyone. انسخه ثم الصقه في تطبيق Chime. لا تستخدم رقم هاتف مع هذا البريد."
+    },
+    "Copy the details shown above, then paste them in Chime Pay Anyone. Use only this number or email — not both.": {
+      es: "Copie los datos de arriba y péguelos en Chime Pay Anyone. Use solo este número o este correo, no ambos.",
+      zh: "复制上方信息并粘贴到 Chime Pay Anyone。只使用这个号码或这个邮箱，不要同时使用两者。",
+      fr: "Copiez les informations ci-dessus, puis collez-les dans Chime Pay Anyone. Utilisez uniquement ce numéro ou cet e-mail, pas les deux.",
+      ar: "انسخ التفاصيل أعلاه والصقها في Chime Pay Anyone. استخدم هذا الرقم أو هذا البريد فقط، وليس كليهما."
+    },
+    "Copy the details": {
+      es: "Copie los datos",
+      zh: "复制信息",
+      fr: "Copiez les informations",
+      ar: "انسخ التفاصيل"
+    },
+    "Tap Copy next to the number or email above.": {
+      es: "Toque Copiar junto al número o correo de arriba.",
+      zh: "点击上方号码或邮箱旁边的“复制”。",
+      fr: "Appuyez sur Copier à côté du numéro ou de l’e-mail ci-dessus.",
+      ar: "اضغط نسخ بجانب الرقم أو البريد أعلاه."
+    },
+    "Paste the number or email shown above and send $75.00. There is no name to confirm. Use only the details shown.": {
+      es: "Pegue el número o el correo que aparece arriba y envíe $75.00. No hay nombre que confirmar. Use solo los datos mostrados.",
+      zh: "粘贴上方显示的号码或邮箱并发送 75.00 美元。无需核对姓名。只使用显示的信息。",
+      fr: "Collez le numéro ou l’e-mail affiché ci-dessus et envoyez 75,00 $. Il n’y a pas de nom à confirmer. Utilisez uniquement les informations affichées.",
+      ar: "الصق الرقم أو البريد الظاهر أعلاه وأرسل 75.00 دولارًا. لا يوجد اسم للتأكيد. استخدم التفاصيل الظاهرة فقط."
+    },
+    "Copy payment details": {
+      es: "Copiar datos de pago",
+      zh: "复制付款信息",
+      fr: "Copier les informations de paiement",
+      ar: "نسخ تفاصيل الدفع"
+    },
+    "Payment details copied successfully": {
+      es: "Datos de pago copiados correctamente",
+      zh: "付款信息已复制",
+      fr: "Informations de paiement copiées",
+      ar: "تم نسخ تفاصيل الدفع بنجاح"
+    },
+    "Copy payment email": {
+      es: "Copiar correo de pago",
+      zh: "复制付款邮箱",
+      fr: "Copier l’e-mail de paiement",
+      ar: "نسخ بريد الدفع"
+    },
+    "Payment email copied successfully": {
+      es: "Correo de pago copiado correctamente",
+      zh: "付款邮箱已复制",
+      fr: "E-mail de paiement copié",
+      ar: "تم نسخ بريد الدفع بنجاح"
     },
     "Send $75 in Chime": {
       es: "Envíe $75 en Chime",

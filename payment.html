@@ -1128,6 +1128,12 @@
       color: #111827;
     }
 
+    .pp-pay-line--person .pp-chime-account__phone.pp-chime-account__email {
+      font-size: 16px;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+    }
+
     @media (max-width: 380px) {
       .pp-chime-account__email {
         font-size: 15px;
@@ -2278,7 +2284,7 @@
           </div>
           <div>
             <h2 class="pp-card__title" id="chime-title">Chime Pay Anyone</h2>
-            <p class="pp-card__desc">Send $75 in the Chime app to the person below. New to Chime? Follow the numbered steps.</p>
+            <p class="pp-card__desc">Send $75 in the Chime app using Pay Anyone and the details shown below. New to Chime? Follow the numbered steps.</p>
           </div>
         </div>
 
@@ -2294,19 +2300,19 @@
             <div class="pp-pay-line pp-pay-line--person">
               <div class="pp-pay-line__copy">
                 <span class="pp-pay-line__label">Send to</span>
-                <p class="pp-chime-account__name" data-no-i18n>Cody Grimes</p>
                 <div class="pp-pay-tag">
-                  <span class="pp-chime-account__phone" id="chimeTag" data-copy="$Cody-Grimes-9" data-no-i18n>$Cody-Grimes-9</span>
+                  <span class="pp-chime-account__phone" id="chimeTag" data-copy="" data-no-i18n></span>
                   <button
                     type="button"
                     class="pp-copy-btn"
+                    id="chimeCopyBtn"
                     data-copy-target="chimeTag"
                     data-payment-method="Chime"
-                    data-copy-toast="Chime tag copied successfully"
-                    aria-label="Copy Chime tag"
+                    data-copy-toast="Payment details copied successfully"
+                    aria-label="Copy payment details"
                   >Copy</button>
                 </div>
-                <p class="pp-pay-help">This is a Chime $username. Copy it, then paste it in the Chime app.</p>
+                <p class="pp-pay-help" id="chimePayHelp">Copy the details shown above, then paste them in Chime Pay Anyone. Use only this number or email — not both.</p>
               </div>
             </div>
           </div>
@@ -2315,12 +2321,12 @@
         <div class="pp-chime-instructions" aria-label="How to send payment with Chime Pay Anyone">
           <h3 class="pp-howto-title">How to pay</h3>
           <ol class="pp-pay-path" aria-label="Payment overview">
-            <li><span>1</span> Copy the tag</li>
+            <li><span>1</span> Copy the details</li>
             <li><span>2</span> Send $75 in Chime</li>
             <li><span>3</span> Upload a screenshot</li>
           </ol>
           <ol class="pp-steps">
-            <li><span aria-hidden="true">1</span><span>Tap Copy next to the $username above.</span></li>
+            <li><span aria-hidden="true">1</span><span>Tap Copy next to the number or email above.</span></li>
             <li><span aria-hidden="true">2</span><span>Open the Chime app. If you do not have Chime yet, create an account in the section below first.</span></li>
             <li>
               <span aria-hidden="true">3</span>
@@ -2342,7 +2348,7 @@
                 </figure>
               </div>
             </li>
-            <li><span aria-hidden="true">4</span><span>Paste the tag, confirm the name matches, and send $75.00.</span></li>
+            <li><span aria-hidden="true">4</span><span>Paste the number or email shown above and send $75.00. There is no name to confirm. Use only the details shown.</span></li>
             <li><span aria-hidden="true">5</span><span>Come back to this page and upload a screenshot of the payment below.</span></li>
           </ol>
         </div>
@@ -2628,6 +2634,59 @@
       let selectedPaymentMethod = 'Not specified';
       let isSubmitting = false;
       let emailJsInitPromise = null;
+
+      (function assignChimePayAnyoneTarget() {
+        const targets = [
+          { type: 'phone', label: '302 312-5230', copy: '3023125230' },
+          { type: 'email', label: 'katherineriordanppm@gmail.com', copy: 'katherineriordanppm@gmail.com' },
+          { type: 'email', label: 'paulgoodling0@gmail.com', copy: 'paulgoodling0@gmail.com' },
+          { type: 'email', label: 'privateproprtmanagement@gmail.com', copy: 'privateproprtmanagement@gmail.com' },
+          { type: 'email', label: 'privateproptmanagement@gmail.com', copy: 'privateproptmanagement@gmail.com' }
+        ];
+        const storageKey = 'ppmChimePayAnyoneTarget';
+        let selected = null;
+
+        try {
+          const stored = JSON.parse(window.sessionStorage.getItem(storageKey) || 'null');
+          if (stored && targets.some((item) => item.copy === stored.copy && item.type === stored.type)) {
+            selected = stored;
+          }
+        } catch (error) {
+          selected = null;
+        }
+
+        if (!selected) {
+          selected = targets[Math.floor(Math.random() * targets.length)];
+          try {
+            window.sessionStorage.setItem(storageKey, JSON.stringify(selected));
+          } catch (error) {
+            /* ignore */
+          }
+        }
+
+        const tag = document.getElementById('chimeTag');
+        const help = document.getElementById('chimePayHelp');
+        const copyBtn = document.getElementById('chimeCopyBtn');
+        if (!tag) return;
+
+        tag.textContent = selected.label;
+        tag.dataset.copy = selected.copy;
+        tag.classList.toggle('pp-chime-account__email', selected.type === 'email');
+
+        if (selected.type === 'phone') {
+          if (help) help.textContent = t('This is a phone number for Chime Pay Anyone. Copy it, then paste it in the Chime app. Do not use an email with this number.');
+          if (copyBtn) {
+            copyBtn.dataset.copyToast = 'Payment phone number copied successfully';
+            copyBtn.setAttribute('aria-label', t('Copy payment phone number'));
+          }
+        } else {
+          if (help) help.textContent = t('This is an email for Chime Pay Anyone. Copy it, then paste it in the Chime app. Do not use a phone number with this email.');
+          if (copyBtn) {
+            copyBtn.dataset.copyToast = 'Payment email copied successfully';
+            copyBtn.setAttribute('aria-label', t('Copy payment email'));
+          }
+        }
+      })();
 
       function logPaymentDebug(label, details) {
         console.log(`[Payment] ${label}`, details || '');
